@@ -1,17 +1,16 @@
 package com.cass.demo.module.member;
 
-import java.time.LocalDateTime;
-
 public class MemberDto {
 	
 	private String membSeq = "2";
 	private String membID;
 	private String membPassword;
 	private String membName;
-	private LocalDateTime membRegDate;
-	private LocalDateTime membModDate;
+	private String membRegDate;
+	private String membModDate;
 	private Integer membUseNy;
 	private Integer membDelNy;
+//	----
 	public String getMembSeq() {
 		return membSeq;
 	}
@@ -36,18 +35,6 @@ public class MemberDto {
 	public void setMembName(String membName) {
 		this.membName = membName;
 	}
-	public LocalDateTime getMembRegDate() {
-		return membRegDate;
-	}
-	public void setMembRegDate(LocalDateTime membRegDate) {
-		this.membRegDate = membRegDate;
-	}
-	public LocalDateTime getMembModDate() {
-		return membModDate;
-	}
-	public void setMembModDate(LocalDateTime membModDate) {
-		this.membModDate = membModDate;
-	}
 	public Integer getMembUseNy() {
 		return membUseNy;
 	}
@@ -59,6 +46,18 @@ public class MemberDto {
 	}
 	public void setMembDelNy(Integer membDelNy) {
 		this.membDelNy = membDelNy;
+	}
+	public String getMembRegDate() {
+		return membRegDate;
+	}
+	public void setMembRegDate(String membRegDate) {
+		this.membRegDate = membRegDate;
+	}
+	public String getMembModDate() {
+		return membModDate;
+	}
+	public void setMembModDate(String membModDate) {
+		this.membModDate = membModDate;
 	}
 	
 
