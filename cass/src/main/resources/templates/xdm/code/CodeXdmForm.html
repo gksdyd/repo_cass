@@ -26,11 +26,11 @@
               <!-- Custom Styled Validation -->
               <form class="row g-3 needs-validation" method="post" id="form" novalidate>
                 <div class="col-md-3" style="height: 100px;">
-                <input type="hidden" name="cdSeq" th:value="${item?.cdSeq}">	
-                  <label for="codegroup_cdgSeq" class="form-label">코드그룹<sup>*</sup></label>
-                  <select class="form-select" id="codegroup_cdgSeq" name="codegroup_cdgSeq" required>
+                <input type="hidden" name="codeSeq" th:value="${item?.codeSeq}">	
+                  <label for="codegroup_cdgrSeq" class="form-label">코드그룹<sup>*</sup></label>
+                  <select class="form-select" id="codegroup_cdgrSeq" name="codegroup_cdgrSeq" required>
 <!--                     <option value="">선택하세요</option> -->
-	                <option th:each ="list : ${list}" th:value="${list.cdgSeq}" th:text="${list.cdgName}" th:selected="${list.cdgSeq == item?.codegroup_cdgSeq}"></option>                                              
+	                <option th:each ="list : ${list}" th:value="${list.cdgrSeq}" th:text="${list.cdgrName}" th:selected="${list.cdgrSeq == item?.codegroup_cdgrSeq}"></option>                                              
                   </select>
                   <div class="invalid-feedback">
                     코드그룹을 선택 해주세요.
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-3" style="height: 100px;">
                   <label for="code" class="form-label">코드<sup>*</sup></label>
-                  <input type="text" class="form-control" id="code" value="" placeholder="자동생성" th:value="${item?.cdSeq}" required disabled>
+                  <input type="text" class="form-control" id="code" value="" placeholder="자동생성" th:value="${item?.codeSeq}" required disabled>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -52,25 +52,25 @@
                 </div>
                 
                 <div class="col-md-3">
-                  <label for="cdName" class="form-label">코드 이름<sup>*</sup></label>
-                  <input type="text" class="form-control" id="cdName" name="cdName" placeholder="한글,영대소문자,숫자" th:value="${item?.cdName}" required>
+                  <label for="codeName" class="form-label">코드 이름<sup>*</sup></label>
+                  <input type="text" class="form-control" id="codeName" name="codeName" placeholder="한글,영대소문자,숫자" th:value="${item?.codeName}" required>
                   <div class="invalid-feedback" id="name-invalid-feedback">
                     코드이름을 입력해주세요.
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <label for="cdNameEng" class="form-label">코드이름 (영문)</label>
-                  <input type="text" class="form-control" id="cdNameEng" name="cdNameEng" placeholder="영대소문자,숫자" th:value="${item?.cdNameEng}" required>
+                  <label for="codeNameEng" class="form-label">코드이름 (영문)</label>
+                  <input type="text" class="form-control" id="codeNameEng" name="codeNameEng" placeholder="영대소문자,숫자" th:value="${item?.codeNameEng}" required>
                   <div class="invalid-feedback" id="nameeng-invalid-feedback">
                     코드이름(영문)을 입력하세요.
                   </div>
                 </div>
                 <div class="col-md-3" style="height: 100px;">
-                  <label for="cdUseNy" class="form-label">사용여부<sup>*</sup></label>
-                  <select class="form-select" id="cdUseNy" name="cdUseNy" th:value="${item?.cdUseNy}" required>
+                  <label for="codeUseNy" class="form-label">사용여부<sup>*</sup></label>
+                  <select class="form-select" id="codeUseNy" name="codeUseNy" th:value="${item?.codeUseNy}" required>
 <!--                     <option value="">선택하세요</option> -->
-                    <option value="1" th:selected="${item?.cdUseNy == 1}" th:text="사용"></option>
-					<option value="0" th:selected="${item?.cdUseNy == 0}" th:text="미사용"></option>
+                    <option value="1" th:selected="${item?.codeUseNy == 1}" th:text="사용"></option>
+					<option value="0" th:selected="${item?.codeUseNy == 0}" th:text="미사용"></option>
                   </select>
                   <div class="invalid-feedback">
                     항목중 하나를 선택 해주세요.
@@ -82,8 +82,8 @@
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-6" style="height: 150px;">
-                  <label for="cdDesc" class="form-label">설명</label>
-                  <textarea class="form-control" id="cdDesc" name="cdDesc" th:text="${item?.cdDesc}"></textarea>
+                  <label for="codeDesc" class="form-label">설명</label>
+                  <textarea class="form-control" id="codeDesc" name="codeDesc" th:text="${item?.codeDesc}"></textarea>
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
@@ -127,33 +127,33 @@
   <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
 
     <script type="text/javascript">
-    let seq = document.querySelector("input[name=cdSeq]");
+    let seq = document.querySelector("input[name=codeSeq]");
     
-    $("#cdName").on("keyup", function(){
+    $("#codeName").on("keyup", function(){
     	let regExp = /^[A-Za-zㄱ-ㅎ가-힣0-9_]{2,}$/
-		$("#cdName").removeClass("is-invalid");
-		if(!regExp.test($("#cdName").val())) {
-			$("#cdName").removeClass("is-valid");
-			$("#cdName").addClass("is-invalid");
+		$("#codeName").removeClass("is-invalid");
+		if(!regExp.test($("#codeName").val())) {
+			$("#codeName").removeClass("is-valid");
+			$("#codeName").addClass("is-invalid");
 			document.getElementById("name-invalid-feedback").innerText = "한영과 숫자만 입력해주세요";
 			document.getElementById("btnSubmit").setAttribute("disabled", "");
 		} else {
-			$("#cdName").removeClass("is-invalid");
-			$("#cdName").addClass("is-valid");
+			$("#codeName").removeClass("is-invalid");
+			$("#codeName").addClass("is-valid");
 			document.getElementById("btnSubmit").removeAttribute("disabled", "");
 		}
 	});
-    $("#cdNameEng").on("keyup", function(){
+    $("#codeNameEng").on("keyup", function(){
     	let regExp = /^[A-Za-z0-9_]+$/
-		$("#cdNameEng").removeClass("is-invalid");
-		if(!regExp.test($("#cdNameEng").val())) {
-			$("#cdNameEng").removeClass("is-valid");
-			$("#cdNameEng").addClass("is-invalid");
+		$("#codeNameEng").removeClass("is-invalid");
+		if(!regExp.test($("#codeNameEng").val())) {
+			$("#codeNameEng").removeClass("is-valid");
+			$("#codeNameEng").addClass("is-invalid");
 			document.getElementById("nameeng-invalid-feedback").innerText = "알파벳과 숫자만 입력해주세요";
 			document.getElementById("btnSubmit").setAttribute("disabled", "");
 		} else {
-			$("#cdNameEng").removeClass("is-invalid");
-			$("#cdNameEng").addClass("is-valid");
+			$("#codeNameEng").removeClass("is-invalid");
+			$("#codeNameEng").addClass("is-valid");
 			document.getElementById("btnSubmit").removeAttribute("disabled", "");
 		}
 	});
@@ -161,23 +161,23 @@
     
     function validationInst() {
 	    if(validationUpdt() == false) return false;
-	    if(document.getElementById("codegroup_cdgSeq").value == null || document.getElementById("codegroup_cdgSeq").value == "") {
-    		document.getElementById("codegroup_cdgSeq").classList.add("is-invalid");
+	    if(document.getElementById("codegroup_cdgrSeq").value == null || document.getElementById("codegroup_cdgrSeq").value == "") {
+    		document.getElementById("codegroup_cdgrSeq").classList.add("is-invalid");
     		return false;
 		} else {
-    		document.getElementById("codegroup_cdgSeq").classList.remove("is-invalid");			
+    		document.getElementById("codegroup_cdgrSeq").classList.remove("is-invalid");			
 		}
-		if(document.getElementById("cdName").value.trim() == null || document.getElementById("cdName").value.trim() == "") {
-    		document.getElementById("cdName").classList.add("is-invalid");
+		if(document.getElementById("codeName").value.trim() == null || document.getElementById("codeName").value.trim() == "") {
+    		document.getElementById("codeName").classList.add("is-invalid");
 			return false;
 		} else {
-    		document.getElementById("cdName").classList.remove("is-invalid");
+    		document.getElementById("codeName").classList.remove("is-invalid");
 		}		
-		if(document.getElementById("cdNameEng").value.trim() == null || document.getElementById("cdNameEng").value.trim() == "") {
-			document.getElementById("cdNameEng").classList.add("is-invalid");
+		if(document.getElementById("codeNameEng").value.trim() == null || document.getElementById("codeNameEng").value.trim() == "") {
+			document.getElementById("codeNameEng").classList.add("is-invalid");
 			return false;
 		} else {
-    		document.getElementById("cdNameEng").classList.remove("is-invalid");
+    		document.getElementById("codeNameEng").classList.remove("is-invalid");
 		}	
 	}
 	

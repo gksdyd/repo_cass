@@ -25,10 +25,10 @@
               <!-- Custom Styled Validation -->
               <form class="row g-3" method="post" id="form" name="form">
                 <div class="col-md-3" style="height: 100px;">
-               		<input type="hidden" name="cdgSeq" th:value="${item?.cdgSeq}">
+               		<input type="hidden" name="cdgrSeq" th:value="${item?.cdgrSeq}">
                		<input type="hidden" name="cdUpdtDate" >	               		
-                	<label for="cdgcode" class="form-label">코드그룹 코드 <sup>*</sup></label>
-                	<input type="text" class="form-control" id="cdgcode" value="" placeholder="자동생성" disabled th:value="${item?.cdgSeq}">
+                	<label for="cdgrcode" class="form-label">코드그룹 코드 <sup>*</sup></label>
+                	<input type="text" class="form-control" id="cdgrcode" value="" placeholder="자동생성" disabled th:value="${item?.cdgrSeq}">
                 </div>
       
                 <div class="col-md-3" style="height: 100px;">
@@ -36,21 +36,21 @@
                   <input type="text" class="form-control" id="another" value="" placeholder="영대소문자,숫자">
                 </div>
                 <div class="col-md-3">
-                  <label for="cdgName" class="form-label">코드그룹 이름 <sup>*</sup></label>
-                  <input type="text" class="form-control" id="cdgName" name="cdgName" placeholder="한글,영대문자,숫자" th:value="${item?.cdgName}">
+                  <label for="cdgrName" class="form-label">코드그룹 이름 <sup>*</sup></label>
+                  <input type="text" class="form-control" id="cdgrName" name="cdgrName" placeholder="한글,영대문자,숫자" th:value="${item?.cdgrName}">
                 </div>
                 
                 <div class="col-md-3">
-                  <label for="cdgNameEng" class="form-label">코드그룹 이름 (영문)</label>
-                  <input type="text" class="form-control" id="cdgNameEng" name="cdgNameEng" placeholder="영대소문자,숫자" th:value="${item?.cdgNameEng}">
+                  <label for="cdgrNameEng" class="form-label">코드그룹 이름 (영문)</label>
+                  <input type="text" class="form-control" id="cdgrNameEng" name="cdgrNameEng" placeholder="영대소문자,숫자" th:value="${item?.cdgrNameEng}">
                 </div>
                 
                 <div class="col-md-3" style="height: 100px;">
-                  <label for="cdgUseNy" class="form-label">사용여부<sup>*</sup></label>
-                  <select class="form-select" id="cdgUseNy" name="cdgUseNy" th:selected="${item?.cdgUseNy}">
+                  <label for="cdgrUseNy" class="form-label">사용여부<sup>*</sup></label>
+                  <select class="form-select" id="cdgrUseNy" name="cdgrUseNy" th:selected="${item?.cdgrUseNy}">
                     <option value="">선택해주세요.</option>                                            
-                    <option value="1" th:selected="${item?.cdgUseNy == 1}" th:text="사용"></option>
-					<option value="0" th:selected="${item?.cdgUseNy == 0}" th:text="미사용"></option>
+                    <option value="1" th:selected="${item?.cdgrUseNy == 1}" th:text="사용"></option>
+					<option value="0" th:selected="${item?.cdgrUseNy == 0}" th:text="미사용"></option>
                   </select>
                 </div>
                 <div class="col-md-3">
@@ -62,8 +62,8 @@
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-6" style="height: 150px;">
-                  <label for="cdgDesc" class="form-label">설명</label>
-                  <textarea class="form-control" id="cdgDesc" name="cdgDesc" th:text="${item?.cdgDesc}"></textarea>
+                  <label for="cdgrDesc" class="form-label">설명</label>
+                  <textarea class="form-control" id="cdgrDesc" name="cdgrDesc" th:text="${item?.cdgrDesc}"></textarea>
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
@@ -124,7 +124,7 @@
 <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
 
 <script type="text/javascript">
-	let seq = document.querySelector("input[name=cdgSeq]");
+	let seq = document.querySelector("input[name=cdgrSeq]");
 	let form = document.querySelector("form[name=form]");
 	
 	function validationInst() {
@@ -132,12 +132,12 @@
 	}
 	
 	function validationUpdt() {
-		if(document.getElementById("cdgName").value.trim() == null || document.getElementById("cdgName").value.trim() == "") {
+		if(document.getElementById("cdgrName").value.trim() == null || document.getElementById("cdgrName").value.trim() == "") {
 			alertModal()
-			document.getElementById("cdgName").focus();
+			document.getElementById("cdgrName").focus();
 			return false;
 		}
-		if(document.getElementById("cdgNameEng").value.trim() == null || document.getElementById("cdgNameEng").value.trim() == "") {
+		if(document.getElementById("cdgrNameEng").value.trim() == null || document.getElementById("cdgrNameEng").value.trim() == "") {
 			alertModal()
 			return false;
 		}
@@ -178,12 +178,12 @@
 	}
 	
 	document.getElementById("closeModal").onclick = function() {
-		if(document.getElementById("cdgName").value.trim() == null || document.getElementById("cdgName").value.trim() == "") {
-			document.getElementById("cdgName").focus();
+		if(document.getElementById("cdgrName").value.trim() == null || document.getElementById("cdgrName").value.trim() == "") {
+			document.getElementById("cdgrName").focus();
 			return false;
 		}
-		if(document.getElementById("cdgNameEng").value.trim() == null || document.getElementById("cdgNameEng").value.trim() == "") {
-			document.getElementById("cdgNameEng").focus();
+		if(document.getElementById("cdgrNameEng").value.trim() == null || document.getElementById("cdgrNameEng").value.trim() == "") {
+			document.getElementById("cdgrNameEng").focus();
 			return false;
 		}
 	}

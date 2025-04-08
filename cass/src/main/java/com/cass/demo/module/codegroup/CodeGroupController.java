@@ -38,7 +38,6 @@ public class CodeGroupController extends BaseController {
 //			update mode
 			model.addAttribute("item", codeGroupService.selectOne(vo));
 		}
-		System.out.println("dto.getCdgrModDate() " + dto.getCdgrModDate());
 		return "xdm/codegroup/CodegroupXdmForm";
 	}
 	

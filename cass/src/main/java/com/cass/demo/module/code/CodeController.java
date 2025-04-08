@@ -17,6 +17,7 @@ public class CodeController extends BaseController {
 	@Autowired
 	CodeService codeService;
 	
+	@Autowired
 	CodeGroupService codeGroupService;
 
 	@RequestMapping(value = "/code/codeXdmList")
