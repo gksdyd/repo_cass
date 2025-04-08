@@ -67,17 +67,17 @@
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
-                      <label for="userId" class="form-label">ID</label>
+                      <label for="membId" class="form-label">ID</label>
                       <div class="input-group has-validation">
                         
-                        <input type="text" name="userId" class="form-control" id="userId" th:value="admin" required>
+                        <input type="text" name="membId" class="form-control" id="membId" th:value="system_admin" required>
                         <div class="invalid-feedback">ID를 입력해주세요.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="userPassword" class="form-label">Password</label>
-                      <input type="password" name="userPassword" class="form-control" id="userPassword" th:value="qwer" required>
+                      <label for="membPassword" class="form-label">Password</label>
+                      <input type="password" name="membPassword" class="form-control" id="membPassword" th:value="1q2w" required>
                       <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
                     </div>
 
@@ -147,7 +147,7 @@ function loginLogic (){
 		/* ,dataType:"json" */
 		,url: "/member/signinXdmProc"
 		/* ,data : $("#formLogin").serialize() */
-		,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val()}
+		,data : { "membId" : $("#membId").val(), "membPassword" : $("#membPassword").val()}
 		,success: function(response) {
 			if(response.rt == "success") {
 // 				alert("ㅇ?");
@@ -169,17 +169,17 @@ function loginLogic (){
 	});
 }
 document.getElementById("buttonSignIn").onclick = function () {
-	if(document.getElementById("userId").value.trim() == null || document.getElementById("userId").value.trim() == "") {
-		document.getElementById("userId").classList.add("is-invalid");
+	if(document.getElementById("membId").value.trim() == null || document.getElementById("membId").value.trim() == "") {
+		document.getElementById("membId").classList.add("is-invalid");
 		return false;
 	} else {
-		document.getElementById("userId").classList.remove("is-invalid");
+		document.getElementById("membId").classList.remove("is-invalid");
 	}
-	if(document.getElementById("userPassword").value.trim() == null || document.getElementById("userPassword").value.trim() == "") {
-		document.getElementById("userPassword").classList.add("is-invalid");
+	if(document.getElementById("membPassword").value.trim() == null || document.getElementById("membPassword").value.trim() == "") {
+		document.getElementById("membPassword").classList.add("is-invalid");
 		return false;
 	} else {
-		document.getElementById("userPassword").classList.remove("is-invalid");
+		document.getElementById("membPassword").classList.remove("is-invalid");
 	}
 	loginLogic ();
 }

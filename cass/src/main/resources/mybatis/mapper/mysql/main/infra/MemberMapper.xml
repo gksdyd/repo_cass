@@ -8,7 +8,7 @@
 	<select id="selectOneLogin" resultMap="resultMapObj">
 		SELECT
 			membSeq,
-		    membID,
+		    membId,
 		    membPassword,
 		    membName,
 		    membRegDate,
@@ -18,14 +18,14 @@
 		FROM
 			member
 		WHERE 1=1
-			AND membID = #{membID}
+			AND membId = #{membId}
 	<if test="membPassword != null and !membPassword.equals('')">AND membPassword = #{membPassword}</if>
 		
 	</select>
 	
 	<select id="getIdPass" resultMap="resultMapObj">
 		SELECT
-		    membID,
+		    membId,
 		    membPassword
 		FROM
 			member

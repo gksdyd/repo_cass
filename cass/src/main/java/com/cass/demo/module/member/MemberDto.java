@@ -3,7 +3,7 @@ package com.cass.demo.module.member;
 public class MemberDto {
 	
 	private String membSeq = "2";
-	private String membID;
+	private String membId;
 	private String membPassword;
 	private String membName;
 	private String membRegDate;
@@ -16,12 +16,6 @@ public class MemberDto {
 	}
 	public void setMembSeq(String membSeq) {
 		this.membSeq = membSeq;
-	}
-	public String getMembID() {
-		return membID;
-	}
-	public void setMembID(String membID) {
-		this.membID = membID;
 	}
 	public String getMembPassword() {
 		return membPassword;
@@ -58,6 +52,12 @@ public class MemberDto {
 	}
 	public void setMembModDate(String membModDate) {
 		this.membModDate = membModDate;
+	}
+	public String getMembId() {
+		return membId;
+	}
+	public void setMembId(String membId) {
+		this.membId = membId;
 	}
 	
 
