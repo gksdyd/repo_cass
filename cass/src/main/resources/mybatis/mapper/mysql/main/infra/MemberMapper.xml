@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.mobile.member.MemberDao">
+
+<resultMap id="resultMapObj" type="com.cass.demo.mobile.member.MemberDto"></resultMap>
+
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			membSeq,
+		    membID,
+		    membPassword,
+		    membName,
+		    membRegDate,
+		    membModDate,
+		    membUseNy,
+		    membDelNy
+		FROM
+			member
+		WHERE 1=1
+			AND membID = #{membID}
+	<if test="membPassword != null and !membPassword.equals('')">AND membPassword = #{membPassword}</if>
+		
+	</select>
+	
+	<select id="getIdPass" resultMap="resultMapObj">
+		SELECT
+		    membID,
+		    membPassword
+		FROM
+			member
+		WHERE 1=1
+			AND membSeq = #{membSeq}
+			
+	</select>
+
+</mapper>
