@@ -97,7 +97,7 @@
                     <div class="col-auto"><a class="fs-10" href="/mobileXdm/template/falcon-v3.23.0/pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
                   </div>
                   <div class="mb-3">
-                    <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Log in</button>
+                    <button class="btn btn-primary d-block w-100 mt-3" type="button" id="loginBtn">로그인</button>
                   </div>
                 </form>
                 <div class="position-relative mt-4">
@@ -243,6 +243,80 @@
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/list.js/list.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/theme.js"></script>
 
+	<script>
+      let adminId = document.getElementById("userId");
+      let adminPassword = document.getElementById("userPassword");
+
+      let adminIdValid = document.getElementById("userIdValid");
+      let adminPasswordValid = document.getElementById("userPasswordValid");
+
+      document.getElementById("loginBtn").onclick = function() {
+        loginLogic();
+      }
+      
+      validationInit = function() {
+        adminIdValid.style.display = "none";
+        adminPasswordValid.style.display = "none";
+      }
+      
+      validation = function() {
+        let temp;
+        
+        temp = adminId.value;
+        if (!checkLength(temp) || !onlyKoEngNumValid(temp)) {
+          adminIdValid.style.display = "block";
+          adminId.style.outlineColor = "red";
+          adminId.focus();
+          return false;
+        }
+        
+        temp = adminPassword.value;
+        if (!checkLength(temp) || !onlyEngKoNumAllSpecialChar(temp)) {
+          adminPasswordValid.style.display = "block";
+          adminPassword.style.outlineColor = "red";
+          adminPassword.focus();
+          return false;
+        }
+
+        return true;
+      }
+      
+      function loginLogic () {
+        
+        /* validationInit();
+        
+        if(!validation()) {
+          return false;
+        } */
+        
+        $.ajax({
+          async: true 
+          ,cache: false
+          ,type: "post"
+          /* ,dataType:"json" */
+          ,url: URL_SIGNIN_PROC_XDM
+          /* ,data : $("#formLogin").serialize() */
+          ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+          ,success: function(response) {
+            if(response.rt == "success") {
+              if(response.changePwd == "true") {
+                // location.href = "/v1/infra/member/expiredPwdUsrForm";
+              } else {
+                location.href = URL_INDEX_VIEW_XDM;
+              }
+            } else {
+              modalTitle.innerText = "확 인";
+              modalText.innerText = "일치하는 회원이 존재 하지 않습니다!";
+              modalCloseButton.style.display = "block";
+              $("#modal").modal("show");
+            }
+          }
+          ,error : function(jqXHR, textStatus, errorThrown){
+            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+          }
+        });
+	}
+     </script>
   </body>
 
 </html>

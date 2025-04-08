@@ -1,139 +1,65 @@
 package com.cass.demo.module.member;
 
+import java.time.LocalDateTime;
+
 public class MemberDto {
-	private String seq;
-	private String userId;
-	private String userName;
-	private String userCate;
-	private String userTel;
-	private String userEmail;
-	private String userPassword;
-	private String userDob;
-	private Integer userGender;
-	private String userAddressCd;
-	private String userNote;
-	private String userGps;
-	private String userIp;
-	private String shopComment;
-	private Integer noshow;
-	private Integer isBlack;
-	private Integer delNy;
-	private String userInstDate;
-	private String userUpdtDate;
-//	-----
-	public String getSeq() {
-		return seq;
+	
+	private String membSeq = "2";
+	private String membID;
+	private String membPassword;
+	private String membName;
+	private LocalDateTime membRegDate;
+	private LocalDateTime membModDate;
+	private Integer membUseNy;
+	private Integer membDelNy;
+	public String getMembSeq() {
+		return membSeq;
 	}
-	public void setSeq(String seq) {
-		this.seq = seq;
+	public void setMembSeq(String membSeq) {
+		this.membSeq = membSeq;
 	}
-	public String getUserName() {
-		return userName;
+	public String getMembID() {
+		return membID;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setMembID(String membID) {
+		this.membID = membID;
 	}
-	public String getUserTel() {
-		return userTel;
+	public String getMembPassword() {
+		return membPassword;
 	}
-	public void setUserTel(String userTel) {
-		this.userTel = userTel;
+	public void setMembPassword(String membPassword) {
+		this.membPassword = membPassword;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getMembName() {
+		return membName;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setMembName(String membName) {
+		this.membName = membName;
 	}
-	public String getUserPassword() {
-		return userPassword;
+	public LocalDateTime getMembRegDate() {
+		return membRegDate;
 	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setMembRegDate(LocalDateTime membRegDate) {
+		this.membRegDate = membRegDate;
 	}
-	public String getUserDob() {
-		return userDob;
+	public LocalDateTime getMembModDate() {
+		return membModDate;
 	}
-	public void setUserDob(String userDob) {
-		this.userDob = userDob;
+	public void setMembModDate(LocalDateTime membModDate) {
+		this.membModDate = membModDate;
 	}
-	public Integer getUserGender() {
-		return userGender;
+	public Integer getMembUseNy() {
+		return membUseNy;
 	}
-	public void setUserGender(Integer userGender) {
-		this.userGender = userGender;
+	public void setMembUseNy(Integer membUseNy) {
+		this.membUseNy = membUseNy;
 	}
-	public String getUserAddressCd() {
-		return userAddressCd;
+	public Integer getMembDelNy() {
+		return membDelNy;
 	}
-	public void setUserAddressCd(String userAddressCd) {
-		this.userAddressCd = userAddressCd;
-	}
-	public String getUserNote() {
-		return userNote;
-	}
-	public void setUserNote(String userNote) {
-		this.userNote = userNote;
-	}
-	public String getUserGps() {
-		return userGps;
-	}
-	public void setUserGps(String userGps) {
-		this.userGps = userGps;
-	}
-	public String getUserIp() {
-		return userIp;
-	}
-	public void setUserIp(String userIp) {
-		this.userIp = userIp;
-	}
-	public String getShopComment() {
-		return shopComment;
-	}
-	public void setShopComment(String shopComment) {
-		this.shopComment = shopComment;
-	}
-	public Integer getNoshow() {
-		return noshow;
-	}
-	public void setNoshow(Integer noshow) {
-		this.noshow = noshow;
-	}
-	public Integer getIsBlack() {
-		return isBlack;
-	}
-	public void setIsBlack(Integer isBlack) {
-		this.isBlack = isBlack;
-	}
-	public Integer getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getUserCate() {
-		return userCate;
-	}
-	public void setUserCate(String userCate) {
-		this.userCate = userCate;
-	}
-	public String getUserInstDate() {
-		return userInstDate;
-	}
-	public void setUserInstDate(String userInstDate) {
-		this.userInstDate = userInstDate;
-	}
-	public String getUserUpdtDate() {
-		return userUpdtDate;
-	}
-	public void setUserUpdtDate(String userUpdtDate) {
-		this.userUpdtDate = userUpdtDate;
+	public void setMembDelNy(Integer membDelNy) {
+		this.membDelNy = membDelNy;
 	}
 	
+
 }

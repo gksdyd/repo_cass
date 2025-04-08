@@ -40,7 +40,7 @@ public class DbConfigMysqlMain {
 	SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 	sqlSessionFactoryBean.setDataSource(datasource);
 	sqlSessionFactoryBean.setMapperLocations(
-	applicationContext.getResources("classpath:/mybatis/mapper/mysql/main/**/.xml"));	//#--> *mapper.xml 위치
+	applicationContext.getResources("classpath:/mybatis/mapper/mysql/main/**/*.xml"));	//#--> *mapper.xml 위치
 	return sqlSessionFactoryBean.getObject();
 	}
 
