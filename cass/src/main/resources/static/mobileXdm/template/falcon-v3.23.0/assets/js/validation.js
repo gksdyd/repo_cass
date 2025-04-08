@@ -65,9 +65,9 @@ onlyEngKoNumAllSpecialChar = function(text) {
     return true;
 }
 
-// 무게만
-onlyWeight = function(text) {
-    if (!regexWeight.test(text)) {
+// 아이디만
+onlyId = function(text) {
+    if (!regexId.test(text)) {
         return false;
     }
     return true;

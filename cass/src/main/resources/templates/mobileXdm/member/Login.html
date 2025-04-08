@@ -80,12 +80,14 @@
                   </div>
                   <div class="col-auto fs-10 text-600"><span class="mb-0 undefined">or</span> <span><a href="/mobileXdm/template/falcon-v3.23.0/pages/authentication/simple/register.html">Create an account</a></span></div>
                 </div>
-                <form>
+                <form class="needs-validation customer-form" novalidate>
                   <div class="mb-3">
                     <input class="form-control" type="email" placeholder="Email address" th:value="${getIdPass.membId}" id="membId" name="membId"/>
+                    <div class="invalid-feedback" id="membIdValid"></div>
                   </div>
                   <div class="mb-3">
                     <input class="form-control" type="password" placeholder="Password" th:value="${getIdPass.membPassword}" id="membPassword" name="membPassword"/>
+                    <div class="invalid-feedback" id="membPasswordValid">비밀번호가 틀렸습니다.</div>
                   </div>
                   <div class="row flex-between-center">
                     <div class="col-auto">
@@ -244,39 +246,41 @@
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/list.js/list.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/theme.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/constant.js"></script>
+    <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/validation.js"></script>
 
 	<script>
-      let adminId = document.getElementById("userId");
-      let adminPassword = document.getElementById("userPassword");
+      let membId = document.getElementById("membId");
+      let membPassword = document.getElementById("membPassword");
 
-      let adminIdValid = document.getElementById("userIdValid");
-      let adminPasswordValid = document.getElementById("userPasswordValid");
+      let membIdValid = document.getElementById("membIdValid");
+      let membPasswordValid = document.getElementById("membPasswordValid");
 
       document.getElementById("loginBtn").onclick = function() {
         loginLogic();
       }
       
       validationInit = function() {
-        adminIdValid.style.display = "none";
-        adminPasswordValid.style.display = "none";
+        membIdValid.style.display = "none";
+        membPasswordValid.style.display = "none";
       }
       
       validation = function() {
         let temp;
         
-        temp = adminId.value;
-        if (!checkLength(temp) || !onlyKoEngNumValid(temp)) {
-          adminIdValid.style.display = "block";
-          adminId.style.outlineColor = "red";
-          adminId.focus();
+        temp = membId.value;
+        if (!checkLength(temp) || !onlyEngKoNumAllSpecialChar(temp)) {
+        	membIdValid.innerText = "아이디를 입력해주세요.";
+          	membIdValid.style.display = "block";
+          	membId.style.outlineColor = "red";
+          	membId.focus();
           return false;
         }
         
-        temp = adminPassword.value;
+        temp = membPassword.value;
         if (!checkLength(temp) || !onlyEngKoNumAllSpecialChar(temp)) {
-          adminPasswordValid.style.display = "block";
-          adminPassword.style.outlineColor = "red";
-          adminPassword.focus();
+          membPasswordValid.style.display = "block";
+          membPassword.style.outlineColor = "red";
+          membPassword.focus();
           return false;
         }
 
@@ -285,11 +289,11 @@
       
       function loginLogic () {
         
-        /* validationInit();
+        validationInit();
         
         if(!validation()) {
           return false;
-        } */
+        }
 
         $.ajax({
           async: true 
@@ -307,10 +311,11 @@
                 location.href = URL_INDEX_VIEW_XDM;
               }
             } else {
-              modalTitle.innerText = "확 인";
-              modalText.innerText = "일치하는 회원이 존재 하지 않습니다!";
-              modalCloseButton.style.display = "block";
-              $("#modal").modal("show");
+              	membIdValid.innerText = "일치하는 회원이 존재 하지 않습니다!";
+	            membIdValid.style.display = "block";
+	            membId.style.outlineColor = "red";
+	            membId.focus();
+	            return false;
             }
           }
           ,error : function(jqXHR, textStatus, errorThrown){

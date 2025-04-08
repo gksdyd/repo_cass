@@ -28,4 +28,5 @@ const regex1 = /^[a-z|A-Z|0-9|]+$/;
 const regex2 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~|/|(-)|,|]+$/;
 const regex3 = /^[a-z|A-Z|0-9|~|/|(-)|,|]+$/;
 const regex4 = /^[0-9|]+$/;
-const regex5 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|!-/|]+$/;
+const regex5 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|!-/|_|]+$/;
+const regexId = /^[a-z]+[a-z0-9]{5,19}$/g;
