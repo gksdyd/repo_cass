@@ -3,7 +3,8 @@
    ===============================================--> */
 
 // 로그아웃 클릭 시 실행되는 Ajax
-$("#btnLogout").on("click", function(){
+$("#logoutBtn").on("click", function(){
+	alert("hh");
     $.ajax({
       async: true 
       ,cache: false

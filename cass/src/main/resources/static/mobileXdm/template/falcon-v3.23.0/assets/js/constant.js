@@ -12,9 +12,9 @@ const SEVERAL_DELETE_FLAG = 3;
 const SEVERAL_UELETE_FLAG = 4;
 
 // 로그인관련 경로
-//const URL_SIGNIN_FORM_XDM = "/xdm/member/LoginXdmForm";
+const URL_SIGNIN_FORM_XDM = "/mobileXdm/member/LoginMobileForm";
 const URL_SIGNIN_PROC_XDM = "/mobileXdm/member/SigninMobileProc";
-//const URL_SIGNOUT_PROC_XDM = "/xdm/member/LogoutXdmProc";
+const URL_SIGNOUT_PROC_XDM = "/mobileXdm/member/SignoutMobileProc";
 const URL_INDEX_VIEW_XDM = "/mobileXdm/service/IncomeXdmList";
 
 // 상품관련 경로

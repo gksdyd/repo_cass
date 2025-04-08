@@ -43,4 +43,17 @@ public class MobileMemberController {
 		}		
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/SignoutMobileProc")
+	public Map<String, Object> signoutXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		httpSession.setAttribute("sessXdmSeq", null);
+		httpSession.setAttribute("sessXdmName", null);
+		httpSession.setAttribute("sessXdmId", null);		
+
+		returnMap.put("rt", "success");				
+	return returnMap;
+	}
 }
