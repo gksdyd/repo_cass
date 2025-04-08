@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bicycledoctors.module.member.MemberDao">
+<mapper namespace="com.cass.demo.module.member.MemberDao">
 	
-	<resultMap type="com.bicycledoctors.module.member.MemberDto" id="resultMapObj"></resultMap>
+	<resultMap type="com.cass.demo.module.member.MemberDto" id="resultMapObj"></resultMap>
 	
 	<sql id="selectCommon">	    
 	    from
