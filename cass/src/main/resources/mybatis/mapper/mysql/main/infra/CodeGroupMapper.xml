@@ -34,7 +34,7 @@
 			a.cdgrSeq
 			,a.cdgrName
 			,a.cdgrNameEng
-			,(select count(aa.codegroup_cdgrSeq) from code aa where 1 = 1 and aa.cdDelNy = 0 and aa.codegroup_cdgSeq = a.cdgSeq) as xcdSeqCount
+			,(select count(aa.codegroup_cdgrSeq) from code aa where 1 = 1 and aa.codeDelNy = 0 and aa.codegroup_cdgrSeq = a.cdgrSeq) as xcdSeqCount
 			,a.cdgrUseNy
 			,a.cdgrDelNy
 			,a.cdgrRegDate

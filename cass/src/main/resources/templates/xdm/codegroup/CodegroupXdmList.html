@@ -89,7 +89,7 @@
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
           <div class="card" >
             <div class="card-body">
-	          <input type="hidden" name="cdgSeq">
+	          <input type="hidden" name="cdgrSeq">
 			<div th:replace="~{xdm/include/totalAndRowNum :: totalAndRowNum}"></div>
             </div>
 
@@ -119,16 +119,16 @@
 	               		</td>
 	               	</tr>
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
-	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()' th:value="${list.cdgSeq}" value=""/></div></th>
+	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()' th:value="${list.cdgrSeq}" value=""/></div></th>
 	                   <td th:text = "${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-	                   <td th:text = "${list.cdgUseNy}"></td>
-	                   <td th:text = "${list.cdgSeq}"></td>
-	                   <td><a href = "javascript:void(0);" th:text="${list.cdgName}" th:attr="onclick=|goForm('${list.cdgSeq}')|"></a></td>
-	                   <td th:text = "${list.cdgNameEng}"></td>
+	                   <td th:text = "${list.cdgrUseNy}"></td>
+	                   <td th:text = "${list.cdgrSeq}"></td>
+	                   <td><a href = "javascript:void(0);" th:text="${list.cdgrName}" th:attr="onclick=|goForm('${list.cdgrSeq}')|"></a></td>
+	                   <td th:text = "${list.cdgrNameEng}"></td>
 	                   <td th:text = "${list.xcdSeqCount}"></td>
 	                   <td>1</td>
 	                   <td></td>
-	                   <td th:text = "${list.cdgUpdtDate}"></td>                                                
+	                   <td th:text = "${list.cdgrModDate}"></td>                                                
 	                   </tr>
                   </tbody>
                   <tfoot>
@@ -195,7 +195,7 @@
 
 	<script type="text/javascript">	
 		let form = document.querySelector("form[name=formList]");
-		let seq = document.querySelector("input[name=cdgSeq]");
+		let seq = document.querySelector("input[name=cdgrSeq]");
 		
 		$.datetimepicker.setLocale('ko');
 		$(window).on("load", function () {
