@@ -234,6 +234,7 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
+    <script src="/mobileXdm/template/falcon-v3.23.0/vendors/jquery/jquery.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/popper/popper.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/bootstrap/bootstrap.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/anchorjs/anchor.min.js"></script>
@@ -242,6 +243,7 @@
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/lodash/lodash.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/vendors/list.js/list.min.js"></script>
     <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/theme.js"></script>
+    <script src="/mobileXdm/template/falcon-v3.23.0/assets/js/constant.js"></script>
 
 	<script>
       let adminId = document.getElementById("userId");
@@ -288,7 +290,7 @@
         if(!validation()) {
           return false;
         } */
-        
+
         $.ajax({
           async: true 
           ,cache: false
@@ -296,7 +298,7 @@
           /* ,dataType:"json" */
           ,url: URL_SIGNIN_PROC_XDM
           /* ,data : $("#formLogin").serialize() */
-          ,data : { "userId" : $("#userId").val(), "userPassword" : $("#userPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+          ,data : { "membId" : $("#membId").val(), "membPassword" : $("#membPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
           ,success: function(response) {
             if(response.rt == "success") {
               if(response.changePwd == "true") {
