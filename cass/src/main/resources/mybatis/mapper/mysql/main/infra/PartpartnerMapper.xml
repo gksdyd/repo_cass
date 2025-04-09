@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.module.partpartner.PartpartnerDao">
+
+<resultMap id="resultMapObj" type="com.cass.demo.module.partpartner.PartpartnerDto"></resultMap>
+
+	<sql id="selectCommon">	    
+	    from
+			partpartner
+		where 1=1
+		<if test="shUseNy != null and !shUseNy.equals('')">AND papaUseNy = #{papaUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND papaDelNy = #{papaDelNy}</if>
+				<choose>
+					<when test="shOptionDate == 1">AND papaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND papaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+        <choose>
+            <when test="shOption == 1">AND papaSeq = #{shValue}</when>
+            <when test="shOption == 2">AND papaName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+	
+	<select id="selectOneCount" resultType="Integer">
+    	select count(*)
+    	 <include refid = "selectCommon"></include>
+    </select>
+    
+    <select id="selectList" resultMap="resultMapObj">
+	select aa.* from (
+		SELECT
+			papaSeq
+		    ,papaName
+		    ,papaAddress
+		    ,papaZipCode
+		    ,papaAddressDetail
+		    ,papaGpsX
+		    ,papaGpsY
+		    ,papaManager
+		    ,papaTel
+		    ,papaManagerTel
+		    ,papaFaxNum
+		    ,papaDesc
+		    ,papaRegDate
+		    ,papaModDate
+		    ,papaUseNy
+		    ,papaDelNy
+		<include refid = "selectCommon"></include>
+		order by papaSeq desc
+	) aa
+	limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			papaSeq,
+		    papaName,
+		    papaAddress,
+		    papaZipCode,
+		    papaAddressDetail,
+		    papaGpsX,
+		    papaGpsY,
+		    papaManager,
+		    papaTel,
+		    papaManagerTel,
+		    papaFaxNum,
+		    papaDesc,
+		    papaRegDate,
+		    papaModDate,
+		    papaUseNy,
+		    papaDelNy
+		FROM
+			partpartner
+		WHERE 1=1
+			AND papaSeq = #{papaSeq}
+	</select>
+
+</mapper>
