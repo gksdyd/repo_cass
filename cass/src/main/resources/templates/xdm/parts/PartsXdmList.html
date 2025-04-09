@@ -12,7 +12,7 @@
           <li class="breadcrumb-item active">Default</li>
         </ol>
       </nav>
-      <h1 style="height: 50px;">회원관리</h1>
+      <h1 style="height: 50px;">부품관리</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -63,9 +63,8 @@
             <div class="col-md-2">
                 <select id="shOption" name="shOption" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-					<option value="1" th:selected="${vo.shOption == 1}">회원 코드</option>
-					<option value="2" th:selected="${vo.shOption == 2}">회원 ID</option>
-					<option value="3" th:selected="${vo.shOption == 3}">회원 이름</option>
+					<option value="1" th:selected="${vo.shOption == 1}">부품 코드</option>
+					<option value="2" th:selected="${vo.shOption == 2}">부품 이름</option>
 				</select>
                 <div class="invalid-feedback">
                   항목중 하나를 선택 해주세요.
@@ -96,10 +95,9 @@
                   <tr>
                     <th data-sortable="false"  style="text-align: center; width: 100px;"><div class="checked"><input type="checkbox" class="form-check" name="allChk" onclick='selectAll(this)'></div></th>
                     <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
-                    <th class="list-sort" style="text-align: center;">회원분류</th>
-                    <th class="list-sort" style="text-align: center;">ID</th>
-                    <th class="list-sort" style="text-align: center;">이름</th>
-                    <th class="list-sort" style="text-align: center;">순서</th>
+                    <th class="list-sort" style="text-align: center;">부품 유형</th>
+                    <th class="list-sort" style="text-align: center;">부품 이름</th>
+                    <th class="list-sort" style="text-align: center;">가격</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">등록일</th>
                     <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">수정일</th>
                   </tr>
@@ -113,12 +111,12 @@
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                       <td th:text = "${@codeService.selectOneCachedCode(list.membCateCd)}"></td>
-                       <td><a th:href="@{/member/memberXdmMfom(seq=${list.membSeq})}" th:text="${list.membId}"></a></td>
-                       <td th:text = "${list.membName}"></td>
-                       <td>1</td>
-                       <td th:text = "${list.membRegDate}"></td>
-                       <td th:text = "${list.membModDate}"></td>
+	                   <!-- <td th:text = "${@codeService.selectOneCachedCode(list.partTypeCd)}"></td> -->
+	                   <td></td>
+	                   <td th:text = "${list.partName}"></td>
+	                   <td th:text = "${list.partPrice}"></td>
+                       <td th:text = "${list.partRegDate}"></td>
+                       <td th:text = "${list.partModDate}"></td>
 	                   </tr>
                   </tbody>
                   <tfoot>
