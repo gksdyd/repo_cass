@@ -7,13 +7,13 @@
           <input type="hidden" name="registerOrModifyFlag" id="registerOrModifyFlag" value="0">
           <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
-          <input type="hidden" id="cogrSeq" name="cogrSeq" value=0/>
-          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","use","code-group-code","code-group-name", "code-group-name-eng", "count", "order", "resist-date", "modify-date"],"page":10,"pagination":true}'>
+          <input type="hidden" id="deliSeq" name="deliSeq" value=0/>
+          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","pdorSeq","pdorTotalPrice","deliSeq", "deliStausCd", "deliRegDate", "deliModDate"],"page":10,"pagination":true}'>
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
-                <h1>Code Group</h1>
+                <h1>Delivery</h1>
                 <div class="col-4">
-                  <select class="form-select-JHY" id="shUseFlag" name="shUseFlag" aria-label="Default select example">
+ <!--                 <select class="form-select-JHY" id="shUseFlag" name="shUseFlag" aria-label="Default select example">
                     <option value="" th:selected="${vo.shUseFlag == null}">사용여부</option>
                     <option value="1" th:selected="${vo.shUseFlag == 1}">Y</option>
                     <option value="0" th:selected="${vo.shUseFlag == 0}">N</option>
@@ -58,8 +58,8 @@
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
                 </div>
-              </div>
-              <div th:replace="~{xdm/include/listRowNum :: listRowNum}"></div>
+              </div>-->
+              <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive scrollbar">
@@ -72,14 +72,12 @@
                         </div>
                       </th>
                       <th class="text-900 sort white-nowrap" data-sort="#">#</th>
-                      <th class="text-900 sort white-nowrap" data-sort="use">사용</th>
-                      <th class="text-900 sort white-nowrap" data-sort="code-group-code">코드그룹 코드</th>
-                      <th class="text-900 sort white-nowrap" data-sort="code-group-name">코드그룹 이름</th>
-                      <th class="text-900 sort white-nowrap" data-sort="code-group-name-eng">코드그룹 이름(영문)</th>
-                      <th class="text-900 sort white-nowrap" data-sort="count">갯수</th>
-                      <th class="text-900 sort white-nowrap" data-sort="order">순서</th>
-                      <th class="text-900 sort white-nowrap" data-sort="resist-date">등록일</th>
-                      <th class="text-900 sort white-nowrap" data-sort="modify-date">수정일</th>
+                      <th class="text-900 sort white-nowrap" data-sort="pdorSeq">주문내역 코드</th>
+                      <th class="text-900 sort white-nowrap" data-sort="pdorTotalPrice">주문 총 금액</th>
+                      <th class="text-900 sort white-nowrap" data-sort="deliSeq">배송 코드</th>
+                      <th class="text-900 sort white-nowrap" data-sort="deliStausCd">배송 상태</th>
+                      <th class="text-900 sort white-nowrap" data-sort="deliRegDate">등록일</th>
+                      <th class="text-900 sort white-nowrap" data-sort="deliModDate">수정일</th>
                     </tr>
                   </thead>
                   <tbody class="list" id="table-customers-body">
@@ -93,26 +91,22 @@
                     <tr th:if="${!#lists.isEmpty(list)}" class="btn-reveal-trigger" th:each="list : ${list}">
                       <td>
                         <div class="form-check fs-9 mb-0 d-flex align-items-center">
-                          <input class="form-check-input listCheckBox" type="checkbox" id="customer-0" th:value="${list.cogrSeq}" data-bulk-select-row="data-bulk-select-row" />
+                          <input class="form-check-input listCheckBox" type="checkbox" id="customer-0" th:value="${list.deliSeq}" data-bulk-select-row="data-bulk-select-row" />
                         </div>
                       </td>
                       <td class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                      <td class="use" th:if="${list.cogrUseFlag} == '1'">Y</td>
-                      <td class="use" th:if="${list.cogrUseFlag} == '0'">N</td>
-                      <td class="code-group-code" th:if="${list.cogrNum} == null" th:text="${list.cogrSeq}"></td>
-                      <td class="code-group-code" th:if="${list.cogrNum} != null" th:text="${list.cogrNum}"></td>
-                      <td class="code-group-name"><a th:href="@{/xdm/codegroup/CodeGroupXdmForm(cogrSeq=${list.cogrSeq})}" th:text="${list.cogrName}"></a></td>
-                      <td class="code-group-name-eng" th:text="${list.cogrNameEng}"></td>
-                      <td class="count" th:text="${list.count}"></td>
-                      <td class="order" th:text="${list.cogrOrder}"></td>
-                      <td class="register-date" th:text="${list.cogrRegDate}"></td>
-                      <td class="modify-date\" th:text="${list.cogrModDate}"></td>
+                      <td class="pdorSeq" th:text="${list.productorder_pdorSeq}"></td>
+                      <td class="pdorTotalPrice" th:text="${list.pdorTotalPrice}"></td>
+                      <td class="deliSeq" th:text="${list.deliSeq}"></td>
+                      <td class="deliStausCd" th:text="${list.deliStausCd}"></td>
+                      <td class="deliRegDate" th:text="${list.deliRegDate}"></td>
+                      <td class="deliModDate" th:text="${list.deliModDate}"></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <div th:replace="~{xdm/include/pagination :: pagination}"></div>
+            <div th:replace="~{mobileXdm/include/pagination :: pagination}"></div>
             <div class="mb-2 row g-3 ms-1 me-1">
               <div class="col">
                 <button class="btn btn-danger btn-sm" type="button" id="deleteBtn" value="1"><span class="bi-x"></span></button>
@@ -129,10 +123,10 @@
       </div>
     </div>
   </main>
-  <div th:replace="~{xdm/include/modal :: modal}"></div>
-  <div th:replace="~{xdm/include/includeXdmFalcon :: includeXdmFalcon}"></div>
-  <div th:replace="~{xdm/include/includeXdmCommon :: includeXdmCommon}"></div>
-  <div th:replace="~{xdm/include/includeXdmList :: includeXdmList}"></div>
+<!--  <div th:replace="~{xdm/include/modal :: modal}"></div>-->
+  <div th:replace="~{mobileXdm/include/includeMobileFalcon :: includeMobileFalcon}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileCommon :: includeMobileCommon}"></div>
+  <div th:replace="~{mobileXdm/include/includeXdmList :: includeXdmList}"></div>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.module.delivery.DeliveryDao">
+
+<resultMap id="resultMapObj" type="com.cass.demo.module.delivery.DeliveryDto"></resultMap>
+
+<select id="selectList" resultMap="resultMapObj">
+
+	select
+		pdor.pdorSeq,
+		pdor.pdorTotalPrice,
+		deli.deliSeq,
+	    deli.deliStausCd,
+	    deli.deliRegDate,
+	    deli.deliModDate,
+	    deli.deliDesc
+	from
+	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
+		WHERE 1=1 
+		ORDER BY deli.deliSeq DESC
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+
+</select>
+
+	<select id="selectOneCount" resultType="Integer">
+	
+	Select count(*)
+	From
+	delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
+	WHERE 1=1 
+
+	</select>
+
+</mapper>
