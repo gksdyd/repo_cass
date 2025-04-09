@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.module.income.IncomeDao">
+	
+	<resultMap type="com.cass.demo.module.income.IncomeDto" id="resultMapObj"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT  
+			a.incoSeq
+			,b.ptorNum
+			,e.papaName
+			,a.incoDate
+			,a.incoAmountPrice
+			
+			FROM incoming as a 
+			left join partsorder as b on a.partsorder_ptorSeq = b.ptorSeq
+			left join partpartner as e on b.partpartner_papaSeq = e.papaSeq
+			;
+	</select>
+</mapper>
