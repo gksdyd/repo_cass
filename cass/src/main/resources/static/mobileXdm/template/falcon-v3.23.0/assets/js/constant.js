@@ -15,7 +15,7 @@ const SEVERAL_UELETE_FLAG = 4;
 const URL_SIGNIN_FORM_XDM = "/mobileXdm/member/LoginMobileForm";
 const URL_SIGNIN_PROC_XDM = "/mobileXdm/member/SigninMobileProc";
 const URL_SIGNOUT_PROC_XDM = "/mobileXdm/member/SignoutMobileProc";
-const URL_INDEX_VIEW_XDM = "/mobileXdm/income/IncomeXdmList";
+const URL_INDEX_VIEW_XDM = "/mobileXdm/index/IndexXdmView";
 
 // 상품관련 경로
 const URL_PRODUCT_FUNCTION_XDM = "/xdm/product/ProductXdmProc";
