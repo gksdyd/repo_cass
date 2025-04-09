@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en-US" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 
-		<div th:replace="~{xdm/include/head :: head}"></div>
+		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
           <input type="hidden" name="registerOrModifyFlag" id="registerOrModifyFlag" value="0">
           <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
@@ -125,7 +125,7 @@
             </div>
           </div>
         </form>
-        <div th:replace="~{xdm/include/footer :: footer}"></div>
+        <div th:replace="~{mobileXdm/include/foot :: foot}"></div>
       </div>
     </div>
   </main>

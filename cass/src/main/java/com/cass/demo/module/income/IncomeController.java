@@ -1,14 +1,16 @@
-package com.cass.demo.module.service;
+package com.cass.demo.module.income;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/mobileXdm/service")
+@RequestMapping(value = "/mobileXdm/income")
 public class IncomeController {
 
 	@RequestMapping(value = "/IncomeXdmList")
 	public String incomeXdmForm() {
-		return "mobileXdm/service/IncomeXdmList";
+		return "mobileXdm/income/IncomeXdmList";
 	}
+	
+
 }
