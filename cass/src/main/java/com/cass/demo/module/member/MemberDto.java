@@ -5,6 +5,7 @@ public class MemberDto {
 	private String membSeq = "2";
 	private String membId;
 	private String membPassword;
+	private String membCateCd;
 	private String membName;
 	private String membRegDate;
 	private String membModDate;
@@ -58,6 +59,12 @@ public class MemberDto {
 	}
 	public void setMembId(String membId) {
 		this.membId = membId;
+	}
+	public String getMembCateCd() {
+		return membCateCd;
+	}
+	public void setMembCateCd(String membCateCd) {
+		this.membCateCd = membCateCd;
 	}
 	
 

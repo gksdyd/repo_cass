@@ -56,23 +56,23 @@ public class MemberXdmController extends BaseController {
 		return returnMap;
 	}
 	
-//	@RequestMapping(value = "/member/memberXdmList")
-//	public String memberXdmList(MemberVo vo, Model model) {
-//		utildatetime(vo);
-//		
-//		vo.setParamsPaging(memberService.selectOneCount(vo));
-//		
-//		model.addAttribute("list", memberService.selectList(vo));
-//		model.addAttribute("vo", vo);
-//		return "xdm/member/MemberXdmList";
-//	}
-//	
-//	@RequestMapping(value = "/member/memberXdmMfom")
-//	public String memberXdmMfom(Model model, MemberDto memberDto) {
-//		model.addAttribute("item", memberService.selectOne(memberDto));
-//		return "xdm/member/MemberXdmMfom";
-//	}
-//	
+	@RequestMapping(value = "/member/memberXdmList")
+	public String memberXdmList(MemberVo vo, MemberDto dto, Model model) {
+		utildatetime(vo);
+		
+		vo.setParamsPaging(memberService.selectOneCount(vo));
+		
+		model.addAttribute("list", memberService.selectList(vo));
+		model.addAttribute("vo", vo);
+		return "xdm/member/MemberXdmList";
+	}
+	
+	@RequestMapping(value = "/member/memberXdmMfom")
+	public String memberXdmMfom(Model model, MemberDto memberDto) {
+		model.addAttribute("item", memberService.selectOne(memberDto));
+		return "xdm/member/MemberXdmMfom";
+	}
+	
 //	@RequestMapping(value = "/member/memberXdmUpdt")
 //	public String memberXdmUpdt(MemberDto memberDto) {
 //		memberService.update(memberDto);
