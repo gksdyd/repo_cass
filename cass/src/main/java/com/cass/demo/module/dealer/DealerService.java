@@ -1,0 +1,31 @@
+package com.cass.demo.module.dealer;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class DealerService {
+	
+	@Autowired
+	DealerDao dealerDao;
+	
+	public DealerDto selectOneLogin(DealerDto dealerDto) {
+		return dealerDao.selectOneLogin(dealerDto);
+	}
+	
+	public DealerDto getIdPass(DealerDto dealerDto) {
+		return dealerDao.getIdPass(dealerDto);
+	}
+	
+	public int selectOneCount(DealerVo vo) {
+		return dealerDao.selectOneCount(vo);
+	}
+	public List<DealerDto> selectList(DealerVo vo) {
+		return dealerDao.selectList(vo);
+	}
+	public DealerDto selectOne(DealerDto dealerDto) {
+		return dealerDao.selectOne(dealerDto);
+	}
+}

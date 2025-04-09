@@ -12,7 +12,7 @@
           <li class="breadcrumb-item active">Default</li>
         </ol>
       </nav>
-      <h1 style="height: 50px;">회원관리</h1>
+      <h1 style="height: 50px;">상품거래처</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -96,10 +96,10 @@
                   <tr>
                     <th data-sortable="false"  style="text-align: center; width: 100px;"><div class="checked"><input type="checkbox" class="form-check" name="allChk" onclick='selectAll(this)'></div></th>
                     <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
-                    <th class="list-sort" style="text-align: center;">회원분류</th>
-                    <th class="list-sort" style="text-align: center;">ID</th>
-                    <th class="list-sort" style="text-align: center;">이름</th>
-                    <th class="list-sort" style="text-align: center;">순서</th>
+                    <th class="list-sort" style="text-align: center;">대리점명</th>
+                    <th class="list-sort" style="text-align: center;">주소</th>
+                    <th class="list-sort" style="text-align: center;">성함</th>
+                    <th class="list-sort" style="text-align: center;">매니저번호</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">등록일</th>
                     <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">수정일</th>
                   </tr>
@@ -113,12 +113,15 @@
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                       <td th:text = "${@codeService.selectOneCachedCode(list.membCateCd)}"></td>
-                       <td><a th:href="@{/member/memberXdmMfom(seq=${list.membSeq})}" th:text="${list.membId}"></a></td>
-                       <td th:text = "${list.membName}"></td>
-                       <td>1</td>
-                       <td th:text = "${list.membRegDate}"></td>
-                       <td th:text = "${list.membModDate}"></td>
+                       <td th:text = "${list.dealName}"></td>
+                       <td th:text = "${list.dealAddress}"></td>
+                       <td th:text = "${list.dealManager}"></td>
+                       <td th:text = "${list.dealManagerTel}"></td>
+<!--                        <td th:text = "${@codeService.selectOneCachedCode(list.membCateCd)}"></td> -->
+<!--                        <td><a th:href="@{/member/memberXdmMfom(seq=${list.membSeq})}" th:text="${list.membId}"></a></td> -->
+<!--                        <td>1</td> -->
+                       <td th:text = "${list.dealRegDate}"></td>
+                       <td th:text = "${list.dealModDate}"></td>
 	                   </tr>
                   </tbody>
                   <tfoot>
