@@ -9,11 +9,11 @@
 		from
 			stock a
 			left join product b on a.product_prdtSeq = b.prdtSeq
-			left join parts c on a.parts_partSeq = c.partSeq
+<!-- 			left join parts c on a.parts_partSeq = c.partSeq -->
 		where 1=1
 			<choose>
 	            <when test="shOption == 1">AND b.prdtName LIKE CONCAT('%',#{shValue},'%')</when>
-	            <when test="shOption == 2">AND c.partName LIKE CONCAT('%',#{shValue},'%')</when>
+<!-- 	            <when test="shOption == 2">AND c.partName LIKE CONCAT('%',#{shValue},'%')</when> -->
 	        </choose>
 			<choose>
 				<when test="shOptionDate == 1">AND a.stckQty > 0 AND a.stckModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -33,7 +33,7 @@
 			,a.stckTotalQty
 			,a.stckModDate
 			,b.prdtName
-			,c.partName
+<!-- 			,c.partName -->
 		<include refid = "selectCommon"></include>
 		order by stckSeq desc
 		limit #{rowNumToShow} offset #{startRnumForMysql}

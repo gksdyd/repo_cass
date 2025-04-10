@@ -14,7 +14,7 @@
 			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
-            <when test="shOption == 1">AND incoSeq = #{shValue}</when>
+            <when test="shOption == 1">AND incoNum = #{shValue}</when>
         </choose>
     </sql>
 	
@@ -26,14 +26,14 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT  
 			a.incoSeq
-			,b.ptorNum
-			,e.papaName
-			,a.incoRegDate
-			,a.incoAmountPrice
 			,a.incoNum
-			FROM incoming as a 
-			left join partsorder as b on a.partsorder_ptorSeq = b.ptorSeq
-			left join partpartner as e on b.partpartner_papaSeq = e.papaSeq
-			;
+			,a.incoStatusCd
+			,a.incoTotalQty
+			,a.incoRegDate
+			,a.incoModDate
+			,m.mafaNum
+		FROM incoming as a 
+		left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
+		;
 	</select>
 </mapper>

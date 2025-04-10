@@ -2,10 +2,12 @@ package com.cass.demo.module.income;
 
 public class IncomeDto {
 	private String incoSeq;
-	private Integer ptorNum;
-	private String papaName;
+	private Integer incoNum;
+	private Integer incoStatusCd;
+	private Integer incoTotalQty;
 	private String incoRegDate;
-	private Integer incoAmountPrice;
+	private String incoModDate;
+	private Integer mafaNum;
 //	-----
 	public String getIncoSeq() {
 		return incoSeq;
@@ -13,17 +15,23 @@ public class IncomeDto {
 	public void setIncoSeq(String incoSeq) {
 		this.incoSeq = incoSeq;
 	}
-	public Integer getPtorNum() {
-		return ptorNum;
+	public Integer getIncoNum() {
+		return incoNum;
 	}
-	public void setPtorNum(Integer ptorNum) {
-		this.ptorNum = ptorNum;
+	public void setIncoNum(Integer incoNum) {
+		this.incoNum = incoNum;
 	}
-	public String getPapaName() {
-		return papaName;
+	public Integer getIncoStatusCd() {
+		return incoStatusCd;
 	}
-	public void setPapaName(String papaName) {
-		this.papaName = papaName;
+	public void setIncoStatusCd(Integer incoStatusCd) {
+		this.incoStatusCd = incoStatusCd;
+	}
+	public Integer getIncoTotalQty() {
+		return incoTotalQty;
+	}
+	public void setIncoTotalQty(Integer incoTotalQty) {
+		this.incoTotalQty = incoTotalQty;
 	}
 	public String getIncoRegDate() {
 		return incoRegDate;
@@ -31,11 +39,17 @@ public class IncomeDto {
 	public void setIncoRegDate(String incoRegDate) {
 		this.incoRegDate = incoRegDate;
 	}
-	public Integer getIncoAmountPrice() {
-		return incoAmountPrice;
+	public String getIncoModDate() {
+		return incoModDate;
 	}
-	public void setIncoAmountPrice(Integer incoAmountPrice) {
-		this.incoAmountPrice = incoAmountPrice;
+	public void setIncoModDate(String incoModDate) {
+		this.incoModDate = incoModDate;
+	}
+	public Integer getMafaNum() {
+		return mafaNum;
+	}
+	public void setMafaNum(Integer mafaNum) {
+		this.mafaNum = mafaNum;
 	}
 	
 }
