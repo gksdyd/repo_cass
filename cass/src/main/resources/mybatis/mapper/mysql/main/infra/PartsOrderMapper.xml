@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.module.partsorder.PartsOrderDao">
+
+<resultMap id="resultMapObj" type="com.cass.demo.module.partsorder.PartsOrderDto"></resultMap>
+
+
+<select id="selectList" resultMap="resultMapObj">
+
+	select
+		ptor.ptorSeq,
+	    ptor.ptorNum,
+	    ptor.ptorAmountPrice,
+	    ptor.ptorDelNy,
+	    ptor.ptorRegDate,
+	    ptor.ptorModDate,
+	    ptor.ptorStatusCd,
+	    ptor.ptorDesc,
+	    papa.papaName
+        
+	from
+	  partsorder ptor 
+      left join partpartner papa ON ptor.partpartner_papaSeq = papa.papaSeq
+		WHERE 1=1 
+		ORDER BY ptor.ptorSeq DESC
+		limit #{rowNumToShow} offset #{startRnumForMysql}
+
+</select>
+
+	<select id="selectOneCount" resultType="Integer">
+	
+	Select count(*)
+	FROM
+	partsorder ptor left join partsorderlist ptol ON ptol.partsorder_ptorSeq = ptor.ptorSeq
+	WHERE 1=1 
+
+	</select>
+	
+</mapper>
