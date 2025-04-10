@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-4 py-3 fs-11">
                 	<span class="d-flex">제작품명:&emsp;<div th:text="${list.prdtName}"></div></span>
-					<span class="d-flex">제작상태:&emsp;&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
+					<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
                 </div>
             </div>
               </div>
