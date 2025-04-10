@@ -50,13 +50,14 @@
             		<div class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
             	</div>
                 <div class="col-6 py-3 px-x1">
-	                <div class="code-group-code" th:if="${list.prdtName} != null" th:text="${list.prdtName}"></div>
-					<div class="code-group-code" th:if="${list.prdtName} == null" th:text="${list.partName}"></div>
-					<div class="register-date fs-10" th:text="${list.stckModDate}"></div>
+	                <div th:if="${list.prdtName} != null" th:text="${list.prdtName}"></div>
+					<div th:if="${list.prdtName} == null" th:text="${list.partName}"></div>
+					<span class="d-flex fs-11" th:if="${list.stckQty} > 0">입고일:&emsp;<div th:text="${list.stckModDate}"></div></span>
+					<span class="d-flex fs-11" th:if="${list.stckQty} < 0">출고일:&emsp;<div th:text="${list.stckModDate}"></div></span>
                 </div>
                 <div class="col-4 py-3 px-x1 fs-10">
-                	<span class="d-flex">총 갯수:&emsp;<div class="code-group-name" th:text="${list.stckTotalQty}"></div></span>
-					<span class="d-flex">증감 수:&emsp;<div class="code-group-name-eng" th:text="${list.stckQty}"></div></span>
+                	<span class="d-flex">총 갯수:&emsp;<div th:text="${list.stckTotalQty}"></div></span>
+					<span class="d-flex">증감 수:&emsp;<div th:text="${list.stckQty}"></div></span>
                 </div>
             </div>
 		</div>
