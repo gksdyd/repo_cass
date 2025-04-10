@@ -39,9 +39,7 @@
 	<select id="selectOneCount" resultType="Integer">
 	
 	Select count(*)
-	From
-	delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
-	WHERE 1=1 
+	<include refid = "selectCommon"></include>
 
 	</select>
 
