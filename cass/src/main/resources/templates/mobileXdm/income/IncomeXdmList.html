@@ -8,7 +8,7 @@
           <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
-          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","incoSeq","ptorNum","papaName", "incoDate", "incoAmountPrice"],"page":10,"pagination":true}'>
+          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","incoSeq","ptorNum","papaName", "incoRegDate", "incoAmountPrice"],"page":10,"pagination":true}'>
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
                 <h1>입고 관리</h1>
@@ -63,7 +63,7 @@
                 <div class="col-6 py-3">
 	                <!-- <div th:text="${list.incoSeq}"></div> -->
 					<span class="d-flex fs-11">입고번호:&emsp;<div th:text="${list.incoSeq}"></div></span>
-					<span class="d-flex fs-11">입고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoDate, 0, 10)}"></div></span>
+					<span class="d-flex fs-11">입고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoRegDate, 0, 10)}"></div></span>
                 </div>
                 <div class="col-4 py-3 fs-11">
                 	<span class="d-flex">발주처:&emsp;<div th:text="${list.papaName}"></div></span>

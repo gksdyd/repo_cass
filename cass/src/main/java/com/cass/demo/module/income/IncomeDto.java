@@ -4,7 +4,7 @@ public class IncomeDto {
 	private String incoSeq;
 	private Integer ptorNum;
 	private String papaName;
-	private String incoDate;
+	private String incoRegDate;
 	private Integer incoAmountPrice;
 //	-----
 	public String getIncoSeq() {
@@ -25,11 +25,11 @@ public class IncomeDto {
 	public void setPapaName(String papaName) {
 		this.papaName = papaName;
 	}
-	public String getIncoDate() {
-		return incoDate;
+	public String getIncoRegDate() {
+		return incoRegDate;
 	}
-	public void setIncoDate(String incoDate) {
-		this.incoDate = incoDate;
+	public void setIncoRegDate(String incoRegDate) {
+		this.incoRegDate = incoRegDate;
 	}
 	public Integer getIncoAmountPrice() {
 		return incoAmountPrice;

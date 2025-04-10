@@ -11,21 +11,14 @@
           <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","mafaSeq","mafaStausCd","prdtName", "pdolQty", "pdorNum"],"page":10,"pagination":true}'>
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
-                <h1>입고 관리</h1>
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shUseFlag" name="shUseFlag" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shUseFlag == null}">사용여부</option> -->
-<!--                     <option value="1" th:selected="${vo.shUseFlag == 1}">Y</option> -->
-<!--                     <option value="0" th:selected="${vo.shUseFlag == 0}">N</option> -->
-<!--                   </select> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option> -->
-<!--                     <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option> -->
-<!--                     <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>   -->
-<!--                   </select> -->
-<!--                 </div> -->
+                <h1>제작 관리</h1>
+<!--                 <div class="col-4">
+                  <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example">
+                    <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option>
+                    <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option>
+                    <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>  
+                  </select>
+                </div> -->
               </div>
 <!--               <div class="mb-2 row g-3"> -->
 <!--                 <div class="col-4"> -->
@@ -59,7 +52,7 @@
 <!--                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button> -->
 <!--                 </div> -->
 <!--               </div> -->
-<!--               <div th:replace="~{xdm/include/listRowNum :: listRowNum}"></div> -->
+<!--               <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div> -->
             </div>
             <div class="card-body p-0">
               <div class="table-responsive scrollbar">
@@ -105,15 +98,15 @@
                 </table>
               </div>
             </div>
-<!--             <div th:replace="~{xdm/include/pagination :: pagination}"></div> -->
+<!--             <div th:replace="~{mobileXdm/include/pagination :: pagination}"></div> -->
             <div class="mb-2 row g-3 ms-1 me-1">
               <div class="col">
                 <button class="btn btn-danger" type="button" id="deleteBtn" value="1"><span class="bi-x"></span></button>
                 <button class="btn btn-danger" type="button" id="ueleteBtn" value="1"><span class="far fa-trash-alt"></span></button>
               </div>
               <div class="col" style="text-align: right;">
-                <button class="btn btn-success btn-sm" type="button"><span class="far fa-file-excel"></span></button>
-                <button class="btn btn-primary btn-sm" type="button" id="registerBtn"><span class="fas fa-plus"></span></button>
+                <button class="btn btn-success" type="button"><span class="far fa-file-excel"></span></button>
+                <button class="btn btn-primary" type="button" id="registerBtn"><span class="fas fa-plus"></span></button>
               </div>
             </div>
           </div>
@@ -122,17 +115,17 @@
       </div>
     </div>
   </main>
-<!--   <div th:replace="~{xdm/include/modal :: modal}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmFalcon :: includeXdmFalcon}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmCommon :: includeXdmCommon}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmList :: includeXdmList}"></div> -->
+  <div th:replace="~{mobileXdm/include/modal :: modal}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileFalcon :: includeMobileFalcon}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileCommon :: includeMobileCommon}"></div>
+  <div th:replace="~{mobileXdm/include/includeXdmList :: includeXdmList}"></div>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
  <script>
     let form = document.querySelector("form[name=formList]");
    
-    let goUrlXdmList = "/xdm/codegroup/CodeGroupXdmList";
+    let goUrlXdmList = "/mobileXdm/income/IncomeXdmList";
     let goUrlXdmForm = "/xdm/codegroup/CodeGroupXdmForm";
     let goUrlXdmDeltProc = "/xdm/codegroup/CodeGroupXdmDeltProc";
     let goUrlXdmUeltProc = "/xdm/codegroup/CodeGroupXdmUeltProc";

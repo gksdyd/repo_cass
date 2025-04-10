@@ -10,7 +10,7 @@
 			incoming
 		where 1=1
 		<choose>
-			<when test="shOptionDate == 1">AND incoDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 1">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
@@ -28,7 +28,7 @@
 			a.incoSeq
 			,b.ptorNum
 			,e.papaName
-			,a.incoDate
+			,a.incoRegDate
 			,a.incoAmountPrice
 			
 			FROM incoming as a 
