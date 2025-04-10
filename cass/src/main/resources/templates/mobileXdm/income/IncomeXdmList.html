@@ -5,61 +5,54 @@
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
           <input type="hidden" name="registerOrModifyFlag" id="registerOrModifyFlag" value="0">
-<!--           <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/> -->
-<!--           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/> -->
+          <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+          <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
           <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","incoSeq","ptorNum","papaName", "incoDate", "incoAmountPrice"],"page":10,"pagination":true}'>
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
                 <h1>입고 관리</h1>
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shUseFlag" name="shUseFlag" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shUseFlag == null}">사용여부</option> -->
-<!--                     <option value="1" th:selected="${vo.shUseFlag == 1}">Y</option> -->
-<!--                     <option value="0" th:selected="${vo.shUseFlag == 0}">N</option> -->
-<!--                   </select> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option> -->
-<!--                     <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option> -->
-<!--                     <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>   -->
-<!--                   </select> -->
-<!--                 </div> -->
+<!--                 <div class="col-4">
+                  <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example">
+                    <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option>
+                    <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option>
+                    <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>  
+                  </select>
+                </div> -->
               </div>
-<!--               <div class="mb-2 row g-3"> -->
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shOptionDate == null}">날짜</option> -->
-<!--                     <option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option> -->
-<!--                     <option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option> -->
-<!--                   </select> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' /> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' /> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--               <div class="mb-4 row g-3"> -->
-<!--                 <div class="col-4"> -->
-<!--                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example"> -->
-<!--                     <option value="" th:selected="${vo.shOption == null}">검색구분</option> -->
-<!--                     <option value="1" th:selected="${vo.shOption == 1}">발주처명</option> -->
-<!--                     <option value="2" th:selected="${vo.shOption == 2}">발주번호</option> -->
-<!--                     <option value="3" th:selected="${vo.shOption == 3}">입고코드</option> -->
-<!--                   </select> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" /> -->
-<!--                 </div> -->
-<!--                 <div class="col-4"> -->
-<!--                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button> -->
-<!--                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--               <div th:replace="~{xdm/include/listRowNum :: listRowNum}"></div> -->
+              <div class="mb-2 row g-3">
+                <div class="col-4">
+                  <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
+                    <option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+                    <option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+                    <option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+                </div>
+                <div class="col-4">
+                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+                </div>
+              </div>
+              <div class="mb-4 row g-3">
+                <div class="col-4">
+                  <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
+                    <option value="" th:selected="${vo.shOption == null}">검색구분</option>
+                    <option value="1" th:selected="${vo.shOption == 1}">발주처명</option>
+                    <option value="2" th:selected="${vo.shOption == 2}">발주번호</option>
+                    <option value="3" th:selected="${vo.shOption == 3}">입고코드</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
+                </div>
+                <div class="col-4">
+                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
+                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
+                </div>
+              </div>
+              <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive scrollbar">
@@ -68,18 +61,18 @@
             		<div class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
             	</div>
                 <div class="col-6 py-3">
-<!-- 	                <div th:text="${list.incoSeq}"></div> -->
-					<span class="d-flex fs-10">입고번호:&emsp;<div th:text="${list.incoSeq}"></div></span>
-					<span class="d-flex fs-10">입고일:&emsp;<div th:text="${#strings.substring(list.incoDate, 0, 10)}"></div></span>
+	                <!-- <div th:text="${list.incoSeq}"></div> -->
+					<span class="d-flex fs-11">입고번호:&emsp;<div th:text="${list.incoSeq}"></div></span>
+					<span class="d-flex fs-11">입고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoDate, 0, 10)}"></div></span>
                 </div>
-                <div class="col-4 py-3 fs-10">
-                	<span class="d-flex">발주처:<div th:text="${list.papaName}"></div></span>
-					<span class="d-flex">총액:<div th:text="${list.incoAmountPrice}"></div></span>
+                <div class="col-4 py-3 fs-11">
+                	<span class="d-flex">발주처:&emsp;<div th:text="${list.papaName}"></div></span>
+					<span class="d-flex">총액:&emsp;&emsp;<div th:text="${list.incoAmountPrice}"></div></span>
                 </div>
             </div>
               </div>
             </div>
-<!--             <div th:replace="~{xdm/include/pagination :: pagination}"></div> -->
+            <div th:replace="~{mobileXdm/include/pagination :: pagination}"></div>
             <div class="mb-2 row g-3 ms-1 me-1">
               <div class="col">
                 <button class="btn btn-danger" type="button" id="deleteBtn" value="1"><span class="bi-x"></span></button>
@@ -96,17 +89,17 @@
       </div>
     </div>
   </main>
-<!--   <div th:replace="~{xdm/include/modal :: modal}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmFalcon :: includeXdmFalcon}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmCommon :: includeXdmCommon}"></div> -->
-<!--   <div th:replace="~{xdm/include/includeXdmList :: includeXdmList}"></div> -->
+  <div th:replace="~{mobileXdm/include/modal :: modal}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileFalcon :: includeMobileFalcon}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileCommon :: includeMobileCommon}"></div>
+  <div th:replace="~{mobileXdm/include/includeXdmList :: includeXdmList}"></div>
 <!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
  <script>
     let form = document.querySelector("form[name=formList]");
    
-    let goUrlXdmList = "/xdm/codegroup/CodeGroupXdmList";
+    let goUrlXdmList = "/mobileXdm/income/IncomeXdmList";
     let goUrlXdmForm = "/xdm/codegroup/CodeGroupXdmForm";
     let goUrlXdmDeltProc = "/xdm/codegroup/CodeGroupXdmDeltProc";
     let goUrlXdmUeltProc = "/xdm/codegroup/CodeGroupXdmUeltProc";

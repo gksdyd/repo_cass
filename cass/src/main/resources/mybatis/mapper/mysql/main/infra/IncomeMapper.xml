@@ -9,16 +9,12 @@
 	    from
 			incoming
 		where 1=1
-<!-- 		<if test="shUseNy != null and !shUseNy.equals('')">AND membUseNy = #{membUseNy}</if> -->
-<!--         <if test="shDelNy != null and !shDelNy.equals('')">AND membDelNy = #{membDelNy}</if> -->
-				<choose>
-					<when test="shOptionDate == 1">AND incoDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-<!-- 					<when test="shOptionDate == 2">AND membModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
-				</choose>
+		<choose>
+			<when test="shOptionDate == 1">AND incoDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
         <choose>
             <when test="shOption == 1">AND incoSeq = #{shValue}</when>
-            <when test="shOption == 2">AND papaName LIKE CONCAT('%',#{shValue},'%')</when>
-<!--             <when test="shOption == 3">AND membName LIKE CONCAT('%',#{shValue},'%')</when> -->
         </choose>
     </sql>
 	
