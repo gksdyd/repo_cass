@@ -6,8 +6,10 @@
 	<resultMap type="com.cass.demo.module.manufacture.ManufactureDto" id="resultMapObj"></resultMap>
 	
 	<sql id="selectCommon">	    
-	    from
-			manufacture
+	    FROM manufacture AS m
+			LEFT JOIN productorderlist AS pol ON m.productorderlist_pdolSeq = pol.pdolSeq
+			LEFT JOIN product AS p ON pol.product_prdtSeq = p.prdtSeq
+			LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq
 		where 1=1
 		<choose>
 			<when test="shOptionDate == 1">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -30,10 +32,7 @@
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
-		FROM manufacture AS m
-		LEFT JOIN productorderlist AS pol ON m.productorderlist_pdolSeq = pol.pdolSeq
-		LEFT JOIN product AS p ON pol.product_prdtSeq = p.prdtSeq
-		LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq;
+		    <include refid = "selectCommon"></include>
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">
