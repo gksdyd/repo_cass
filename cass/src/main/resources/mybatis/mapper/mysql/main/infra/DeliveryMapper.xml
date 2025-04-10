@@ -5,6 +5,20 @@
 
 <resultMap id="resultMapObj" type="com.cass.demo.module.delivery.DeliveryDto"></resultMap>
 
+	<sql id="selectCommon">
+	from
+	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
+		WHERE 1=1 
+			<choose>
+	            <when test="shOption == 1">AND pdor.pdorNum LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 2">AND deli.deliSeq LIKE CONCAT('%',#{shValue},'%')</when>
+	        </choose>
+			<choose>
+				<when test="shOptionDate == 1">AND deli.deliRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND deli.deliModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+    </sql>
+
 <select id="selectList" resultMap="resultMapObj">
 
 	select
@@ -16,9 +30,7 @@
 	    deli.deliModDate,
 	    deli.deliDesc,
 	    (SELECT SUM(pdolQty) FROM productorderlist WHERE productorder_pdorSeq = pdorSeq) AS productTotalCnt
-	from
-	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
-		WHERE 1=1 
+		<include refid = "selectCommon"></include>
 		ORDER BY deli.deliSeq DESC
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 

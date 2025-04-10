@@ -6,8 +6,8 @@ public class DeliveryDto {
 	
 	private String deliSeq;
 	private Integer deliStausCd;
-	private LocalDateTime deliRegDate;
-	private LocalDateTime deliModDate;
+	private String deliRegDate;
+	private String deliModDate;
 	private String deliDesc;
 	
 	private String productorder_pdorSeq;
@@ -29,16 +29,16 @@ public class DeliveryDto {
 	public void setDeliStausCd(Integer deliStausCd) {
 		this.deliStausCd = deliStausCd;
 	}
-	public LocalDateTime getDeliRegDate() {
+	public String getDeliRegDate() {
 		return deliRegDate;
 	}
-	public void setDeliRegDate(LocalDateTime deliRegDate) {
+	public void setDeliRegDate(String deliRegDate) {
 		this.deliRegDate = deliRegDate;
 	}
-	public LocalDateTime getDeliModDate() {
+	public String getDeliModDate() {
 		return deliModDate;
 	}
-	public void setDeliModDate(LocalDateTime deliModDate) {
+	public void setDeliModDate(String deliModDate) {
 		this.deliModDate = deliModDate;
 	}
 	public String getDeliDesc() {
