@@ -20,10 +20,14 @@
         pdol.pdolSeq,
         pdol.pdolQty,
         pdol.pdolAmountPrice,
-        pdol.product_prdtSeq
+        pdol.product_prdtSeq,
+        d.dealName,
+        d.dealManager
         
 	from
-	  productorder pdor left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	  productorder pdor 
+	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
 		WHERE 1=1 
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShow} offset #{startRnumForMysql}

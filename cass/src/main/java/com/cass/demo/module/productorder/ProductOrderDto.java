@@ -19,7 +19,9 @@ public class ProductOrderDto {
 	private Integer pdolAmountPrice;
 	private String product_prdtSeq;
 	private String productorder_pdorSeq;
-	
+	private String dealName;
+	private String dealManager;
+//	-----
 	
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -104,6 +106,18 @@ public class ProductOrderDto {
 	}
 	public void setProductorder_pdorSeq(String productorder_pdorSeq) {
 		this.productorder_pdorSeq = productorder_pdorSeq;
+	}
+	public String getDealName() {
+		return dealName;
+	}
+	public void setDealName(String dealName) {
+		this.dealName = dealName;
+	}
+	public String getDealManager() {
+		return dealManager;
+	}
+	public void setDealManager(String dealManager) {
+		this.dealManager = dealManager;
 	}
 	
 	
