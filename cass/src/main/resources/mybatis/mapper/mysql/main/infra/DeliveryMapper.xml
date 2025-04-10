@@ -8,13 +8,14 @@
 <select id="selectList" resultMap="resultMapObj">
 
 	select
-		pdor.pdorSeq,
+		pdor.pdorNum,
 		pdor.pdorTotalPrice,
 		deli.deliSeq,
 	    deli.deliStausCd,
 	    deli.deliRegDate,
 	    deli.deliModDate,
-	    deli.deliDesc
+	    deli.deliDesc,
+	    (SELECT SUM(pdolQty) FROM productorderlist WHERE productorder_pdorSeq = pdorSeq) AS productTotalCnt
 	from
 	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
 		WHERE 1=1 

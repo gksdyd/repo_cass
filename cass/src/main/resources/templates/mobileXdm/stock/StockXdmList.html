@@ -47,7 +47,7 @@
             <div class="card-body p-0">
             <div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${list}">
             	<div class="col-1 py-3 px-x1">
-            		<div class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
+            		<div th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
             	</div>
                 <div class="col-6 py-3 px-x1">
 	                <div th:if="${list.prdtName} != null" th:text="${list.prdtName}"></div>

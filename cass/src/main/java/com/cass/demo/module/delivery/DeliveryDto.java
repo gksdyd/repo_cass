@@ -13,6 +13,9 @@ public class DeliveryDto {
 	private String productorder_pdorSeq;
 	private Integer pdorTotalPrice;
 	
+	private Integer pdorNum;
+	private Integer productTotalCnt;
+	
 	
 	public String getDeliSeq() {
 		return deliSeq;
@@ -56,7 +59,16 @@ public class DeliveryDto {
 	public void setPdorTotalPrice(Integer pdorTotalPrice) {
 		this.pdorTotalPrice = pdorTotalPrice;
 	}
-	
-	
-
+	public Integer getPdorNum() {
+		return pdorNum;
+	}
+	public void setPdorNum(Integer pdorNum) {
+		this.pdorNum = pdorNum;
+	}
+	public Integer getProductTotalCnt() {
+		return productTotalCnt;
+	}
+	public void setProductTotalCnt(Integer productTotalCnt) {
+		this.productTotalCnt = productTotalCnt;
+	}
 }
