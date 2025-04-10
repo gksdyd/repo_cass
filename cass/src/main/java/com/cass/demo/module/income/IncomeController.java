@@ -5,17 +5,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cass.demo.base.xdm.BaseController;
+
 @Controller
 @RequestMapping(value = "/mobileXdm/income")
-public class IncomeController {
+public class IncomeController extends BaseController {
 
 	@Autowired
 	IncomeService service;
 	
 	@RequestMapping(value = "/IncomeXdmList")
-	public String incomeXdmForm(IncomeDto dto, Model model) {
+	public String incomeXdmForm(IncomeVo vo, Model model) {
 		
-		model.addAttribute("list", service.selectList(dto));
+		utildatetime(vo);
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		model.addAttribute("list", service.selectList(vo));
+		model.addAttribute("vo", vo);
+		
+//		model.addAttribute("list", service.selectList(dto));
 		
 		return "mobileXdm/income/IncomeXdmList";
 	}
