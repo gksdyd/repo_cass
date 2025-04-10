@@ -50,8 +50,7 @@
             		<div th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
             	</div>
                 <div class="col-6 py-3 px-x1">
-	                <div th:if="${list.prdtName} != null" th:text="${list.prdtName}"></div>
-					<div th:if="${list.prdtName} == null" th:text="${list.partName}"></div>
+	                <div th:text="${list.prdtName}"></div>
 					<span class="d-flex fs-11" th:if="${list.stckQty} > 0">입고일:&emsp;<div th:text="${#strings.substring(list.stckModDate, 0 ,10)}"></div></span>
 					<span class="d-flex fs-11" th:if="${list.stckQty} < 0">출고일:&emsp;<div th:text="${#strings.substring(list.stckModDate, 0 ,10)}"></div></span>
                 </div>

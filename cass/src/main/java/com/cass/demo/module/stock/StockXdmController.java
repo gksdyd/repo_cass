@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cass.demo.base.xdm.BaseController;
 
 @Controller
-@RequestMapping(value = "/mobileXdm/stock")
-public class StockController extends BaseController {
+@RequestMapping(value = "/stock")
+public class StockXdmController extends BaseController {
 
 	@Autowired
 	StockService stockService;
@@ -20,6 +20,6 @@ public class StockController extends BaseController {
 		utildatetime(vo);
 		vo.setParamsPaging(stockService.selectOneCount(vo));
 		model.addAttribute("list", stockService.selectList(vo));
-		return "mobileXdm/stock/StockXdmList";
+		return "xdm/stock/StockXdmList";
 	}
 }
