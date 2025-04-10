@@ -45,49 +45,21 @@
               <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
             <div class="card-body p-0">
-              <div class="table-responsive scrollbar">
-                <table class="table mb-0 data-table fs-10 align-middle-JHY" data-datatables="data-datatables">
-                  <thead class="bg-200">
-                    <tr>
-                      <th>
-                        <div class="form-check fs-9 mb-0 d-flex align-items-center">
-                          <input class="form-check-input" id="checkbox-bulk-customers-select" type="checkbox" data-bulk-select='{"body":"table-customers-body","actions":"table-customers-actions","replacedElement":"table-customers-replace-element"}' />
-                        </div>
-                      </th>
-                      <th class="text-900 sort white-nowrap" data-sort="#">#</th>
-                      <th class="text-900 sort white-nowrap" data-sort="use">이름</th>
-                      <th class="text-900 sort white-nowrap" data-sort="code-group-code">총 갯수</th>
-                      <th class="text-900 sort white-nowrap" data-sort="code-group-name">증감수</th>
-                      <th class="text-900 sort white-nowrap" data-sort="resist-date">입고일</th>
-                      <th class="text-900 sort white-nowrap" data-sort="modify-date">출고일</th>
-                    </tr>
-                  </thead>
-                  <tbody class="list" id="table-customers-body">
-                    <tr th:if="${#lists.isEmpty(list)}">
-                      <td>
-                        <div class="fs-9 mb-0">
-                          There are no data!
-                        </div>
-                      </td>
-                    </tr>
-                    <tr th:if="${!#lists.isEmpty(list)}" class="btn-reveal-trigger" th:each="list : ${list}">
-                      <td>
-                        <div class="form-check fs-9 mb-0 d-flex align-items-center">
-                          <input class="form-check-input listCheckBox" type="checkbox" id="customer-0" th:value="${list.stckSeq}" data-bulk-select-row="data-bulk-select-row" />
-                        </div>
-                      </td>
-                      <td class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                      <td class="code-group-code" th:if="${list.prdtName} != null" th:text="${list.prdtName}"></td>
-                      <td class="code-group-code" th:if="${list.prdtName} == null" th:text="${list.partName}"></td>
-                      <td class="code-group-name" th:text="${list.stckTotalQty}"></td>
-                      <td class="code-group-name-eng" th:text="${list.stckQty}"></td>
-                      <td class="register-date" th:text="${list.stckModDate}"></td>
-                      <td class="modify-date\" th:text="${list.stckModDate}"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${list}">
+            	<div class="col-1 py-3 px-x1">
+            		<div class="#" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
+            	</div>
+                <div class="col-6 py-3 px-x1">
+	                <div class="code-group-code" th:if="${list.prdtName} != null" th:text="${list.prdtName}"></div>
+					<div class="code-group-code" th:if="${list.prdtName} == null" th:text="${list.partName}"></div>
+					<div class="register-date fs-10" th:text="${list.stckModDate}"></div>
+                </div>
+                <div class="col-4 py-3 px-x1 fs-10">
+                	<span class="d-flex">총 갯수:&emsp;<div class="code-group-name" th:text="${list.stckTotalQty}"></div></span>
+					<span class="d-flex">증감 수:&emsp;<div class="code-group-name-eng" th:text="${list.stckQty}"></div></span>
+                </div>
             </div>
+		</div>
             <div th:replace="~{mobileXdm/include/pagination :: pagination}"></div>
             <div class="mb-2 row g-3 ms-1 me-1">
               <div class="col">
