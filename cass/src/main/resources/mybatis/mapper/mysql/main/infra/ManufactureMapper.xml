@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cass.demo.module.manufacture.ManufactureDao">
+	
+	<resultMap type="com.cass.demo.module.manufacture.ManufactureDto" id="resultMapObj"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			m.mafaSeq 
+		    ,m.mafaStausCd
+		    ,p.prdtName
+		    ,pol.pdolQty
+		    ,po.pdorNum
+		FROM manufacture AS m
+		LEFT JOIN productorderlist AS pol ON m.productorderlist_pdolSeq = pol.pdolSeq
+		LEFT JOIN product AS p ON pol.product_prdtSeq = p.prdtSeq
+		LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq;
+	</select>
+</mapper>
