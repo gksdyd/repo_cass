@@ -8,6 +8,7 @@ public class ManufactureDto {
 	private Integer pdolQty;
 	private String mafaRegDate;
 	private String mafaModDate;
+	private String mafaNum;
 //	-----
 	public String getMafaSeq() {
 		return mafaSeq;
@@ -50,6 +51,12 @@ public class ManufactureDto {
 	}
 	public void setMafaModDate(String mafaModDate) {
 		this.mafaModDate = mafaModDate;
+	}
+	public String getMafaNum() {
+		return mafaNum;
+	}
+	public void setMafaNum(String mafaNum) {
+		this.mafaNum = mafaNum;
 	}
 	
 }

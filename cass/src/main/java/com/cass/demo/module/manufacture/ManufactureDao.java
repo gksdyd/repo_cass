@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ManufactureDao {
-	public List<ManufactureDto> selectList(ManufactureDto dto);
+	public List<ManufactureDto> selectList(ManufactureVo vo);
+	public int selectOneCount(ManufactureVo vo);
 }

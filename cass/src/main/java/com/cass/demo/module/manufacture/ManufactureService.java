@@ -11,8 +11,11 @@ public class ManufactureService {
 	@Autowired
 	ManufactureDao dao;
 	
-	public List<ManufactureDto> selectList(ManufactureDto dto) {
-		return dao.selectList(dto);
+	public List<ManufactureDto> selectList(ManufactureVo vo) {
+		return dao.selectList(vo);
 	}
 
+	public int selectOneCount(ManufactureVo vo) {
+		return dao.selectOneCount(vo);
+	}
 }
