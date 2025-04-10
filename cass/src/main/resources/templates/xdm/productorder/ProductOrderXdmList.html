@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{xdm/include/headNice :: headNice}"></div>
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">page 1</a></li>
+          <li class="breadcrumb-item">page 2</li>
+          <li class="breadcrumb-item active">Default</li>
+        </ol>
+      </nav>
+      <h1 style="height: 50px;">주문관리</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
+            <div class="col-md-2" style="height: 10px;">
+                <select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+					<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+					<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
+				</select>
+                <div class="invalid-feedback">
+                  항목중 하나를 선택 해주세요.
+                </div>
+              </div>
+            <div class="col-md-2">
+                <select name="shUseNy" id="shUseNy" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shUseNy == null}">블랙여부</option>
+					<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+					<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+				</select>
+                  <div class="invalid-feedback">
+                    항목중 하나를 선택 해주세요.
+                  </div>
+            </div>
+            <div class="col-md-2">
+                <select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+					<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+					<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+				</select>
+                  <div class="invalid-feedback">
+                    항목중 하나를 선택 해주세요.
+                  </div>
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+                <div class="invalid-feedback">
+                  코드를 입력해주세요.
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+                <div class="invalid-feedback">
+                  코드를 입력해주세요.
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <select id="shOption" name="shOption" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+					<option value="1" th:selected="${vo.shOption == 1}">회원 코드</option>
+					<option value="2" th:selected="${vo.shOption == 2}">회원 ID</option>
+					<option value="3" th:selected="${vo.shOption == 3}">회원 이름</option>
+				</select>
+                <div class="invalid-feedback">
+                  항목중 하나를 선택 해주세요.
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
+                <div class="invalid-feedback">
+                  코드를 입력해주세요.
+                </div>
+            </div>
+            <div class="col-md-8">
+                <button type="button" id="btnSearch" class="btn btn-outline-dark"><i class="bi bi-search"></i></button>
+                <button type="button" id="btnReset" class="btn btn-outline-dark"><i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+        <br>
+        <div class="col-lg-12">
+        <input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+          <div class="card" >
+            <div class="card-body">
+            <div th:replace="~{xdm/include/totalAndRowNum :: totalAndRowNum}"></div>
+            </div>
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable" style="text-align: center;">
+                <thead>
+                  <tr>
+                    <th data-sortable="false"  style="text-align: center; width: 100px;"><div class="checked"><input type="checkbox" class="form-check" name="allChk" onclick='selectAll(this)'></div></th>
+                    <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
+                    <th class="list-sort" style="text-align: center;">pdorSeq</th>
+                    <th class="list-sort" style="text-align: center;">pdorNum</th>
+                    <th class="list-sort" style="text-align: center;">pdorTotalPrice</th>
+                    <th class="list-sort" style="text-align: center;">pdorDelNy</th>
+					<th class="list-sort" style="text-align: center;">pdorStatusCd</th>
+					<th class="list-sort" style="text-align: center;">dealer_dealSeq</th>
+					<th class="list-sort" style="text-align: center;">pdolSeq</th>
+					<th class="list-sort" style="text-align: center;">pdolQty</th>
+					<th class="list-sort" style="text-align: center;">pdolAmountPrice</th>
+					<th class="list-sort" style="text-align: center;">product_prdtSeq</th>
+					<th class="list-sort" style="text-align: center;">productorder_pdorSeq</th>
+                    <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">pdorRegDate</th>
+                    <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">pdorModDate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+	               		<td colspan="10">
+	               			<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
+	               		</td>
+	               	</tr>
+	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
+	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
+	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+					   <td th:text = "${list.pdorSeq}"></td>
+					   <td th:text = "${list.pdorNum}"></td>
+					   <td th:text = "${list.pdorTotalPrice}"></td>
+					   <td th:text = "${list.pdorDelNy}"></td>
+					   <td th:text = "${list.pdorStatusCd}"></td>
+					   <td th:text = "${list.dealer_dealSeq}"></td>
+					   <td th:text = "${list.pdolSeq}"></td>
+					   <td th:text = "${list.pdolQty}"></td>
+                       <td th:text = "${list.pdolAmountPrice}"></td>
+					   <td th:text = "${list.product_prdtSeq}"></td>
+					   <td th:text = "${list.productorder_pdorSeq}"></td>
+                       <td th:text = "${list.pdorRegDate}"></td>
+                       <td th:text = "${list.pdorModDate}"></td>
+	                   </tr>
+                  </tbody>
+                  <tfoot>
+                   
+                  </tfoot>
+                  
+                  </table>
+                  <div class="row" >
+                    <nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
+                    	<ul class="pagination">
+							<li class="page-item">
+							<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
+									&laquo;
+								</a>
+							</li>
+							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
+							</li>
+							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
+									&raquo;
+								</a>
+							</li>
+                    	</ul>
+                    </nav>
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 padding-left">
+                  <button class="btn btn-danger">X</button>
+                  <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                </div>
+                <div class="col-md-6 padding-right" style="display: flex; justify-content: end;">
+                    
+                    <button class="btn btn-success btn-right"><i class="bi bi-journal-x"></i></button>
+                  <a href="" class="btn btn-primary"><i class="bi bi-plus-lg"></i></a>
+                </div>
+                </div>
+            </div>
+          </div> 
+       </form>
+    </section>
+
+  </main><!-- End #main -->
+<div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
+
+	<script>
+		let form = document.querySelector("form[name=formList]");
+		
+		$.datetimepicker.setLocale('ko');
+		$(window).on("load", function () {
+			$(function(){
+				 $('#shDateStart').datetimepicker({
+				  format:'Y-m-d',
+				  onShow:function( ct ){
+				   this.setOptions({
+				    maxDate:$('#shDateEnd').val()?$('#shDateEnd').val():false
+				   })
+				  },
+				  timepicker:false
+				 });
+				 $('#shDateEnd').datetimepicker({
+				  format:'Y-m-d',
+				  onShow:function( ct ){
+				   this.setOptions({
+				    minDate:$('#shDateStart').val()?$('#shDateStart').val():false
+				   })
+				  },
+				  timepicker:false
+				 });
+			});
+	    });
+		
+		document.getElementById("btnSearch").onclick = function () {
+			form.action = "/member/memberXdmList";
+			form.submit();
+		};
+		document.getElementById("btnReset").onclick = function () {
+			location = "/member/memberXdmList";
+		};
+		
+		goList = function (thisPage) {
+		    document.querySelector("input[name=thisPage]").value = thisPage;
+		    form.action = "/member/memberXdmList";
+		    form.submit();
+		}
+		document.getElementById("changeRowNum").onchange = function () {
+		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+		    form.action = "/member/memberXdmList";
+		    form.submit();
+		}
+		
+		function checkSelectAll()  {
+			  // 전체 체크박스
+			  const checkboxes 
+			    = document.querySelectorAll('input[name="eachChk"]');
+			  // 선택된 체크박스
+			  const checked 
+			    = document.querySelectorAll('input[name="eachChk"]:checked');
+			  // select all 체크박스
+			  const selectAll 
+			    = document.querySelector('input[name="allChk"]');
+			  
+			  if(checkboxes.length === checked.length)  {
+			    selectAll.checked = true;
+			  }else {
+			    selectAll.checked = false;
+			  }
+
+			}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('eachChk');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	</script>
+	
+</body>
+</html>
