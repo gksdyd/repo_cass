@@ -30,7 +30,7 @@
 			,e.papaName
 			,a.incoRegDate
 			,a.incoAmountPrice
-			
+			,a.incoNum
 			FROM incoming as a 
 			left join partsorder as b on a.partsorder_ptorSeq = b.ptorSeq
 			left join partpartner as e on b.partpartner_papaSeq = e.papaSeq
