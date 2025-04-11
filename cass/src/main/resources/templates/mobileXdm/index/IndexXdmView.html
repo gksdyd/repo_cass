@@ -12,10 +12,10 @@
                 <h3>입고/출고</h3>
               </div>
               <div class="mb-2 row g-3">
-				<button class="btn btn-primary btn-sm" type="button"><span class="fas fa-upload fs-8"></span>&emsp;입고하기</button>
+				<button class="btn btn-primary btn-sm" type="button" id="incomeBtn"><span class="fas fa-upload fs-8"></span>&emsp;입고하기</button>
               </div>
               <div class="mb-4 row g-3">
-                <button class="btn btn-primary btn-sm" type="button"><span class="fas fa-download fs-8"></span>&emsp;출고하기</button>
+                <button class="btn btn-primary btn-sm" type="button" id="outcomeBtn"><span class="fas fa-download fs-8"></span>&emsp;출고하기</button>
               </div>
               <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
@@ -54,6 +54,14 @@
 /*     let goUrlXdmForm = "/xdm/codegroup/CodeGroupXdmForm";
     let goUrlXdmDeltProc = "/xdm/codegroup/CodeGroupXdmDeltProc";
     let goUrlXdmUeltProc = "/xdm/codegroup/CodeGroupXdmUeltProc"; */
+    
+    $("#incomeBtn").on("click", function() {
+    	location = "/mobileXdm/income/IncomeXdmList";
+    });
+    
+    $("#outcomeBtn").on("click", function() {
+    	location = "/mobileXdm/delivery/DeliveryMobileXdmList";
+    });
  </script>
 </body>
 
