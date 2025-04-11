@@ -12,12 +12,12 @@
 			LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq
 		where 1=1
 		<choose>
-			<when test="shOptionDate == 1">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 3">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 4">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
-            <when test="shOption == 1">AND mafaNum = #{shValue}</when>
-            <when test="shOption == 2">AND prdtName = #{shValue}</when>
+            <when test="shOption == 3">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 4">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
     </sql>
 	

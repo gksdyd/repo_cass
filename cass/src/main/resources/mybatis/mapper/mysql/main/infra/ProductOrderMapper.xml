@@ -5,6 +5,24 @@
 
 <resultMap id="resultMapObj" type="com.cass.demo.module.productorder.ProductOrderDto"></resultMap>
 
+	<sql id="selectCommonForMafa">	    
+	    from
+			productorder pdor 
+			left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+			left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+		WHERE 1=1 
+			AND pdor.pdorDelNy = 0
+			AND pdor.pdorStatusCd = 3
+		<choose>
+			<when test="shOptionDate == 1">AND pdorRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND pdorModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+            <when test="shOption == 1">AND pdorNum = #{shValue}</when>
+            <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+    
 <select id="selectList" resultMap="resultMapObj">
 
 	select
@@ -60,24 +78,14 @@
         pdol.pdolAmountPrice,
         pdol.product_prdtSeq,
         d.dealName,
-        d.dealManager      
-	from
-		productorder pdor 
-		left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
-		left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
-	WHERE 1=1 
-		AND pdor.pdorDelNy = 0
-		AND pdor.pdorStatusCd = 3
+        d.dealManager 
+        <include refid = "selectCommonForMafa"></include>     
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShowNew} offset #{startRnumForMysqlNew}
 	</select>
 	
 	<select id="selectOneCountForMafa" resultType="Integer">
 	Select count(*)
-	From
-		productorder pdor left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
-	WHERE 1=1 
-		AND pdor.pdorDelNy = 0
-		AND pdor.pdorStatusCd = 3
+	<include refid = "selectCommonForMafa"></include>
 	</select>
 </mapper>
