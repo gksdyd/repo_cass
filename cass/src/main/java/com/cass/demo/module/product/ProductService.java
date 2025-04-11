@@ -18,4 +18,8 @@ public class ProductService {
 	public int selectOneCount(ProductVo Vo) {
 		return productDao.selectOneCount(Vo);
 	}
+	
+	public ProductDto selectOne(ProductDto productDto) {
+		return productDao.selectOne(productDto);
+	}
 }
