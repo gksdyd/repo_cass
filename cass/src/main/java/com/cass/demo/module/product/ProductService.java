@@ -14,4 +14,8 @@ public class ProductService {
 	public List<ProductDto> selectList(ProductVo vo) {
 		return productDao.selectList(vo);
 	}
+		
+	public int selectOneCount(ProductVo Vo) {
+		return productDao.selectOneCount(Vo);
+	}
 }

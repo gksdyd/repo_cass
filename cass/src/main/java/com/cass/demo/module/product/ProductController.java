@@ -15,7 +15,12 @@ public class ProductController {
 	
 	@RequestMapping(value = "/ProductXdmList")
 	public String productXdmList(Model model, @ModelAttribute("vo") ProductVo vo) {
+		vo.setParamsPaging(productService.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
 		model.addAttribute("list", productService.selectList(vo));
+		}
+		
 		return "xdm/product/ProductXdmList";
 	}
 }
