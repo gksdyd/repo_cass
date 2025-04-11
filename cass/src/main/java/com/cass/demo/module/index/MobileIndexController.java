@@ -22,6 +22,7 @@ public class MobileIndexController extends BaseController {
 		utildatetime(vo);
 		vo.setParamsPaging(deliveryService.selectOneCount(vo));
 		model.addAttribute("list", deliveryService.selectList(vo));
+		model.addAttribute("activePage", "index");
 		return "mobileXdm/index/IndexXdmView";
 	}
 }
