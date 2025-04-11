@@ -4,11 +4,28 @@ import com.cass.demo.base.xdm.BaseVo;
 
 public class ProductOrderVo extends BaseVo{
 	
-	private String pdorSeq;
+	private Integer pdorNum;
+	private Integer pdorStatusCd;
+
+ 	private String pdorSeq;
 	private String pdolSeq;
 	private String tpolSeq;
+  
+	public Integer getPdorNum() {
+		return pdorNum;
+	}
 
-//	-----
+	public void setPdorNum(Integer pdorNum) {
+		this.pdorNum = pdorNum;
+	}
+
+	public Integer getPdorStatusCd() {
+		return pdorStatusCd;
+	}
+  
+	public void setPdorStatusCd(Integer pdorStatusCd) {
+		this.pdorStatusCd = pdorStatusCd;
+	}
 
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -33,6 +50,4 @@ public class ProductOrderVo extends BaseVo{
 	public void setTpolSeq(String tpolSeq) {
 		this.tpolSeq = tpolSeq;
 	}
-	
-
 }

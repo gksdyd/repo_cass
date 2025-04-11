@@ -35,4 +35,10 @@ public class ManufactureXdmController extends BaseController {
 		
 		return "mobileXdm/manufacture/ManufactureXdmList";
 	}
+	
+	@RequestMapping(value = "/ManufactureXdmForm")
+	public String orderDetailProc(ProductOrderVo pdorVo, Model model) {
+		model.addAttribute("list", orderService.selectOneList(pdorVo));
+		return "mobileXdm/manufacture/ManufactureXdmForm";
+	}
 }

@@ -34,6 +34,10 @@ public class ProductOrderService {
 		return productOrderDao.selectOneCountForMafa(productOrderVo);
 	}
 	
+	public List<ProductOrderDto> selectOneList(ProductOrderVo productOrderVo) {
+		return productOrderDao.selectOneList(productOrderVo);
+	}
+
 	public ProductOrderDto selectOne(ProductOrderVo productOrderVo) {
 		return productOrderDao.selectOne(productOrderVo);
 	}
@@ -63,5 +67,4 @@ public class ProductOrderService {
 	public Integer selectMaxNum(ProductOrderDto productOrderDto) {
 		return productOrderDao.selectMaxNum(productOrderDto);
 	}
-
 }

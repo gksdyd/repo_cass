@@ -4,6 +4,7 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
+          <input type="hidden" id="pdorNum" name="pdorNum">
           <input type="hidden" name="thisPage" th:value="${manuVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${manuVo.rowNumToShow}"/>
           <input type="hidden" name="thisPageNew" th:value="${orderVo.thisPageNew}" default="1"/>
@@ -80,39 +81,46 @@
             </div>
             <div class="card-body p-0">
             	<div class="table-responsive scrollbar">
-             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${orderList}">
-         				<div class="col-1 py-3 px-x1">
-         					<div class="#" th:text="${orderVo.totalRowsNew - ((orderVo.thisPageNew - 1) * orderVo.rowNumToShowNew + listStat.index)}"></div>
-         			 	</div>
-             		 	<div class="col-6 py-3">
-							<span class="d-flex fs-11">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
-							<span class="d-flex fs-11">주문일시:&emsp;<div th:text="${#strings.substring(list.pdorRegDate, 0, 10)}"></div></span>
-							<span class="d-flex fs-11">수정일시:&emsp;<div th:text="${#strings.substring(list.pdorModDate, 0, 10)}"></div></span>
-             		 	</div>
-             			<div class="col-4 py-3 fs-11">
-			                <span class="d-flex fs-11">주문처명: <div th:text="${list.dealName}"></div></span>
-							<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
-							<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
-             			</div>
-         		   	</div>
+             		<a class="item" href="javascript:void(0);" th:each="list : ${orderList}">
+	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
+	         				<div class="col-2 py-3 px-x1">
+	         					<div class="# " th:text="${orderVo.totalRowsNew - ((orderVo.thisPageNew - 1) * orderVo.rowNumToShowNew + listStat.index)}"></div>
+	         			 	</div>
+	             		 	<div class="col-5 py-3">
+								<span class="d-flex fs-11">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
+								<span class="d-flex fs-11">주문일시:&emsp;<div th:text="${#strings.substring(list.pdorRegDate, 0, 10)}"></div></span>
+								<span class="d-flex fs-11">수정일시:&emsp;<div th:text="${#strings.substring(list.pdorModDate, 0, 10)}"></div></span>
+	             		 	</div>
+	             			<div class="col-5 py-3 fs-11">
+				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
+								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
+	             			</div>
+	         		   	</div>
+         		   	</a>
            		</div>
            	</div>
             <div class="card-footer d-flex align-items-center justify-content-center">
-				<ul class="pagination mb-0">
-					<li th:if="${orderVo.startPageNew gt orderVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
-						<i class="fas fa-chevron-left"></i>
-					</a>
-					</li>
-					<li th:each="num: ${#numbers.sequence(orderVo.startPageNew, orderVo.endPageNew)}" th:classappend="${num eq orderVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
-					</li>
-					<li th:if="${orderVo.endPageNew ne orderVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
-						<i class="fas fa-chevron-right"></i>
-					</a>
-					</li>
-				</ul>
+	            <div class="col">
+					<ul class="pagination mb-0">
+						<li th:if="${orderVo.startPageNew gt orderVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+						</li>
+						<li th:each="num: ${#numbers.sequence(orderVo.startPageNew, orderVo.endPageNew)}" th:classappend="${num eq orderVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
+						</li>
+						<li th:if="${orderVo.endPageNew ne orderVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
+							<i class="fas fa-chevron-right"></i>
+						</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col" style="text-align: right;">
+					<button class="btn btn-primary fs-10" type="button" id="detailBtn">상세</button>
+				</div>
 			</div>
           </div>
           <div class="card mb-3">
@@ -138,16 +146,16 @@
             <div class="card-body p-0">
             	<div class="table-responsive scrollbar">
              		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${manuList}">
-         				<div class="col-1 py-3 px-x1">
+         				<div class="col-2 py-3 px-x1">
          					<div class="#" th:text="${manuVo.totalRows - ((manuVo.thisPage - 1) * manuVo.rowNumToShow + listStat.index)}"></div>
          			 	</div>
-             		 	<div class="col-6 py-3">
+             		 	<div class="col-5 py-3">
 							<span class="d-flex fs-11">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
 							<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
 							<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
              		 	</div>
-             			<div class="col-4 py-3 fs-11">
-			                <span class="d-flex">제작품명:&emsp;<div th:text="${list.prdtName}"></div></span>
+             			<div class="col-5 py-3 fs-11">
+			                <!-- <span class="d-flex">제작품명:&emsp;<div th:text="${list.prdtName}"></div></span> -->
 							<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
              			</div>
          		   	</div>

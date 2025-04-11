@@ -24,14 +24,14 @@ public class ProductOrderDto {
 	private String productorder_pdorSeq;
 	private String dealName;
 	private String dealManager;
+
 	private String prdtName;
+  private String prdtSN;
 	private String prdtPrice;
 	
 	private String tpolSeq;
 	private String tpolQty;
 	private Integer tpolTotalPrice;
-	
-//	-----
 	
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -129,18 +129,28 @@ public class ProductOrderDto {
 	public void setDealManager(String dealManager) {
 		this.dealManager = dealManager;
 	}
+
 	public Integer getPdorTotalQty() {
 		return pdorTotalQty;
 	}
 	public void setPdorTotalQty(Integer pdorTotalQty) {
 		this.pdorTotalQty = pdorTotalQty;
 	}
+
 	public String getPrdtName() {
 		return prdtName;
 	}
 	public void setPrdtName(String prdtName) {
 		this.prdtName = prdtName;
 	}
+
+	public String getPrdtSN() {
+		return prdtSN;
+	}
+	public void setPrdtSN(String prdtSN) {
+		this.prdtSN = prdtSN;
+	}
+
 	public String getPrdtPrice() {
 		return prdtPrice;
 	}
@@ -177,9 +187,4 @@ public class ProductOrderDto {
 	public void setPdolStatusCd(Integer pdolStatusCd) {
 		this.pdolStatusCd = pdolStatusCd;
 	}
-	
-	
-	
-	
-
 }

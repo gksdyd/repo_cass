@@ -17,6 +17,8 @@ public interface ProductOrderDao {
 	public int selectOneCount(ProductOrderVo productOrderVo);
 	public List<ProductOrderDto> selectListForMafa(ProductOrderVo productOrderVo);
 	public int selectOneCountForMafa(ProductOrderVo productOrderVo);
+
+	public List<ProductOrderDto> selectOneList(ProductOrderVo productOrderVo);
 	
 	public int ueletePdol(ProductOrderDto productOrderDto);
 	public int insertTemp(ProductOrderDto productOrderDto);
@@ -26,6 +28,4 @@ public interface ProductOrderDao {
 	
 	public Integer selectMaxSeq(ProductOrderDto productOrderDto);
 	public Integer selectMaxNum(ProductOrderDto productOrderDto);
-
-
 }
