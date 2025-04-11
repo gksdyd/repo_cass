@@ -14,5 +14,4 @@ public class ManufactureVo extends BaseVo {
 	public void setMafaSeq(String mafaSeq) {
 		this.mafaSeq = mafaSeq;
 	}
-	
 }

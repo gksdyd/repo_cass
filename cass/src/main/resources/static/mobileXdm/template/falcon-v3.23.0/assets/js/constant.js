@@ -23,6 +23,12 @@ const URL_PRODUCT_FUNCTION_BACKUP_XDM = "/xdm/product/ProductBackupXdmProc";
 const URL_PRODUCT_XDM_FORM = "/xdm/product/ProductXdmForm";
 const URL_PRODUCT_XDM_LIST = "/xdm/product/ProductXdmList";
 
+// 접수 관련 경로
+const URL_MANUFACTURE_MOBILE_LIST = "/mobileXdm/manufacture/ManufactureXdmList";
+
+// 상세 관련 경로
+const URL_REGISTER_ORDER_MOBILE_FORM = "/mobileXdm/manufacture/ManufactureXdmForm";
+
 // 정규식 상수
 const regex1 = /^[a-z|A-Z|0-9|]+$/;
 const regex2 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~|/|(-)|,|]+$/;

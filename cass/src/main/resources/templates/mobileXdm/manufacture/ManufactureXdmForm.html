@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ko" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+		<div th:replace="~{mobileXdm/include/head :: head}"></div>
+        <form name="formList" id="formList" method="post" autocomplete="off">
+          <div class="card mb-3">
+            <div class="card-header">
+              	<h5>주문 상세페이지</h5>
+            </div>
+            <div class="card-body p-0">
+            	<div class="table-responsive scrollbar">
+             		<a class="item" href="javascript:void(0);" th:each="list : ${list}">
+	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
+	         				<div class="col-2 py-3 px-x1">
+	         					<div class="#" th:text="${listStat.count}"></div>
+	         			 	</div>
+	             		 	<div class="col-5 py-3">
+								<span class="d-flex fs-11">상품명:&emsp;<div th:text="${list.prdtName}"></div></span>
+								<span class="d-flex fs-11">시리얼번호:&emsp;<div th:text="${list.prdtSN}"></div></span>
+	             		 	</div>
+	             			<div class="col-5 py-3 fs-11">
+				                <span class="d-flex fs-11">상품 갯수:&emsp;<div th:text="${list.pdolQty}"></div></span>
+								<span class="d-flex fs-11">상품 총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+	             			</div>
+	         		   	</div>
+         		   	</a>
+           		</div>
+           	</div>
+           	<div class="mb-2 row g-3 ms-1 me-1">
+              <div class="col">
+                <button class="btn btn-outline-dark" type="button" id="listBtn" value="1"><span class="far fa-list-alt"></span></button>
+              </div>
+              <div class="col" style="text-align: right;">
+                <button class="btn btn-primary" type="button" id="registerBtn"><span class="fas fa-plus"></span></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div th:replace="~{mobileXdm/include/foot :: foot}"></div>
+      </div>
+    </div>
+  </main>
+  <div th:replace="~{mobileXdm/include/modal :: modal}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileFalcon :: includeMobileFalcon}"></div>
+  <div th:replace="~{mobileXdm/include/includeMobileCommon :: includeMobileCommon}"></div>
+  <div th:replace="~{mobileXdm/include/includeXdmList :: includeXdmList}"></div>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+ <script>
+    let form = document.querySelector("form[name=formList]");
+   
+    let goUrlXdmList = "/mobileXdm/manufacture/ManufactureXdmList";
+    let goUrlXdmForm = "/xdm/codegroup/CodeGroupXdmForm";
+    let goUrlXdmDeltProc = "/xdm/codegroup/CodeGroupXdmDeltProc";
+    let goUrlXdmUeltProc = "/xdm/codegroup/CodeGroupXdmUeltProc";
+ </script>
+</body>
+
+</html>

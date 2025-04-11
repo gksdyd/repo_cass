@@ -8,7 +8,7 @@
 	<sql id="selectCommonForMafa">	    
 	    from
 			productorder pdor 
-			left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+			left join (select productorder_pdorSeq from productorderlist group by productorder_pdorSeq) AS pdol on pdol.productorder_pdorSeq = pdor.pdorSeq
 			left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
 		WHERE 1=1 
 			AND pdor.pdorDelNy = 0
@@ -69,16 +69,8 @@
         pdor.pdorRegDate,
         pdor.pdorModDate,
         pdor.pdorTotalPrice,
-        pdor.pdorDesc,
-        pdor.pdorDelNy,
         pdor.pdorStatusCd,
-        pdor.dealer_dealSeq,
-        pdol.pdolSeq,
-        pdol.pdolQty,
-        pdol.pdolAmountPrice,
-        pdol.product_prdtSeq,
-        d.dealName,
-        d.dealManager 
+        d.dealName
         <include refid = "selectCommonForMafa"></include>     
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShowNew} offset #{startRnumForMysqlNew}
@@ -87,5 +79,18 @@
 	<select id="selectOneCountForMafa" resultType="Integer">
 	Select count(*)
 	<include refid = "selectCommonForMafa"></include>
+	</select>
+	
+	<select id="selectOneList" resultMap="resultMapObj">
+		SELECT
+			a.pdolQty,
+			a.pdolAmountPrice,
+			b.prdtName,
+			b.prdtSN
+		FROM
+			productorderlist a
+			LEFT JOIN product b ON b.prdtSeq = a.product_prdtSeq
+		WHERE 1=1
+			AND (SELECT pdorSeq FROM productorder WHERE 1=1 AND pdorNum = #{pdorNum}) = productorder_pdorSeq
 	</select>
 </mapper>
