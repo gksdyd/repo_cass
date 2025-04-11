@@ -21,9 +21,7 @@
     
     	<sql id="selectCommonForInco">	    
 	    FROM manufacture AS m
-			LEFT JOIN productorderlist AS pol ON m.productorderlist_pdolSeq = pol.pdolSeq
-			LEFT JOIN product AS p ON pol.product_prdtSeq = p.prdtSeq
-			LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq
+			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
 		where 1=1
 		<choose>
 			<when test="shOptionDate == 2">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -59,8 +57,8 @@
 		SELECT
 			m.mafaSeq 
 		    ,m.mafaStausCd
-		    ,p.prdtName
-		    ,pol.pdolQty
+<!-- 		    ,p.prdtName
+		    ,pol.pdolQty -->
 		    ,po.pdorNum
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
