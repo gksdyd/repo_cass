@@ -35,6 +35,8 @@ public class BaseVo {
 	private String shDateEnd;
 	private Integer shOption;									/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
 	private String shValue;
+	
+	private String shStatus;
 //	-----
 
 	public int getThisPage() {
@@ -310,4 +312,14 @@ public class BaseVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
+
+	public String getShStatus() {
+		return shStatus;
+	}
+
+	public void setShStatus(String shStatus) {
+		this.shStatus = shStatus;
+	}
+	
+	
 }

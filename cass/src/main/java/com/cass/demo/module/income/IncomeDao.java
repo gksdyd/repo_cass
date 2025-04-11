@@ -10,4 +10,5 @@ public interface IncomeDao {
 	public int selectOneCount(IncomeVo vo);
 	public List<IncomeDto> selectListForDeli(IncomeVo vo);
 	public int selectOneCountForDeli(IncomeVo vo);
+	public List<IncomeDto> selectIncoStatus();
 }

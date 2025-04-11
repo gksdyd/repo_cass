@@ -9,6 +9,9 @@
 	    FROM incoming as a 
 			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
 		where 1=1
+		
+		<if test="shStatus != null and !shStatus.equals('')">AND a.incoStatusCd = #{shStatus}</if>
+		
 		<choose>
 			<when test="shOptionDate == 1">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -68,4 +71,15 @@
 			,m.mafaNum
 		<include refid = "selectCommonForDeli"></include>
 	</select>
+	
+	  	 <select id="selectIncoStatus" resultMap="resultMapObj">
+		select
+			codeName,
+			codeSeq
+		from
+			code
+		where 1=1
+		 and codeGroup_cdgrSeq=4
+		order by codeSeq desc  		
+ 	</select>
 </mapper>

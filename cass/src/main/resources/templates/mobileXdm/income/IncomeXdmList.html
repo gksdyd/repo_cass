@@ -23,11 +23,20 @@
                 </div> -->
               </div>
               <div class="mb-2 row g-3">
+				<div class="col-4">
+					<select class="form-select-JHY" id="shStatus" name="shStatus" aria-label="Default select example">
+					<option value="">입고상태</option>
+					<option th:selected="${list.codeSeq} ==${incomeVo.shStatus}" th:each="list : ${@codeService.selectListCachedCode(4)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="mb-2 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
                     <option value="" th:selected="${incomeVo.shOptionDate == null}">날짜</option>
-                    <option value="1" th:selected="${incomeVo.shOptionDate == 1}">등록일</option>
-                    <option value="2" th:selected="${incomeVo.shOptionDate == 2}">수정일</option>
+                    <option value="1" th:selected="${incomeVo.shOptionDate == 1}">입고일</option>
+					<option value="2" th:selected="${manuVo.shOptionDate == 2}">제작일</option>
+					<option value="3" th:selected="${manuVo.shOptionDate == 3}">완료일</option>
                   </select>
                 </div>
                 <div class="col-4">
@@ -36,14 +45,15 @@
                 <div class="col-4">
                   <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(incomeVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
                 </div>
-              </div>
+			</div>
               <div class="mb-4 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
                     <option value="" th:selected="${incomeVo.shOption == null}">검색구분</option>
-                    <option value="1" th:selected="${incomeVo.shOption == 1}">발주처명</option>
-                    <option value="2" th:selected="${incomeVo.shOption == 2}">제작번호</option>
+                    <option value="2" th:selected="${incomeVo.shOption == 2}">제작번호(입고)</option>
                     <option value="3" th:selected="${incomeVo.shOption == 3}">입고번호</option>
+					<option value="4" th:selected="${manuVo.shOption == 4}">제작번호(제작)</option>
+					<option value="5" th:selected="${manuVo.shOption == 5}">제작품명</option>
                   </select>
                 </div>
                 <div class="col-4">

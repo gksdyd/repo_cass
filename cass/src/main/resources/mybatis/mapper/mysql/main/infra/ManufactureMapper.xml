@@ -20,6 +20,22 @@
             <when test="shOption == 4">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
     </sql>
+    
+    	<sql id="selectCommonForInco">	    
+	    FROM manufacture AS m
+			LEFT JOIN productorderlist AS pol ON m.productorderlist_pdolSeq = pol.pdolSeq
+			LEFT JOIN product AS p ON pol.product_prdtSeq = p.prdtSeq
+			LEFT JOIN productorder AS po ON pol.productorder_pdorSeq = po.pdorSeq
+		where 1=1
+		<choose>
+			<when test="shOptionDate == 2">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 3">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+            <when test="shOption == 4">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 5">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
 	
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -52,7 +68,7 @@
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
-		    <include refid = "selectCommon"></include>
+		    <include refid = "selectCommonForInco"></include>
 			AND m.mafaStausCd = 10			
 		    limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
@@ -60,7 +76,7 @@
 	<select id="selectOneCountForInco" resultType="Integer">
     	select count(*)
 <!--     	FROM manufacture -->
-		    <include refid = "selectCommon"></include>
+		    <include refid = "selectCommonForInco"></include>
 		AND m.mafaStausCd = 10			
     </select>
 </mapper>
