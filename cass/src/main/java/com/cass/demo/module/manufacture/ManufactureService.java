@@ -18,4 +18,12 @@ public class ManufactureService {
 	public int selectOneCount(ManufactureVo vo) {
 		return dao.selectOneCount(vo);
 	}
+	
+	public List<ManufactureDto> selectListForInco(ManufactureVo vo) {
+		return dao.selectListForInco(vo);
+	}
+
+	public int selectOneCountForInco(ManufactureVo vo) {
+		return dao.selectOneCountForInco(vo);
+	}
 }

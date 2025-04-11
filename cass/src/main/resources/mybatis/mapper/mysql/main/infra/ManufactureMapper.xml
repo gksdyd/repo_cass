@@ -41,4 +41,26 @@
 <!--     	FROM manufacture -->
     	 <include refid = "selectCommon"></include>
     </select>
+    
+       <select id="selectListForInco" resultMap="resultMapObj">
+		SELECT
+			m.mafaSeq 
+		    ,m.mafaStausCd
+		    ,p.prdtName
+		    ,pol.pdolQty
+		    ,po.pdorNum
+		    ,m.mafaRegDate
+		    ,m.mafaModDate
+		    ,m.mafaNum
+		    <include refid = "selectCommon"></include>
+			AND m.mafaStausCd = 10			
+		    limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	
+	<select id="selectOneCountForInco" resultType="Integer">
+    	select count(*)
+<!--     	FROM manufacture -->
+		    <include refid = "selectCommon"></include>
+		AND m.mafaStausCd = 10			
+    </select>
 </mapper>
