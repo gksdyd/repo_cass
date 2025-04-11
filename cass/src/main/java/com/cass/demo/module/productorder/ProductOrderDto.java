@@ -8,6 +8,7 @@ public class ProductOrderDto {
 	private Integer pdorNum;
 	private LocalDateTime pdorRegDate;
 	private LocalDateTime pdorModDate;
+	private Integer pdorTotalQty;
 	private Integer pdorTotalPrice;
 	private String pdorDesc;
 	private Integer pdorDelNy;
@@ -17,10 +18,19 @@ public class ProductOrderDto {
 	private String pdolSeq;
 	private Integer pdolQty;
 	private Integer pdolAmountPrice;
+	private Integer pdolDelNy;
+	private Integer pdolStatusCd;
 	private String product_prdtSeq;
 	private String productorder_pdorSeq;
 	private String dealName;
 	private String dealManager;
+	private String prdtName;
+	private String prdtPrice;
+	
+	private String tpolSeq;
+	private String tpolQty;
+	private Integer tpolTotalPrice;
+	
 //	-----
 	
 	public String getPdorSeq() {
@@ -118,6 +128,54 @@ public class ProductOrderDto {
 	}
 	public void setDealManager(String dealManager) {
 		this.dealManager = dealManager;
+	}
+	public Integer getPdorTotalQty() {
+		return pdorTotalQty;
+	}
+	public void setPdorTotalQty(Integer pdorTotalQty) {
+		this.pdorTotalQty = pdorTotalQty;
+	}
+	public String getPrdtName() {
+		return prdtName;
+	}
+	public void setPrdtName(String prdtName) {
+		this.prdtName = prdtName;
+	}
+	public String getPrdtPrice() {
+		return prdtPrice;
+	}
+	public void setPrdtPrice(String prdtPrice) {
+		this.prdtPrice = prdtPrice;
+	}
+	public Integer getPdolDelNy() {
+		return pdolDelNy;
+	}
+	public void setPdolDelNy(Integer pdolDelNy) {
+		this.pdolDelNy = pdolDelNy;
+	}
+	public String getTpolSeq() {
+		return tpolSeq;
+	}
+	public void setTpolSeq(String tpolSeq) {
+		this.tpolSeq = tpolSeq;
+	}
+	public String getTpolQty() {
+		return tpolQty;
+	}
+	public void setTpolQty(String tpolQty) {
+		this.tpolQty = tpolQty;
+	}
+	public Integer getTpolTotalPrice() {
+		return tpolTotalPrice;
+	}
+	public void setTpolTotalPrice(Integer tpolTotalPrice) {
+		this.tpolTotalPrice = tpolTotalPrice;
+	}
+	public Integer getPdolStatusCd() {
+		return pdolStatusCd;
+	}
+	public void setPdolStatusCd(Integer pdolStatusCd) {
+		this.pdolStatusCd = pdolStatusCd;
 	}
 	
 	
