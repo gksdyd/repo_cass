@@ -35,10 +35,7 @@
 			,a.prdtName
 			,a.prdtSN
 			,a.prdtPrice
-			,a.prdtCPUCd
-			,a.prdtPCBCd
-			,a.prdtLoadcellCd
-			,a.prdtDisplayCd
+			,a.prdtCateCd
 			,a.prdtUseNy
 			,a.prdtDelNy
 			,a.prdtRegDate

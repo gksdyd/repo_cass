@@ -6,16 +6,13 @@ public class ProductDto {
 	private String prdtName;
 	private String prdtSN;
 	private Integer prdtPrice;
-	private Integer prdtCPUCd;
-	private Integer prdtPCBCd;
-	private Integer prdtLoadcellCd;
-	private Integer prdtDisplayCd;
+	private Integer prdtCateCd;
 	private int prdtUseNy;
 	private int prdtDelNy;
 	private String prdtRegDate;
 	private String prdtModDate;
 	private String prdtDesc;
-	
+//-----
 	public String getPrdtSeq() {
 		return prdtSeq;
 	}
@@ -40,29 +37,11 @@ public class ProductDto {
 	public void setPrdtPrice(Integer prdtPrice) {
 		this.prdtPrice = prdtPrice;
 	}
-	public Integer getPrdtCPUCd() {
-		return prdtCPUCd;
+	public Integer getPrdtCateCd() {
+		return prdtCateCd;
 	}
-	public void setPrdtCPUCd(Integer prdtCPUCd) {
-		this.prdtCPUCd = prdtCPUCd;
-	}
-	public Integer getPrdtPCBCd() {
-		return prdtPCBCd;
-	}
-	public void setPrdtPCBCd(Integer prdtPCBCd) {
-		this.prdtPCBCd = prdtPCBCd;
-	}
-	public Integer getPrdtLoadcellCd() {
-		return prdtLoadcellCd;
-	}
-	public void setPrdtLoadcellCd(Integer prdtLoadcellCd) {
-		this.prdtLoadcellCd = prdtLoadcellCd;
-	}
-	public Integer getPrdtDisplayCd() {
-		return prdtDisplayCd;
-	}
-	public void setPrdtDisplayCd(Integer prdtDisplayCd) {
-		this.prdtDisplayCd = prdtDisplayCd;
+	public void setPrdtCateCd(Integer prdtCateCd) {
+		this.prdtCateCd = prdtCateCd;
 	}
 	public int getPrdtUseNy() {
 		return prdtUseNy;
@@ -94,4 +73,5 @@ public class ProductDto {
 	public void setPrdtDesc(String prdtDesc) {
 		this.prdtDesc = prdtDesc;
 	}
+	
 }

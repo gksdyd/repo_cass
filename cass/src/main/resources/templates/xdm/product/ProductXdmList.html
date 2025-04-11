@@ -99,10 +99,7 @@
                     <th class="list-sort" style="text-align: center;">상품 이름</th>
                     <th class="list-sort" style="text-align: center;">시리얼 번호</th>
                     <th class="list-sort" style="text-align: center;">가격</th>
-                    <th class="list-sort" style="text-align: center;">CPU</th>
-                    <th class="list-sort" style="text-align: center;">PCB</th>
-                    <th class="list-sort" style="text-align: center;">로드셀</th>
-                    <th class="list-sort" style="text-align: center;">디스플레이</th>
+                    <th class="list-sort" style="text-align: center;">상품분류</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">등록일</th>
                     <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">수정일</th>
                   </tr>
@@ -119,14 +116,7 @@
 	                   <td th:text = "${list.prdtName}"></td>
 	                   <td th:text = "${list.prdtSN}"></td>
 	                   <td th:text = "${list.prdtPrice}"></td>
-	                   <!-- <td th:text = "${@codeService.selectOneCachedCode(list.prdtCPUCd)}"></td>
-                       <td th:text = "${@codeService.selectOneCachedCode(list.prdtPCBCd)}"></td>
-                       <td th:text = "${@codeService.selectOneCachedCode(list.prdtLoadcellCd)}"></td>
-                       <td th:text = "${@codeService.selectOneCachedCode(list.prdtDisplayCd)}"></td> -->
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
+                       <td th:text = "${@codeService.selectOneCachedCode(list.prdtCateCd)}"></td>
                        <td th:text = "${list.prdtRegDate}"></td>
                        <td th:text = "${list.prdtModDate}"></td>
 	                   </tr>
