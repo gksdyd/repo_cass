@@ -96,15 +96,15 @@
             <div class="card-footer d-flex align-items-center justify-content-center">
 				<ul class="pagination mb-0">
 					<li th:if="${orderVo.startPageNew gt orderVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
+					<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 					</li>
 					<li th:each="num: ${#numbers.sequence(orderVo.startPageNew, orderVo.endPageNew)}" th:classappend="${num eq orderVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
+					<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
 					</li>
 					<li th:if="${orderVo.endPageNew ne orderVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
+					<a class="page-link fs-11" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
 						<i class="fas fa-chevron-right"></i>
 					</a>
 					</li>
@@ -151,15 +151,15 @@
             <div class="card-footer d-flex align-items-center justify-content-center">
 				<ul class="pagination mb-0">
 					<li th:if="${manuVo.startPage gt manuVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-					<a class="page-link" href="javascript:goList(${manuVo.startPage - 1})" th:attr="onclick=|goList('${manuVo.startPage - 1}')|">
+					<a class="page-link fs-11" href="javascript:goList(${manuVo.startPage - 1})" th:attr="onclick=|goList('${manuVo.startPage - 1}')|">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 					</li>
 					<li th:each="num: ${#numbers.sequence(manuVo.startPage, manuVo.endPage)}" th:classappend="${num eq manuVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+					<a class="page-link fs-11" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
 					</li>
 					<li th:if="${manuVo.endPage ne manuVo.totalPages}" class="page-item" style="cursor: pointer;">
-					<a class="page-link" th:attr="onclick=|goList('${manuVo.endPage + 1}')|">
+					<a class="page-link fs-11" th:attr="onclick=|goList('${manuVo.endPage + 1}')|">
 						<i class="fas fa-chevron-right"></i>
 					</a>
 					</li>
