@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IncomeDao {
-	public List<IncomeDto> selectList(IncomeDto dto);
 	public List<IncomeDto> selectList(IncomeVo vo);
 	public int selectOneCount(IncomeVo vo);
+	public List<IncomeDto> selectListForDeli(IncomeVo vo);
+	public int selectOneCountForDeli(IncomeVo vo);
 }

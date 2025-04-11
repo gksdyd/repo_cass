@@ -19,6 +19,22 @@
             <when test="shOption == 3">AND mafaNum = #{shValue}</when>
         </choose>
     </sql>
+    
+    <sql id="selectCommonForDeli">	    
+	    FROM incoming as a 
+			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
+		where 1=1
+			AND incoStatusCd = 12
+		<choose>
+			<when test="shOptionDate == 1">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+            <!-- <when test="shOption == 1">AND incoNum = #{shValue}</when> -->
+            <when test="shOption == 2">AND incoNum = #{shValue}</when>
+            <when test="shOption == 3">AND mafaNum = #{shValue}</when>
+        </choose>
+    </sql>
 	
 	<select id="selectOneCount" resultType="Integer">
     	select count(*)
@@ -35,5 +51,22 @@
 			,a.incoModDate
 			,m.mafaNum
 		<include refid = "selectCommon"></include>
+	</select>
+	
+	<select id="selectOneCountForDeli" resultType="Integer">
+    	select count(*)
+    	 <include refid = "selectCommonForDeli"></include>
+    </select>
+	
+	<select id="selectListForDeli" resultMap="resultMapObj">
+		SELECT  
+			a.incoSeq
+			,a.incoNum
+			,a.incoStatusCd
+			,a.incoTotalQty
+			,a.incoRegDate
+			,a.incoModDate
+			,m.mafaNum
+		<include refid = "selectCommonForDeli"></include>
 	</select>
 </mapper>

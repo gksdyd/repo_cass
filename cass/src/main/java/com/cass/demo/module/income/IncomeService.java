@@ -11,9 +11,6 @@ public class IncomeService {
 	@Autowired
 	IncomeDao dao;
 	
-	public List<IncomeDto> selectList(IncomeDto dto) {
-		return dao.selectList(dto);
-	}
 	public List<IncomeDto> selectList(IncomeVo vo) {
 		return dao.selectList(vo);
 	}
@@ -22,4 +19,11 @@ public class IncomeService {
 		return dao.selectOneCount(vo);
 	}
 
+	public List<IncomeDto> selectListForDeli(IncomeVo vo) {
+		return dao.selectListForDeli(vo);
+	}
+	
+	public int selectOneCountForDeli(IncomeVo vo) {
+		return dao.selectOneCountForDeli(vo);
+	}
 }
