@@ -20,6 +20,7 @@ public class IncomeController extends BaseController {
 		utildatetime(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
 		model.addAttribute("list", service.selectList(vo));
+		model.addAttribute("activePage", "income");
 		return "mobileXdm/income/IncomeXdmList";
 	}
 	

@@ -20,7 +20,7 @@ public class ManufactureXdmController extends BaseController {
 		utildatetime(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
 		model.addAttribute("list", service.selectList(vo));
-		
+	    model.addAttribute("activePage", "manufacture");
 		return "mobileXdm/manufacture/ManufactureXdmList";
 	}
 	

@@ -2,13 +2,37 @@
 <html data-bs-theme="light" lang="en-US" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="foot">
-	<footer class="footer">
-	  <div class="row g-0 justify-content-between fs-10 mt-4 mb-3">
-	    <div class="col-12 col-sm-auto text-center">
-	      <p class="mb-0 text-600">Thank you for creating with Falcon <span class="d-none d-sm-inline-block">| </span><br class="d-sm-none" /> 2024 &copy; <a href="https://themewagon.com">Themewagon</a></p>
+	<footer class="fixed-bottom bg-white border-top shadow-sm">
+	  <div class="d-flex justify-content-around text-center py-1">
+	    <div>
+	      <a href="/mobileXdm/index/IndexXdmView" class="text-decoration-none" th:classappend="${activePage} == 'index' ? ' text-primary' : ' text-secondary'">
+	        <i class="bi bi-house fs-4"></i><br>
+	        <small>홈</small>
+	      </a>
 	    </div>
-	    <div class="col-12 col-sm-auto text-center">
-	      <p class="mb-0 text-600">v3.23.0</p>
+	    <div>
+	      <a href="/mobileXdm/manufacture/ManufactureXdmList" class="text-decoration-none" th:classappend="${activePage} == 'manufacture' ? ' text-primary' : ' text-secondary'">
+	        <i class="bi bi-gear fs-4"></i><br>
+	        <small>제작</small>
+	      </a>
+	    </div>
+	    <div>
+	      <a href="/mobileXdm/income/IncomeXdmList" class="text-decoration-none" th:classappend="${activePage} == 'income' ? ' text-primary' : ' text-secondary'">
+	        <i class="bi bi-download fs-4"></i><br>
+	        <small>입고</small>
+	      </a>
+	    </div>
+		<div>
+		  <a href="/mobileXdm/delivery/DeliveryMobileXdmList" class="text-decoration-none" th:classappend="${activePage} == 'delivery' ? ' text-primary' : ' text-secondary'">
+		    <i class="bi bi-upload fs-4"></i><br>
+		    <small>출고</small>
+		  </a>
+		</div>
+	    <div>
+	      <a href="/mobileXdm/stock/StockXdmList" class="text-decoration-none" th:classappend="${activePage} == 'stock' ? ' text-primary' : ' text-secondary'">
+	        <i class="bi bi-box fs-4"></i><br>
+	        <small>재고</small>
+	      </a>
 	    </div>
 	  </div>
 	</footer>
