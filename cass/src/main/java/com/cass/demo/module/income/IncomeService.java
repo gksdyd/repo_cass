@@ -26,4 +26,8 @@ public class IncomeService {
 	public int selectOneCountForDeli(IncomeVo vo) {
 		return dao.selectOneCountForDeli(vo);
 	}
+	
+	public List<IncomeDto> selectIncoStatus(){
+		return dao.selectIncoStatus();
+	}
 }

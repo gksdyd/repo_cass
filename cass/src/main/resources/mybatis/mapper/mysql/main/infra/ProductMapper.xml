@@ -10,16 +10,16 @@
 			product a
 			<!-- left join codegroup b on a.codegroup_cdgrSeq = b.cdgrSeq -->
 		where 1=1
-		<if test="shUseNy != null and !shUseNy.equals('')">AND a.prdtUseNy = #{shUseNy}</if>
-        <if test="shDelNy != null and !shDelNy.equals('')">AND a.prdtDelNy = #{shDelNy}</if>
+		<if test="shUseNy != null and !shUseNy.equals('')">AND a.prdtUseNy = #{prdtUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.prdtDelNy = #{prdtDelNy}</if>
 				<choose>
 					<when test="shOptionDate == 1">AND a.prdtRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 					<when test="shOptionDate == 2">AND a.prdtModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
         <choose>
-            <when test="shOption == 1">AND a.prdtSeq = #{shValue}</when>
+            <when test="shOption == 1">AND a.prdtName LIKE CONCAT('%',#{shValue},'%')</when>
             <when test="shOption == 2">AND a.prdtSN LIKE CONCAT('%',#{shValue},'%')</when>
-            <when test="shOption == 3">AND a.prdtName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.prdtCateCd LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
     </sql>
     
@@ -44,7 +44,7 @@
 		<include refid = "selectCommon"></include>
 		order by prdtSeq desc
 	) aa
-	<!-- limit #{rowNumToShow} offset #{startRnumForMysql} -->
+<!-- 	limit #{rowNumToShow} offset #{startRnumForMysql} -->
 	</select>
 	
 	<select id="selectGroupList" resultMap="resultMapObj">
@@ -59,36 +59,42 @@
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		select
-			codeSeq
-			,codeName
-			,codeNameEng
-			,codeUseNy
-			,codeDelNy
-			,codeDesc
-			,codegroup_cdgrSeq
+			prdtSeq
+			,prdtName
+			,prdtSN
+			,prdtPrice
+			,prdtCateCd
+			,prdtUseNy
+			,prdtDelNy
+			,prdtRegDate
+			,prdtDesc
 		from
-			code
+			product
 		where 1=1
-			and codeSeq = #{codeSeq}
+			and prdtSeq = #{prdtSeq}
 	</select>
 	
 	<insert id="insert">
-		insert into code (
-			codeName
-			,codeNameEng
-			,codeUseNy
-			,codeRegDate
-			,codeDesc
-			,codegroup_cdgrSeq
+		insert into product (
+			prdtName
+			,prdtSN
+			,prdtPrice
+			,prdtCateCd
+			,prdtUseNy
+			,prdtDelNy
+			,prdtRegDate
+			,prdtDesc
 		) values (
-			#{codeName}
-			,#{codeNameEng}
-			,#{codeUseNy}
+			#{prdtName}
+			,#{prdtSN}
+			,#{prdtPrice}
+			,#{prdtCateCd}
+			,#{prdtUseNy}
+			,#{prdtDelNy}
 			,CURRENT_TIMESTAMP
-			,#{codeDesc}
-			,#{codegroup_cdgrSeq}
+			,#{prdtDesc}
 		)
-		<selectKey resultType="String" keyProperty="codeSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="prdtSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>

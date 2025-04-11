@@ -30,25 +30,27 @@
 		pdor.pdorNum,
         pdor.pdorRegDate,
         pdor.pdorModDate,
+        pdor.pdorTotalQty,
         pdor.pdorTotalPrice,
         pdor.pdorDesc,
         pdor.pdorDelNy,
         pdor.pdorStatusCd,
         pdor.dealer_dealSeq,
-        pdol.pdolSeq,
-        pdol.pdolQty,
-        pdol.pdolAmountPrice,
-        pdol.product_prdtSeq,
+<!--         pdol.pdolSeq, -->
+<!--         pdol.pdolQty, -->
+<!--         pdol.pdolAmountPrice, -->
+<!--         pdol.product_prdtSeq, -->
         d.dealName,
         d.dealManager
         
 	from
 	  productorder pdor 
-	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+<!-- 	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq -->
 	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
 		WHERE 1=1 
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShow} offset #{startRnumForMysql}
+
 
 </select>
 
@@ -93,4 +95,161 @@
 		WHERE 1=1
 			AND (SELECT pdorSeq FROM productorder WHERE 1=1 AND pdorNum = #{pdorNum}) = productorder_pdorSeq
 	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+
+	select
+		pdor.pdorSeq,
+		pdor.pdorNum,
+        pdor.pdorRegDate,
+        pdor.pdorModDate,
+        pdor.pdorTotalQty,
+        pdor.pdorTotalPrice,
+        pdor.pdorDesc,
+        pdor.pdorDelNy,
+        pdor.pdorStatusCd,
+        pdor.dealer_dealSeq,
+        d.dealName,
+        d.dealManager
+        
+	from
+	  productorder pdor 
+	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+	WHERE 1=1
+		and	pdorSeq = #{pdorSeq}
+	</select>
+	
+	<select id="selectNum" resultMap="resultMapObj">
+	select
+		pdorNum,
+	from
+	  productorder
+	WHERE 1=1
+	</select>
+	
+	<insert id="insert">
+	insert into productorder (
+		pdorNum,
+        pdorDesc,
+        pdorStatusCd,
+        dealer_dealSeq
+		) values (
+			#{pdorNum}
+			,#{pdorDesc}
+			,3
+			,#{dealer_dealSeq}
+		)
+		</insert>
+		<insert id="insertOL">
+		insert into productorderlist (
+				pdolQty
+				,product_prdtSeq
+				,productorder_pdorSeq
+				,pdolAmountPrice
+				) values (
+				#{pdolQty}
+				,#{product_prdtSeq}
+				,#{pdorSeq}
+				, (select prdtPrice from product where prdtSeq = #{product_prdtSeq}) * pdolQty
+				)
+		</insert>
+	
+	<select id="selectMaxSeq" resultType="Integer">
+		SELECT
+			MAX(pdorSeq)
+		FROM
+			productorder
+	</select>
+	<select id="selectMaxNum" resultType="Integer">
+		SELECT
+			MAX(pdorNum)
+		FROM
+			productorder
+	</select>
+	
+	<update id="update">
+		update productorder set
+        	pdorDesc = #{pdorDesc},
+		where
+			pdorSeq = #{pdorSeq}
+	</update>
+	
+	<select id="selectedOneList" resultMap="resultMapObj">
+
+	select
+		pdor.pdorSeq,
+		pdor.pdorNum,
+        pdor.pdorRegDate,
+        pdor.pdorModDate,
+        pdor.pdorTotalQty,
+        pdor.pdorTotalPrice,
+        pdor.pdorDesc,
+        pdor.pdorDelNy,
+        pdor.pdorStatusCd,
+        pdor.dealer_dealSeq,
+        pdol.pdolSeq,        
+        pdol.pdolQty,
+        pdol.pdolAmountPrice,
+        pdol.pdolDelNy,
+        pdol.product_prdtSeq,
+        pdol.pdolStatusCd,
+        prdt.prdtName,
+        prdt.prdtPrice,
+        d.dealName,
+        d.dealManager
+        
+	from
+	  productorder pdor 
+	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	  left join product prdt on prdt.prdtSeq = pdol.product_prdtSeq
+	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+	WHERE 1=1
+		and	pdorSeq = #{pdorSeq}
+		and pdolDelNy = 0
+	</select>
+	
+	<select id="selectedTempList" resultMap="resultMapObj">
+
+	select
+		tpol.tpolSeq
+		,tpol.tpolQty
+		,tpol.product_prdtSeq
+        ,prdt.prdtName
+        ,prdt.prdtPrice
+        
+	from
+	  temporderlist tpol 
+	  left join product prdt on prdt.prdtSeq = tpol.product_prdtSeq
+	WHERE 1=1
+	</select>
+	
+	
+	<insert id="insertTemp1">
+	insert into temporderlist(
+			tpolQty
+			,product_prdtSeq
+		) values (
+			#{tpolQty}
+			,#{product_prdtSeq}
+		)	
+	</insert>
+	<insert id="insertTemp">
+	insert into productorderlist (
+			pdolQty
+			,product_prdtSeq
+			,productorder_pdorSeq
+		) values (
+			#{pdolQty}
+			,#{product_prdtSeq}
+			,#{pdorSeq}
+		)	
+	</insert>
+	
+	
+	<update id="ueletePdol">
+		update productorderlist set
+			pdolDelNy = 1
+		where
+			pdolSeq = #{pdolSeq}
+	</update>
 </mapper>
