@@ -10,7 +10,6 @@ public interface ProductOrderDao {
 	
 	public List<ProductOrderDto> selectList(ProductOrderVo productOrderVo);
 	public int selectOneCount(ProductOrderVo productOrderVo);
-
-
-
+	public List<ProductOrderDto> selectListForMafa(ProductOrderVo productOrderVo);
+	public int selectOneCountForMafa(ProductOrderVo productOrderVo);
 }

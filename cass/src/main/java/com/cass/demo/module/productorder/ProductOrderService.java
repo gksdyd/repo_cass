@@ -19,4 +19,11 @@ public class ProductOrderService {
 		return productOrderDao.selectOneCount(productOrderVo);
 	}
 
+	public List<ProductOrderDto> selectListForMafa(ProductOrderVo productOrderVo) {
+		return productOrderDao.selectListForMafa(productOrderVo);
+	}
+	
+	public int selectOneCountForMafa(ProductOrderVo productOrderVo) {
+		return productOrderDao.selectOneCountForMafa(productOrderVo);
+	}
 }

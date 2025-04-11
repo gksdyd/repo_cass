@@ -33,6 +33,7 @@
 		    ,m.mafaModDate
 		    ,m.mafaNum
 		    <include refid = "selectCommon"></include>
+		    limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">

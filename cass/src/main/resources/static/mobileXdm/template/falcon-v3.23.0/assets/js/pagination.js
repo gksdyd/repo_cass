@@ -15,3 +15,17 @@ changeRow = function () {
     form.action = goUrlXdmList;
     form.submit();
 }
+
+// 페이지 이동 시, 실행되는 함수
+goListNew = function (thisPage) {
+    document.querySelector("input[name=thisPageNew]").value = thisPage;
+    form.action = goUrlXdmList;
+    form.submit();
+}
+
+// 한 페이지에 나타나는 리스트 수 설정 함수
+changeRowNew = function () {
+    document.getElementById("rowNumToShowNew").value = document.getElementById("changeRowNumNew").value;
+    form.action = goUrlXdmList;
+    form.submit();
+}

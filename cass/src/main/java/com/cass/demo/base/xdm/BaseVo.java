@@ -14,6 +14,18 @@ public class BaseVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
+//	paging new
+	private int thisPageNew = 1;									// 현재 페이지
+	private int rowNumToShowNew = 5;								// 화면에 보여줄 데이터 줄 갯수
+	private int pageNumToShowNew = 5;								// 화면에 보여줄 페이징 번호 갯수
+	
+	private int totalRowsNew;										// 전체 데이터 갯수
+	private int totalPagesNew;										// 전체 페이지 번호
+	private int startPageNew;										// 시작 페이지 번호
+	private int endPageNew;										// 마지막 페이지 번호
+	
+	private int startRnumForMysqlNew = 0;							// 쿼리 시작 row
+	
 
 	//	search
 	private Integer shUseNy = 1; 								/* null 값을 받아야 되는 경우가 있어서 int 대신 Integer 사용 */
@@ -93,6 +105,70 @@ public class BaseVo {
 	
 //	-----
 	
+	public int getThisPageNew() {
+		return thisPageNew;
+	}
+
+	public void setThisPageNew(int thisPageNew) {
+		this.thisPageNew = thisPageNew;
+	}
+
+	public int getRowNumToShowNew() {
+		return rowNumToShowNew;
+	}
+
+	public void setRowNumToShowNew(int rowNumToShowNew) {
+		this.rowNumToShowNew = rowNumToShowNew;
+	}
+
+	public int getPageNumToShowNew() {
+		return pageNumToShowNew;
+	}
+
+	public void setPageNumToShowNew(int pageNumToShowNew) {
+		this.pageNumToShowNew = pageNumToShowNew;
+	}
+
+	public int getTotalRowsNew() {
+		return totalRowsNew;
+	}
+
+	public void setTotalRowsNew(int totalRowsNew) {
+		this.totalRowsNew = totalRowsNew;
+	}
+
+	public int getTotalPagesNew() {
+		return totalPagesNew;
+	}
+
+	public void setTotalPagesNew(int totalPagesNew) {
+		this.totalPagesNew = totalPagesNew;
+	}
+
+	public int getStartPageNew() {
+		return startPageNew;
+	}
+
+	public void setStartPageNew(int startPageNew) {
+		this.startPageNew = startPageNew;
+	}
+
+	public int getEndPageNew() {
+		return endPageNew;
+	}
+
+	public void setEndPageNew(int endPageNew) {
+		this.endPageNew = endPageNew;
+	}
+
+	public int getStartRnumForMysqlNew() {
+		return startRnumForMysqlNew;
+	}
+
+	public void setStartRnumForMysqlNew(int startRnumForMysqlNew) {
+		this.startRnumForMysqlNew = startRnumForMysqlNew;
+	}
+
 	public void setParamsPaging(int totalRows) {
 //		setThisPage(3);
 
@@ -133,6 +209,49 @@ public class BaseVo {
 //		System.out.println("getStartPage():" + getStartPage());
 //		System.out.println("getEndPage():" + getEndPage());
 //		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
+		
+	}
+	
+	public void setParamsPagingNew(int totalRows) {
+//		setThisPage(3);
+		
+		setTotalRowsNew(totalRows);
+		
+		if (getTotalRowsNew() == 0) {
+			setTotalPagesNew(1);
+		} else {
+			setTotalPagesNew(getTotalRowsNew() / getRowNumToShowNew());
+		}
+		
+		if (getTotalRowsNew() % getRowNumToShowNew() > 0) {
+			setTotalPagesNew(getTotalPagesNew() + 1);
+		}
+		
+		if (getTotalPagesNew() < getThisPageNew()) {
+			setThisPageNew(getTotalPagesNew());
+		}
+		
+		setStartPageNew(((getThisPageNew() - 1) / getPageNumToShowNew()) * getPageNumToShowNew() + 1);
+		
+		setEndPageNew(getStartPageNew() + getPageNumToShowNew() - 1);
+		
+		if (getEndPageNew() > getTotalPagesNew()) {
+			setEndPageNew(getTotalPagesNew());
+		}		
+		
+		if (thisPageNew == 1) {
+			setStartRnumForMysqlNew(0);
+		} else {
+			setStartRnumForMysqlNew((getRowNumToShowNew() * (getThisPageNew()-1)));
+		}
+		
+//		System.out.println("getThisPageNew():" + getThisPageNew());
+//		System.out.println("getTotalRowsNew():" + getTotalRowsNew());
+//		System.out.println("getRowNumToShowNew():" + getRowNumToShowNew());
+//		System.out.println("getTotalPagesNew():" + getTotalPagesNew());
+//		System.out.println("getStartPageNew():" + getStartPageNew());
+//		System.out.println("getEndPageNew():" + getEndPageNew());
+//		System.out.println("getStartRnumForMysqlNew(): " + getStartRnumForMysqlNew());
 		
 	}
 

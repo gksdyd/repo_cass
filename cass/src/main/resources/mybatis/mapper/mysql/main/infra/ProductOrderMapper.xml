@@ -44,4 +44,40 @@
 		WHERE 1=1 
 	</select>
 
+	<select id="selectListForMafa" resultMap="resultMapObj">
+	select
+		pdor.pdorSeq,
+		pdor.pdorNum,
+        pdor.pdorRegDate,
+        pdor.pdorModDate,
+        pdor.pdorTotalPrice,
+        pdor.pdorDesc,
+        pdor.pdorDelNy,
+        pdor.pdorStatusCd,
+        pdor.dealer_dealSeq,
+        pdol.pdolSeq,
+        pdol.pdolQty,
+        pdol.pdolAmountPrice,
+        pdol.product_prdtSeq,
+        d.dealName,
+        d.dealManager      
+	from
+		productorder pdor 
+		left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+		left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+	WHERE 1=1 
+		AND pdor.pdorDelNy = 0
+		AND pdor.pdorStatusCd = 3
+		ORDER BY pdor.pdorSeq DESC
+		limit #{rowNumToShowNew} offset #{startRnumForMysqlNew}
+	</select>
+	
+	<select id="selectOneCountForMafa" resultType="Integer">
+	Select count(*)
+	From
+		productorder pdor left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	WHERE 1=1 
+		AND pdor.pdorDelNy = 0
+		AND pdor.pdorStatusCd = 3
+	</select>
 </mapper>
