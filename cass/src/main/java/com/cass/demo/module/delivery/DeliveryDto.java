@@ -1,10 +1,9 @@
 package com.cass.demo.module.delivery;
 
-import java.time.LocalDateTime;
-
 public class DeliveryDto {
 	
 	private String deliSeq;
+	private String deliNum;
 	private Integer deliStausCd;
 	private String deliRegDate;
 	private String deliModDate;
@@ -70,5 +69,11 @@ public class DeliveryDto {
 	}
 	public void setProductTotalCnt(Integer productTotalCnt) {
 		this.productTotalCnt = productTotalCnt;
+	}
+	public String getDeliNum() {
+		return deliNum;
+	}
+	public void setDeliNum(String deliNum) {
+		this.deliNum = deliNum;
 	}
 }

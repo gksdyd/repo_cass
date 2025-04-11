@@ -20,6 +20,7 @@
                     <option value="" th:selected="${deliVo.shOptionDate == null}">날짜</option>
                     <option value="1" th:selected="${deliVo.shOptionDate == 1}">요청날짜</option>
                     <option value="2" th:selected="${deliVo.shOptionDate == 2}">최근현황</option>
+                    <option value="3" th:selected="${deliVo.shOptionDate == 3}">입고일</option>
                   </select>
                 </div>
                 <div class="col-4">
@@ -35,6 +36,8 @@
                     <option value="" th:selected="${deliVo.shOption == null}">검색구분</option>
                     <option value="1" th:selected="${deliVo.shOption == 1}">주문번호</option>
                     <option value="2" th:selected="${deliVo.shOption == 2}">배송번호</option>
+                    <option value="3" th:selected="${deliVo.shOption == 3}">입고번호</option>
+                    <option value="4" th:selected="${deliVo.shOption == 4}">제작번호</option>
                   </select>
                 </div>
                 <div class="col-4">
@@ -79,7 +82,7 @@
 						    <span class="d-flex fs-11">최근현황:&emsp;<div th:text="${#strings.substring(list.deliModDate, 0, 10)}"></div></span>
 					    </div>
 					    <div class="col-4 py-3 px-x1 fs-10">
-							<span class="d-flex fs-11">배송번호:&emsp;<div th:text="${list.deliSeq}"></div></span>
+							<span class="d-flex fs-11">배송번호:&emsp;<div th:text="${list.deliNum}"></div></span>
 						  	<span class="d-flex fs-11">총 갯수:&emsp;<div th:text="${list.productTotalCnt}"></div></span>
 							<span class="d-flex fs-11">현황:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.deliStausCd)}"></div></span>
 					    </div>
@@ -106,7 +109,7 @@
           </div>
           <div class="card mb-3">
             <div class="card-header">
-              	<h5>제작 리스트</h5>
+              	<h5>입고 리스트</h5>
               	<div class="row">
 					<div class="col">
 						<label class="form-label-JHY" for="description">Total: </label>

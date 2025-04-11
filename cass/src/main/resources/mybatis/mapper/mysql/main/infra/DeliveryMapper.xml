@@ -10,8 +10,8 @@
 	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
 		WHERE 1=1 
 			<choose>
-	            <when test="shOption == 1">AND pdor.pdorNum LIKE CONCAT('%',#{shValue},'%')</when>
-	            <when test="shOption == 2">AND deli.deliSeq LIKE CONCAT('%',#{shValue},'%')</when>
+	            <when test="shOption == 1">AND pdor.pdorNum = #{shValue}</when>
+	            <when test="shOption == 2">AND deli.deliNum = #{shValue}</when>
 	        </choose>
 			<choose>
 				<when test="shOptionDate == 1">AND deli.deliRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -25,6 +25,7 @@
 		pdor.pdorNum,
 		pdor.pdorTotalPrice,
 		deli.deliSeq,
+		deli.deliNum,
 	    deli.deliStausCd,
 	    deli.deliRegDate,
 	    deli.deliModDate,

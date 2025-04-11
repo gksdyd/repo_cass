@@ -26,13 +26,12 @@
 		where 1=1
 			AND incoStatusCd = 12
 		<choose>
-			<when test="shOptionDate == 1">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 3">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
             <!-- <when test="shOption == 1">AND incoNum = #{shValue}</when> -->
-            <when test="shOption == 2">AND incoNum = #{shValue}</when>
-            <when test="shOption == 3">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 3">AND incoNum = #{shValue}</when>
+            <when test="shOption == 4">AND mafaNum = #{shValue}</when>
         </choose>
     </sql>
 	
