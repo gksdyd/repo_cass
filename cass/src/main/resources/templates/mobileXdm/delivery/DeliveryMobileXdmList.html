@@ -4,8 +4,8 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
-          <input type="hidden" name="thisPageNew" th:value="${incoVo.thisPageNew}" default="1"/>
-          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${incoVo.rowNumToShowNew}"/>
+          <input type="hidden" name="thisPageNew" th:value="${deliVo.thisPageNew}" default="1"/>
+          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${deliVo.rowNumToShowNew}"/>
           <input type="hidden" name="thisPage" th:value="${orderVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${orderVo.rowNumToShow}"/>
           <input type="hidden" id="deliSeq" name="deliSeq" value=0/>
@@ -111,7 +111,7 @@
   					</ul>
   				</div>
   				<div class="col" style="text-align: right;">
-  					<button class="btn btn-success fs-10" type="button" id="">출고/배송</button>
+  					<button class="btn btn-success fs-10" type="button" id="deliveryBtn">출고/배송</button>
   					<button class="btn btn-primary fs-10" type="button" id="detailBtn" value="delivery">상세</button>
   				</div>
   			</div>
@@ -122,16 +122,16 @@
               	<div class="row">
 					<div class="col">
 						<label class="form-label-JHY" for="description">Total: </label>
-						<label class="form-label-JHY" for="description" th:text="${incoVo.totalRows}"></label>
+						<label class="form-label-JHY" for="description" th:text="${deliVo.totalRows}"></label>
 					</div>
 					<div class="col-4 col-lg-2" style="text-align: right;">
 						<select class="form-select-JHY" aria-label="Default select example" id="changeRowNum" name="changeRowNum" onchange="changeRow()">
-							<option value="5" th:selected="${incoVo.rowNumToShow eq 5}">5</option>
-							<option value="10" th:selected="${incoVo.rowNumToShow eq 10}">10</option>
-							<option value="30" th:selected="${incoVo.rowNumToShow eq 30}">30</option>
-							<option value="50" th:selected="${incoVo.rowNumToShow eq 50}">50</option>
-							<option value="80" th:selected="${incoVo.rowNumToShow eq 80}">80</option> 
-							<option value="100" th:selected="${incoVo.rowNumToShow eq 100}">100</option>   
+							<option value="5" th:selected="${deliVo.rowNumToShow eq 5}">5</option>
+							<option value="10" th:selected="${deliVo.rowNumToShow eq 10}">10</option>
+							<option value="30" th:selected="${deliVo.rowNumToShow eq 30}">30</option>
+							<option value="50" th:selected="${deliVo.rowNumToShow eq 50}">50</option>
+							<option value="80" th:selected="${deliVo.rowNumToShow eq 80}">80</option> 
+							<option value="100" th:selected="${deliVo.rowNumToShow eq 100}">100</option>   
 						</select>
 					</div>
 				</div>
@@ -140,32 +140,33 @@
             	<div class="table-responsive scrollbar">
              		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${incoList}">
          				<div class="col-1 py-3 px-x1">
-         					<div class="#" th:text="${incoVo.totalRows - ((incoVo.thisPage - 1) * incoVo.rowNumToShow + listStat.index)}"></div>
+         					<div class="#" th:text="${deliVo.totalRows - ((deliVo.thisPage - 1) * deliVo.rowNumToShow + listStat.index)}"></div>
          			 	</div>
              		 	<div class="col-6 py-3">
-							<span class="d-flex fs-11">입고번호:&emsp;<div th:text="${list.incoNum}"></div></span>
-							<span class="d-flex fs-11">입고상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.incoStatusCd)}"></div></span>
-							<span class="d-flex fs-11">출고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoModDate, 0, 10)}"></div></span>
+							<span class="d-flex fs-11">출고번호:&emsp;<div th:text="${list.deliNum}"></div></span>
+							<span class="d-flex fs-11">출고상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.deliStausCd)}"></div></span>
+							<span class="d-flex fs-11">출고일:&emsp;&emsp;<div th:text="${#strings.substring(list.deliRegDate, 0, 10)}"></div></span>
 		                </div>
 		                <div class="col-4 py-3 fs-11">
-		                	<span class="d-flex">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
-							<span class="d-flex">총수량:&emsp;<div th:text="${list.incoTotalQty} + '개'"></div></span>
+		                	<span class="d-flex">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
+		                	<!-- <span class="d-flex">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
+							<span class="d-flex">총수량:&emsp;<div th:text="${list.productTotalCnt} + '개'"></div></span> -->
 		                </div>
          		   	</div>
            		</div>
            	</div>
             <div class="card-footer d-flex align-items-center justify-content-center">
 				<ul class="pagination mb-0">
-					<li th:if="${incoVo.startPage gt incoVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goList(${incoVo.startPage - 1})" th:attr="onclick=|goList('${incoVo.startPage - 1}')|">
+					<li th:if="${deliVo.startPage gt deliVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+					<a class="page-link fs-11" href="javascript:goList(${deliVo.startPage - 1})" th:attr="onclick=|goList('${deliVo.startPage - 1}')|">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 					</li>
-					<li th:each="num: ${#numbers.sequence(incoVo.startPage, incoVo.endPage)}" th:classappend="${num eq incoVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+					<li th:each="num: ${#numbers.sequence(deliVo.startPage, deliVo.endPage)}" th:classappend="${num eq deliVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
 					<a class="page-link fs-11" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
 					</li>
-					<li th:if="${incoVo.endPage ne incoVo.totalPages}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goList('${incoVo.endPage + 1}')|">
+					<li th:if="${deliVo.endPage ne deliVo.totalPages}" class="page-item" style="cursor: pointer;">
+					<a class="page-link fs-11" th:attr="onclick=|goList('${deliVo.endPage + 1}')|">
 						<i class="fas fa-chevron-right"></i>
 					</a>
 					</li>

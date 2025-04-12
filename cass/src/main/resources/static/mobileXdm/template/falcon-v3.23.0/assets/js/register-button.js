@@ -139,3 +139,31 @@ $("#incomeBtn").on("click", function() {
       }
 	});
 })
+
+$("#deliveryBtn").on("click", function() {
+	let value;
+	
+	for (let i = 0; i < document.querySelectorAll(".listItem").length; i++) {
+		if(document.querySelectorAll(".listItem")[i].classList.contains("selectActive")) {
+			value = document.querySelectorAll(".pdorNum")[i].innerText;
+		}
+	}
+
+	if (value == null) {
+		return;
+	}
+	
+	$.ajax({
+      async: true 
+      ,cache: false
+      ,type: "post"
+      ,url: URL_DELIVERY_MOBILE_PROC
+      ,data: {"pdorNum" : value}
+      ,success: function(response) {
+          location.href = URL_OUTCOM_MOBILE_LIST;
+      }
+      ,error : function(jqXHR){
+        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+      }
+	});
+})

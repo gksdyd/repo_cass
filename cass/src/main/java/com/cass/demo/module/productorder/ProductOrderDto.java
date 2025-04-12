@@ -34,6 +34,7 @@ public class ProductOrderDto {
 	private Integer tpolTotalPrice;
 	
 	private String mafaNum;
+	private String deliNum;
 	
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -194,5 +195,11 @@ public class ProductOrderDto {
 	}
 	public void setMafaNum(String mafaNum) {
 		this.mafaNum = mafaNum;
+	}
+	public String getDeliNum() {
+		return deliNum;
+	}
+	public void setDeliNum(String deliNum) {
+		this.deliNum = deliNum;
 	}
 }

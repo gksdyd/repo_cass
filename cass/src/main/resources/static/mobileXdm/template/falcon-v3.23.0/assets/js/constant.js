@@ -40,6 +40,7 @@ const URL_INCOME_MOBILE_LIST = "/mobileXdm/income/IncomeXdmList";
 
 // 출고 관련 경로
 const URL_OUTCOM_MOBILE_LIST = "/mobileXdm/delivery/DeliveryMobileXdmList";
+const URL_DELIVERY_MOBILE_PROC = "/mobileXdm/delivery/DeliRegisterProc";
 
 // 정규식 상수
 const regex1 = /^[a-z|A-Z|0-9|]+$/;

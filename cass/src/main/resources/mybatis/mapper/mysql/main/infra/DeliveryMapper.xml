@@ -44,4 +44,23 @@
 
 	</select>
 
+	<select id="deliMaxNum" resultType="Integer">
+		SELECT MAX(deliNum) FROM delivery
+	</select>
+	
+	<insert id="insert">
+    	INSERT INTO delivery (
+    		deliNum,
+    		deliStausCd,
+    		deliRegDate,
+    		deliDelNy,
+    		productorder_pdorSeq
+    	) VALUE (
+    		#{deliNum},
+    		16,
+    		date_format(NOW(), '%Y-%m-%d %H:%i:%S'),
+    		0,
+    		(SELECT pdorSeq FROM productorder WHERE pdorNum = #{pdorNum})
+    	)
+    </insert>
 </mapper>
