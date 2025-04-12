@@ -4,17 +4,17 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
-          <input type="hidden" name="thisPageNew" th:value="${deliVo.thisPageNew}" default="1"/>
-          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${deliVo.rowNumToShowNew}"/>
-          <input type="hidden" name="thisPage" th:value="${incoVo.thisPage}" default="1"/>
-          <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${incoVo.rowNumToShow}"/>
+          <input type="hidden" name="thisPageNew" th:value="${incoVo.thisPageNew}" default="1"/>
+          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${incoVo.rowNumToShowNew}"/>
+          <input type="hidden" name="thisPage" th:value="${orderVo.thisPage}" default="1"/>
+          <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${orderVo.rowNumToShow}"/>
           <input type="hidden" id="deliSeq" name="deliSeq" value=0/>
           <div class="card mb-3" id="customersTable">
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
                 <h1>출고관리</h1>
               </div>
-              <div class="mb-2 row g-3">
+<!--              <div class="mb-2 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
                     <option value="" th:selected="${deliVo.shOptionDate == null}">날짜</option>
@@ -47,69 +47,76 @@
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
                 </div>
+              </div>-->
+            </div>
+          </div>
+		  <div class="card mb-3">
+              <div class="card-header">
+                	<h5>주문 리스트</h5>
+              	<div class="row">
+  					<div class="col">
+  						<label class="form-label-JHY" for="description">Total: </label>
+  						<label class="form-label-JHY" for="description" th:text="${orderVo.totalRowsNew}"></label>
+  					</div>
+  					<div class="col-4 col-lg-2" style="text-align: right;">
+  						<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
+  							<option value="5" th:selected="${orderVo.rowNumToShowNew eq 5}">5</option>
+  							<option value="10" th:selected="${orderVo.rowNumToShowNew eq 10}">10</option>
+  							<option value="30" th:selected="${orderVo.rowNumToShowNew eq 30}">30</option>
+  							<option value="50" th:selected="${orderVo.rowNumToShowNew eq 50}">50</option>
+  							<option value="80" th:selected="${orderVo.rowNumToShowNew eq 80}">80</option>
+  							<option value="100" th:selected="${orderVo.rowNumToShowNew eq 100}">100</option>   
+  						</select>
+  					</div>
+  				</div>
               </div>
-            </div>
+              <div class="card-body p-0">
+              	<div class="table-responsive scrollbar">
+               		<a class="item" href="javascript:void(0);" th:each="list : ${orderList}">
+  	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
+  	         				<div class="col-2 py-3 px-x1">
+  	         					<div class="# " th:text="${orderVo.totalRowsNew - ((orderVo.thisPageNew - 1) * orderVo.rowNumToShowNew + listStat.index)}"></div>
+  	         			 	</div>
+  	             		 	<div class="col-5 py-3">
+  								<span class="d-flex fs-11">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
+  								<span class="d-flex fs-11">주문일시:&emsp;<div th:text="${#strings.substring(list.pdorRegDate, 0, 10)}"></div></span>
+  								<span class="d-flex fs-11">수정일시:&emsp;<div th:text="${#strings.substring(list.pdorModDate, 0, 10)}"></div></span>
+  	             		 	</div>
+  	             			<div class="col-5 py-3 fs-11">
+  				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
+  								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+  								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
+  	             			</div>
+  	         		   	</div>
+           		   	</a>
+             		</div>
+             	</div>
+              <div class="card-footer d-flex align-items-center justify-content-center">
+  	            <div class="col">
+  					<ul class="pagination mb-0">
+  						<li th:if="${orderVo.startPageNew gt orderVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
+  						<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
+  							<i class="fas fa-chevron-left"></i>
+  						</a>
+  						</li>
+  						<li th:each="num: ${#numbers.sequence(orderVo.startPageNew, orderVo.endPageNew)}" th:classappend="${num eq orderVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
+  						<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
+  						</li>
+  						<li th:if="${orderVo.endPageNew ne orderVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
+  						<a class="page-link fs-11" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
+  							<i class="fas fa-chevron-right"></i>
+  						</a>
+  						</li>
+  					</ul>
+  				</div>
+  				<div class="col" style="text-align: right;">
+  					<button class="btn btn-primary fs-10" type="button" id="">출고/배송</button>
+  				</div>
+  			</div>
           </div>
           <div class="card mb-3">
             <div class="card-header">
-              	<h5>배송 리스트</h5>
-            	<div class="row">
-					<div class="col">
-						<label class="form-label-JHY" for="description">Total: </label>
-						<label class="form-label-JHY" for="description" th:text="${deliVo.totalRowsNew}"></label>
-					</div>
-					<div class="col-4 col-lg-2" style="text-align: right;">
-						<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
-							<option value="5" th:selected="${deliVo.rowNumToShowNew eq 5}">5</option>
-							<option value="10" th:selected="${deliVo.rowNumToShowNew eq 10}">10</option>
-							<option value="30" th:selected="${deliVo.rowNumToShowNew eq 30}">30</option>
-							<option value="50" th:selected="${deliVo.rowNumToShowNew eq 50}">50</option>
-							<option value="80" th:selected="${deliVo.rowNumToShowNew eq 80}">80</option>
-							<option value="100" th:selected="${deliVo.rowNumToShowNew eq 100}">100</option>   
-						</select>
-					</div>
-				</div>
-            </div>
-            <div class="card-body p-0">
-            	<div class="table-responsive scrollbar">
-             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${deliList}">
-         				<div class="col-1 py-3 px-x1">
-         					<div class="#" th:text="${deliVo.totalRowsNew - ((deliVo.thisPageNew - 1) * deliVo.rowNumToShowNew + listStat.index)}"></div>
-         			 	</div>
-             		 	<div class="col-6 py-3 px-x1">
-					        <span class="d-flex fs-11">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
-						    <span class="d-flex fs-11">요청날짜:&emsp;<div th:text="${#strings.substring(list.deliRegDate, 0, 10)}"></div></span>
-						    <span class="d-flex fs-11">최근현황:&emsp;<div th:text="${#strings.substring(list.deliModDate, 0, 10)}"></div></span>
-					    </div>
-					    <div class="col-4 py-3 px-x1 fs-10">
-							<span class="d-flex fs-11">배송번호:&emsp;<div th:text="${list.deliNum}"></div></span>
-						  	<span class="d-flex fs-11">총 갯수:&emsp;<div th:text="${list.productTotalCnt}"></div></span>
-							<span class="d-flex fs-11">현황:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.deliStausCd)}"></div></span>
-					    </div>
-         		   	</div>
-           		</div>
-           	</div>
-            <div class="card-footer d-flex align-items-center justify-content-center">
-				<ul class="pagination mb-0">
-					<li th:if="${deliVo.startPageNew gt deliVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goListNew(${deliVo.startPageNew - 1})" th:attr="onclick=|goListNew('${deliVo.startPageNew - 1}')|">
-						<i class="fas fa-chevron-left"></i>
-					</a>
-					</li>
-					<li th:each="num: ${#numbers.sequence(deliVo.startPageNew, deliVo.endPageNew)}" th:classappend="${num eq deliVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
-					</li>
-					<li th:if="${deliVo.endPageNew ne deliVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${deliVo.endPageNew + 1}')|">
-						<i class="fas fa-chevron-right"></i>
-					</a>
-					</li>
-				</ul>
-			</div>
-          </div>
-          <div class="card mb-3">
-            <div class="card-header">
-              	<h5>입고 리스트</h5>
+              	<h5>출고 리스트</h5>
               	<div class="row">
 					<div class="col">
 						<label class="form-label-JHY" for="description">Total: </label>
@@ -121,7 +128,7 @@
 							<option value="10" th:selected="${incoVo.rowNumToShow eq 10}">10</option>
 							<option value="30" th:selected="${incoVo.rowNumToShow eq 30}">30</option>
 							<option value="50" th:selected="${incoVo.rowNumToShow eq 50}">50</option>
-							<option value="80" th:selected="${incoVo.rowNumToShow eq 80}">80</option>
+							<option value="80" th:selected="${incoVo.rowNumToShow eq 80}">80</option> 
 							<option value="100" th:selected="${incoVo.rowNumToShow eq 100}">100</option>   
 						</select>
 					</div>
@@ -136,7 +143,7 @@
              		 	<div class="col-6 py-3">
 							<span class="d-flex fs-11">입고번호:&emsp;<div th:text="${list.incoNum}"></div></span>
 							<span class="d-flex fs-11">입고상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.incoStatusCd)}"></div></span>
-							<span class="d-flex fs-11">입고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoRegDate, 0, 10)}"></div></span>
+							<span class="d-flex fs-11">출고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoModDate, 0, 10)}"></div></span>
 		                </div>
 		                <div class="col-4 py-3 fs-11">
 		                	<span class="d-flex">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>

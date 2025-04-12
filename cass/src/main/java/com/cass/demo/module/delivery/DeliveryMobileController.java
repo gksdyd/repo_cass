@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cass.demo.base.xdm.BaseController;
 import com.cass.demo.module.income.IncomeService;
 import com.cass.demo.module.income.IncomeVo;
+import com.cass.demo.module.productorder.ProductOrderService;
+import com.cass.demo.module.productorder.ProductOrderVo;
 
 
 
@@ -19,19 +21,22 @@ public class DeliveryMobileController extends BaseController {
 	@Autowired
 	DeliveryService deliveryService;
 	
-	@Autowired
+	@Autowired	
 	IncomeService incomeService;
 	
+	@Autowired
+	ProductOrderService orderService;
+	
 	@RequestMapping(value = "/DeliveryMobileXdmList")
-	public String outcomeXdmList(Model model, @ModelAttribute("deliVo") DeliveryVo deliveryVo,
-			@ModelAttribute("incoVo") IncomeVo incomeVo) throws Exception {		
-		utildatetime(deliveryVo);
+	public String outcomeXdmList(Model model, @ModelAttribute("incoVo") IncomeVo incoVo,
+			@ModelAttribute("orderVo") ProductOrderVo orderVo) throws Exception {		
+		utildatetime(incoVo);
 		
-		deliveryVo.setParamsPagingNew(deliveryService.selectOneCount(deliveryVo));
-		model.addAttribute("deliList", deliveryService.selectList(deliveryVo));
+		incoVo.setParamsPaging(incomeService.selectOneCountForDeli(incoVo));
+		model.addAttribute("incoList", incomeService.selectListForDeli(incoVo));
 		
-		incomeVo.setParamsPaging(incomeService.selectOneCountForDeli(incomeVo));
-		model.addAttribute("incoList", incomeService.selectListForDeli(incomeVo));
+		orderVo.setParamsPagingNew(orderService.selectOneCountForMafa(orderVo));
+		model.addAttribute("orderList", orderService.selectListForMafa(orderVo));
 		
 	    model.addAttribute("activePage", "delivery");
 		return "mobileXdm/delivery/DeliveryMobileXdmList";
