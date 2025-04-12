@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cass.demo.module.productorder.ProductOrderDto;
+
 @Service
 public class ManufactureService {
 	
@@ -25,5 +27,13 @@ public class ManufactureService {
 
 	public int selectOneCountForInco(ManufactureVo vo) {
 		return dao.selectOneCountForInco(vo);
+	}
+	
+	public int insert(ProductOrderDto dto) {
+		return dao.insert(dto);
+	}
+	
+	public int maxMafaNum() {
+		return dao.maxMafaNum();
 	}
 }

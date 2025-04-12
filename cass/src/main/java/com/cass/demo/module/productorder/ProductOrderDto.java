@@ -33,6 +33,8 @@ public class ProductOrderDto {
 	private String tpolQty;
 	private Integer tpolTotalPrice;
 	
+	private String mafaNum;
+	
 	public String getPdorSeq() {
 		return pdorSeq;
 	}
@@ -186,5 +188,11 @@ public class ProductOrderDto {
 	}
 	public void setPdolStatusCd(Integer pdolStatusCd) {
 		this.pdolStatusCd = pdolStatusCd;
+	}
+	public String getMafaNum() {
+		return mafaNum;
+	}
+	public void setMafaNum(String mafaNum) {
+		this.mafaNum = mafaNum;
 	}
 }

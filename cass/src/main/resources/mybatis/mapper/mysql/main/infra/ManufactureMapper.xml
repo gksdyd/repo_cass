@@ -43,7 +43,9 @@
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
+		    ,m.mafaName
 		    <include refid = "selectCommon"></include>
+		    ORDER BY m.mafaSeq DESC
 		    limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
@@ -73,5 +75,29 @@
 <!--     	FROM manufacture -->
 		    <include refid = "selectCommonForInco"></include>
 		AND m.mafaStausCd = 10			
+    </select>
+    
+    <insert id="insert">
+    	INSERT INTO manufacture (
+    		mafaName,
+    		mafaNum,
+    		mafaStausCd,
+    		mafaRegDate,
+    		mafaTotalQty,
+    		mafaDelNy,
+    		productorder_pdorSeq
+    	) VALUE (
+    		#{prdtName},
+    		#{mafaNum},
+    		8,
+    		date_format(NOW(), '%Y-%m-%d %H:%i:%S'),
+    		#{pdolQty},
+    		0,
+    		(SELECT pdorSeq FROM productorder WHERE pdorNum = #{pdorNum})
+    	)
+    </insert>
+    
+    <select id="maxMafaNum" resultType="Integer">
+    	SELECT MAX(mafaNum) FROM manufacture
     </select>
 </mapper>

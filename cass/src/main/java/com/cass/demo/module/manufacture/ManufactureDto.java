@@ -9,6 +9,7 @@ public class ManufactureDto {
 	private String mafaRegDate;
 	private String mafaModDate;
 	private String mafaNum;
+	private String mafaName;
 //	-----
 	public String getMafaSeq() {
 		return mafaSeq;
@@ -58,5 +59,10 @@ public class ManufactureDto {
 	public void setMafaNum(String mafaNum) {
 		this.mafaNum = mafaNum;
 	}
-	
+	public String getMafaName() {
+		return mafaName;
+	}
+	public void setMafaName(String mafaName) {
+		this.mafaName = mafaName;
+	}
 }

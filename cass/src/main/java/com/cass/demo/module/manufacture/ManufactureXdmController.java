@@ -1,12 +1,16 @@
 package com.cass.demo.module.manufacture;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cass.demo.base.xdm.BaseController;
+import com.cass.demo.module.productorder.ProductOrderDto;
 import com.cass.demo.module.productorder.ProductOrderService;
 import com.cass.demo.module.productorder.ProductOrderVo;
 
@@ -40,5 +44,24 @@ public class ManufactureXdmController extends BaseController {
 	public String orderDetailProc(ProductOrderVo pdorVo, Model model) {
 		model.addAttribute("list", orderService.selectOneList(pdorVo));
 		return "mobileXdm/manufacture/ManufactureXdmForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/MafaRegisterProc")
+	public void mafaRegisterProc(ProductOrderVo vo) {
+		Integer maxMafaNum;
+		
+		vo.setPdorStatusCd(4);
+		orderService.updateOrder(vo);
+		
+		List<ProductOrderDto> dtos = orderService.selectOneList(vo);
+		maxMafaNum = service.maxMafaNum();
+		for (int i = 0; i < dtos.size(); i++) {
+			maxMafaNum++;
+			dtos.get(i).setPdorNum(vo.getPdorNum());
+			dtos.get(i).setMafaNum(maxMafaNum.toString());
+			service.insert(dtos.get(i));
+		}
+		return;
 	}
 }

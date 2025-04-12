@@ -26,6 +26,9 @@ $("#detailBtn").on("click", function() {
 		}
 	}
 	
+	if ($("#pdorNum").val() == "") {
+		return;
+	}
 	form.action = URL_REGISTER_ORDER_MOBILE_FORM;
 	form.method = "post";
 	form.submit();
@@ -34,3 +37,27 @@ $("#detailBtn").on("click", function() {
 $("#listBtn").on("click", function() {
 	location = URL_MANUFACTURE_MOBILE_LIST;
 });
+
+$("#mafaBtn").on("click", function() {
+	let value;
+	
+	for (let i = 0; i < document.querySelectorAll(".listItem").length; i++) {
+		if(document.querySelectorAll(".listItem")[i].classList.contains("selectActive")) {
+			value = document.querySelectorAll(".pdorNum")[i].innerText;
+		}
+	}
+
+	$.ajax({
+      async: true 
+      ,cache: false
+      ,type: "post"
+      ,url: URL_MANUFACTURE_MOBILE_PROC
+      ,data: {"pdorNum" : value}
+      ,success: function(response) {
+          location.href = URL_MANUFACTURE_MOBILE_LIST;
+      }
+      ,error : function(jqXHR){
+        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+      }
+	});
+})

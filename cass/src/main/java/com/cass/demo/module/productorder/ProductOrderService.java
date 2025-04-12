@@ -67,4 +67,8 @@ public class ProductOrderService {
 	public Integer selectMaxNum(ProductOrderDto productOrderDto) {
 		return productOrderDao.selectMaxNum(productOrderDto);
 	}
+	
+	public Integer updateOrder(ProductOrderVo productOrderVo) {
+		return productOrderDao.updateOrder(productOrderVo);
+	}
 }

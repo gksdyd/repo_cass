@@ -169,7 +169,7 @@
 	
 	<update id="update">
 		update productorder set
-        	pdorDesc = #{pdorDesc},
+        	pdorDesc = #{pdorDesc}
 		where
 			pdorSeq = #{pdorSeq}
 	</update>
@@ -251,5 +251,13 @@
 			pdolDelNy = 1
 		where
 			pdolSeq = #{pdolSeq}
+	</update>
+	
+	<update id="updateOrder">
+		update productorder set
+        	pdorStatusCd = #{pdorStatusCd},
+        	pdorModDate = date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+		where
+			pdorNum = #{pdorNum}
 	</update>
 </mapper>

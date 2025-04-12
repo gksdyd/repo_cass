@@ -28,4 +28,6 @@ public interface ProductOrderDao {
 	
 	public Integer selectMaxSeq(ProductOrderDto productOrderDto);
 	public Integer selectMaxNum(ProductOrderDto productOrderDto);
+
+	public Integer updateOrder(ProductOrderVo productOrderVo);
 }

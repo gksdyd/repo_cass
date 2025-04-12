@@ -10,29 +10,24 @@
             </div>
             <div class="card-body p-0">
             	<div class="table-responsive scrollbar">
-             		<a class="item" href="javascript:void(0);" th:each="list : ${list}">
-	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
-	         				<div class="col-2 py-3 px-x1">
-	         					<div class="#" th:text="${listStat.count}"></div>
-	         			 	</div>
-	             		 	<div class="col-5 py-3">
-								<span class="d-flex fs-11">상품명:&emsp;<div th:text="${list.prdtName}"></div></span>
-								<span class="d-flex fs-11">시리얼번호:&emsp;<div th:text="${list.prdtSN}"></div></span>
-	             		 	</div>
-	             			<div class="col-5 py-3 fs-11">
-				                <span class="d-flex fs-11">상품 갯수:&emsp;<div th:text="${list.pdolQty}"></div></span>
-								<span class="d-flex fs-11">상품 총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
-	             			</div>
-	         		   	</div>
-         		   	</a>
+             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${list}">
+         				<div class="col-2 py-3 px-x1">
+         					<div class="#" th:text="${listStat.count}"></div>
+         			 	</div>
+             		 	<div class="col-5 py-3">
+							<span class="d-flex fs-11">상품명:&emsp;<div th:text="${list.prdtName}"></div></span>
+							<span class="d-flex fs-11">시리얼번호:&emsp;<div th:text="${list.prdtSN}"></div></span>
+             		 	</div>
+             			<div class="col-5 py-3 fs-11">
+			                <span class="d-flex fs-11">상품 갯수:&emsp;<div th:text="${list.pdolQty}"></div></span>
+							<span class="d-flex fs-11">상품 총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+             			</div>
+         		   	</div>
            		</div>
            	</div>
-           	<div class="mb-2 row g-3 ms-1 me-1">
+           	<div class="mb-2 row g-3 ms-1 me-1 mt-2">
               <div class="col">
-                <button class="btn btn-outline-dark" type="button" id="listBtn" value="1"><span class="far fa-list-alt"></span></button>
-              </div>
-              <div class="col" style="text-align: right;">
-                <button class="btn btn-primary" type="button" id="registerBtn"><span class="fas fa-plus"></span></button>
+                <button class="btn btn-outline-dark fs-10" type="button" id="listBtn" value="1"><span class="far fa-list-alt"></span></button>
               </div>
             </div>
           </div>
