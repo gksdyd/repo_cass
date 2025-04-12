@@ -64,4 +64,13 @@ public class ManufactureXdmController extends BaseController {
 		}
 		return;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/MafaCompleteProc")
+	public void mafaCompleteProc(ManufactureDto dto) {
+		dto.setMafaStausCd(10);
+		service.update(dto);
+		
+		return;
+	}
 }

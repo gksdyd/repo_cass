@@ -61,3 +61,34 @@ $("#mafaBtn").on("click", function() {
       }
 	});
 })
+
+$(".item2").on("click", function() {
+	for (let i = 0; i < document.querySelectorAll(".listItem2").length; i++) {
+		document.querySelectorAll(".listItem2")[i].classList.remove("selectActive");
+	}
+    $(this).children('.listItem2').addClass("selectActive");
+});
+
+$("#mafaComplateBtn").on("click", function() {
+	let value;
+	
+	for (let i = 0; i < document.querySelectorAll(".listItem2").length; i++) {
+		if(document.querySelectorAll(".listItem2")[i].classList.contains("selectActive")) {
+			value = document.querySelectorAll(".mafaNum")[i].innerText;
+		}
+	}
+
+	$.ajax({
+      async: true 
+      ,cache: false
+      ,type: "post"
+      ,url: URL_MANUFACTURE_COMPLETE_PROC
+      ,data: {"mafaNum" : value}
+      ,success: function(response) {
+          location.href = URL_MANUFACTURE_MOBILE_LIST;
+      }
+      ,error : function(jqXHR){
+        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+      }
+	});
+})

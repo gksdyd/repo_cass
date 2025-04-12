@@ -14,4 +14,5 @@ public interface ManufactureDao {
 	public int selectOneCountForInco(ManufactureVo vo);
 	public int insert(ProductOrderDto dto);
 	public int maxMafaNum();
+	public int update(ManufactureDto dto);
 }

@@ -44,6 +44,7 @@
 		    ,m.mafaModDate
 		    ,m.mafaNum
 		    ,m.mafaName
+		    ,po.pdorNum
 		    <include refid = "selectCommon"></include>
 		    ORDER BY m.mafaSeq DESC
 		    limit #{rowNumToShow} offset #{startRnumForMysql}
@@ -100,4 +101,13 @@
     <select id="maxMafaNum" resultType="Integer">
     	SELECT MAX(mafaNum) FROM manufacture
     </select>
+    
+    <update id="update">
+    	UPDATE manufacture
+    	SET
+    		mafaStausCd = #{mafaStausCd},
+    		mafaModDate = date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+    	WHERE 1=1
+    		AND mafaNum = #{mafaNum}
+    </update>
 </mapper>

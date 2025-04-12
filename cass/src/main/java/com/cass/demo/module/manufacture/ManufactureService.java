@@ -36,4 +36,8 @@ public class ManufactureService {
 	public int maxMafaNum() {
 		return dao.maxMafaNum();
 	}
+	
+	public int update(ManufactureDto dto) {
+		return dao.update(dto);
+	}
 }

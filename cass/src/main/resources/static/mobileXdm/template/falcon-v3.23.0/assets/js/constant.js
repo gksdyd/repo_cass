@@ -26,6 +26,7 @@ const URL_PRODUCT_XDM_LIST = "/xdm/product/ProductXdmList";
 // 접수 관련 경로
 const URL_MANUFACTURE_MOBILE_PROC = "/mobileXdm/manufacture/MafaRegisterProc";
 const URL_MANUFACTURE_MOBILE_LIST = "/mobileXdm/manufacture/ManufactureXdmList";
+const URL_MANUFACTURE_COMPLETE_PROC = "/mobileXdm/manufacture/MafaCompleteProc";
 
 // 상세 관련 경로
 const URL_REGISTER_ORDER_MOBILE_FORM = "/mobileXdm/manufacture/ManufactureXdmForm";

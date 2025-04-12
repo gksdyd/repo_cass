@@ -146,38 +146,46 @@
             </div>
             <div class="card-body p-0">
             	<div class="table-responsive scrollbar">
-             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${manuList}">
-         				<div class="col-2 py-3 px-x1">
-         					<div class="#" th:text="${manuVo.totalRows - ((manuVo.thisPage - 1) * manuVo.rowNumToShow + listStat.index)}"></div>
-         			 	</div>
-             		 	<div class="col-5 py-3">
-							<span class="d-flex fs-11">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
-							<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
-							<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
-             		 	</div>
-             			<div class="col-5 py-3 fs-11">
-			                <span class="d-flex">제작품명:&emsp;<div th:text="${list.mafaName}"></div></span>
-							<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
-             			</div>
-         		   	</div>
+            		<a class="item2" href="javascript:void(0);" th:each="list : ${manuList}">
+	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem2">
+	         				<div class="col-2 py-3 px-x1">
+	         					<div class="#" th:text="${manuVo.totalRows - ((manuVo.thisPage - 1) * manuVo.rowNumToShow + listStat.index)}"></div>
+	         			 	</div>
+	             		 	<div class="col-5 py-3">
+								<span class="d-flex fs-11">제작번호:&emsp;<div class="mafaNum" th:text="${list.mafaNum}"></div></span>
+								<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
+								<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
+	             		 	</div>
+	             			<div class="col-5 py-3 fs-11">
+				                <span class="d-flex">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
+				                <span class="d-flex">제작품명:&emsp;<div th:text="${list.mafaName}"></div></span>
+								<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
+	             			</div>
+	         		   	</div>
+	         		 </a>
            		</div>
            	</div>
             <div class="card-footer d-flex align-items-center justify-content-center">
-				<ul class="pagination mb-0">
-					<li th:if="${manuVo.startPage gt manuVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goList(${manuVo.startPage - 1})" th:attr="onclick=|goList('${manuVo.startPage - 1}')|">
-						<i class="fas fa-chevron-left"></i>
-					</a>
-					</li>
-					<li th:each="num: ${#numbers.sequence(manuVo.startPage, manuVo.endPage)}" th:classappend="${num eq manuVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
-					</li>
-					<li th:if="${manuVo.endPage ne manuVo.totalPages}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goList('${manuVo.endPage + 1}')|">
-						<i class="fas fa-chevron-right"></i>
-					</a>
-					</li>
-				</ul>
+            	<div class="col">
+					<ul class="pagination mb-0">
+						<li th:if="${manuVo.startPage gt manuVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" href="javascript:goList(${manuVo.startPage - 1})" th:attr="onclick=|goList('${manuVo.startPage - 1}')|">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+						</li>
+						<li th:each="num: ${#numbers.sequence(manuVo.startPage, manuVo.endPage)}" th:classappend="${num eq manuVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
+						</li>
+						<li th:if="${manuVo.endPage ne manuVo.totalPages}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goList('${manuVo.endPage + 1}')|">
+							<i class="fas fa-chevron-right"></i>
+						</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col" style="text-align: right;">
+					<button class="btn btn-success fs-10" type="button" id="mafaComplateBtn">완료</button>
+				</div>
 			</div>
           </div>
         </form>
