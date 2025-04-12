@@ -44,7 +44,7 @@ public class IncomeController extends BaseController {
 	public void incomeXdmProc(ManufactureDto dto) {
 		manufactureService.updateNotUse(dto);
 		
-		dto.setIncoNum(service.selectMaxIncoNum());
+		dto.setIncoNum(service.selectMaxIncoNum() + 1);
 		service.insert(dto);
 	}
 }

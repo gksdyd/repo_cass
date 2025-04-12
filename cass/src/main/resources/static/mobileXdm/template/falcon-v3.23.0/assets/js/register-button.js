@@ -56,7 +56,7 @@ $("#mafaBtn").on("click", function() {
 		}
 	}
 
-	if ($("#pdorNum").val() == "") {
+	if (value == null) {
 		return;
 	}
 	
@@ -91,7 +91,7 @@ $("#mafaComplateBtn").on("click", function() {
 		}
 	}
 	
-	if ($(".mafaNum").val() == "") {
+	if (value == null) {
 		return;
 	}
 
@@ -121,7 +121,7 @@ $("#incomeBtn").on("click", function() {
 		}
 	}
 	
-	if ($(".mafaNum").val() == "") {
+	if (mafaNum == null) {
 		return;
 	}
 
