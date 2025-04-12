@@ -14,14 +14,6 @@
               <div class="mb-2 row g-3">
                 <h1>입고 관리</h1>
               </div>
-              <div class="mb-2 row g-3">
-				<div class="col-4">
-					<select class="form-select-JHY" id="shStatus" name="shStatus" aria-label="Default select example">
-					<option value="">입고상태</option>
-					<option th:selected="${list.codeSeq} ==${incomeVo.shStatus}" th:each="list : ${@codeService.selectListCachedCode(4)}" th:value="${list.codeSeq}" th:text="${list.codeName}"></option>
-					</select>
-				</div>
-			</div>
 			<div class="mb-2 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
@@ -42,10 +34,9 @@
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
                     <option value="" th:selected="${incomeVo.shOption == null}">검색구분</option>
-                    <option value="2" th:selected="${incomeVo.shOption == 2}">제작번호(입고)</option>
-                    <option value="3" th:selected="${incomeVo.shOption == 3}">입고번호</option>
-					<option value="4" th:selected="${manuVo.shOption == 4}">제작번호(제작)</option>
-					<option value="5" th:selected="${manuVo.shOption == 5}">제작품명</option>
+                    <option value="2" th:selected="${incomeVo.shOption == 2}">입고번호</option>
+                    <option value="3" th:selected="${incomeVo.shOption == 3}">제작번호</option>
+					<option value="5" th:selected="${manuVo.shOption == 4}">제작품명</option>
                   </select>
                 </div>
                 <div class="col-4">

@@ -26,6 +26,8 @@ public class IncomeController extends BaseController {
 	public String incomeXdmForm(@ModelAttribute("incomeVo") IncomeVo incomeVo, 
 			@ModelAttribute("manuVo") ManufactureVo manuVo, Model model) {
 		utildatetime(incomeVo);
+		utildatetime(manuVo);
+
 		model.addAttribute("selectIncoStatus",service.selectIncoStatus());
 		incomeVo.setParamsPaging(service.selectOneCount(incomeVo));
 		model.addAttribute("list", service.selectList(incomeVo));
