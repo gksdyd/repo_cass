@@ -47,6 +47,10 @@ $("#mafaBtn").on("click", function() {
 		}
 	}
 
+	if ($("#pdorNum").val() == "") {
+		return;
+	}
+	
 	$.ajax({
       async: true 
       ,cache: false
@@ -77,6 +81,10 @@ $("#mafaComplateBtn").on("click", function() {
 			value = document.querySelectorAll(".mafaNum")[i].innerText;
 		}
 	}
+	
+	if ($(".mafaNum").val() == "") {
+		return;
+	}
 
 	$.ajax({
       async: true 
@@ -102,6 +110,10 @@ $("#incomeBtn").on("click", function() {
 			mafaNum = document.querySelectorAll(".mafaNum")[i].innerText;
 			mafaTotalQty = document.querySelectorAll(".mafaTotalQty")[i].value;
 		}
+	}
+	
+	if ($(".mafaNum").val() == "") {
+		return;
 	}
 
 	$.ajax({
