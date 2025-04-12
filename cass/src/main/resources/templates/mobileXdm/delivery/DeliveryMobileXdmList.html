@@ -9,6 +9,7 @@
           <input type="hidden" name="thisPage" th:value="${orderVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${orderVo.rowNumToShow}"/>
           <input type="hidden" id="deliSeq" name="deliSeq" value=0/>
+          <input type="hidden" id="pdorNum" name="pdorNum">
           <div class="card mb-3" id="customersTable">
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
@@ -110,7 +111,8 @@
   					</ul>
   				</div>
   				<div class="col" style="text-align: right;">
-  					<button class="btn btn-primary fs-10" type="button" id="">출고/배송</button>
+  					<button class="btn btn-success fs-10" type="button" id="">출고/배송</button>
+  					<button class="btn btn-primary fs-10" type="button" id="detailBtn" value="delivery">상세</button>
   				</div>
   			</div>
           </div>

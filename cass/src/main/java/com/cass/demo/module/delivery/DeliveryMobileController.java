@@ -41,4 +41,10 @@ public class DeliveryMobileController extends BaseController {
 	    model.addAttribute("activePage", "delivery");
 		return "mobileXdm/delivery/DeliveryMobileXdmList";
 	}
+	
+	@RequestMapping(value = "/DeliveryXdmForm")
+	public String deliveryXdmForm(ProductOrderVo pdorVo, Model model) {
+		model.addAttribute("list", orderService.selectOneList(pdorVo));
+		return "mobileXdm/delivery/DeliveryXdmForm";
+	}
 }

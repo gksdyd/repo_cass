@@ -25,17 +25,26 @@ $("#detailBtn").on("click", function() {
 			$("#pdorNum").val(document.querySelectorAll(".pdorNum")[i].innerText);
 		}
 	}
-	
+
 	if ($("#pdorNum").val() == "") {
 		return;
 	}
-	form.action = URL_REGISTER_ORDER_MOBILE_FORM;
+	
+	if ($(this).val() == MANUFACTURE) {
+		form.action = URL_REGISTER_ORDER_MOBILE_FORM;	
+	} else if ($(this).val() == DELIVERY) {
+		form.action = URL_DELIVERY_ORDER_MOBILE_FORM;	
+	}
 	form.method = "post";
 	form.submit();
 });
 
 $("#listBtn").on("click", function() {
-	location = URL_MANUFACTURE_MOBILE_LIST;
+	if ($(this).val() == MANUFACTURE) {
+		location = URL_MANUFACTURE_MOBILE_LIST;	
+	} else if ($(this).val() == DELIVERY) {
+		location = URL_OUTCOM_MOBILE_LIST;	
+	}
 });
 
 $("#mafaBtn").on("click", function() {
