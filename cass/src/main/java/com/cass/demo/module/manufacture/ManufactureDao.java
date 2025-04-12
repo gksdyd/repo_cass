@@ -16,4 +16,5 @@ public interface ManufactureDao {
 	public int maxMafaNum();
 	public int update(ManufactureDto dto);
 	public int updateNotUse(ManufactureDto dto);
+	public List<ManufactureDto> isIncomeComplete(ManufactureDto dto);
 }

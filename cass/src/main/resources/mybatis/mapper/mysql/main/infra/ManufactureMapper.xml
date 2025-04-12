@@ -122,4 +122,13 @@
     	WHERE 1=1
     		AND mafaNum = #{mafaNum}
     </update>
+    
+    <select id="isIncomeComplete" resultMap="resultMapObj">
+    	SELECT
+    		mafaUseNy
+    	FROM
+    		manufacture
+    	WHERE 1=1
+    		AND productorder_pdorSeq = (SELECT pdorSeq FROM productorder WHERE pdorNum = #{pdorNum})
+    </select>
 </mapper>

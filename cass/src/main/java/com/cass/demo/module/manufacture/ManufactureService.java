@@ -44,4 +44,8 @@ public class ManufactureService {
 	public int updateNotUse(ManufactureDto dto) {
 		return dao.updateNotUse(dto);
 	}
+	
+	public List<ManufactureDto> isIncomeComplete(ManufactureDto dto) {
+		return dao.isIncomeComplete(dto);
+	}
 }

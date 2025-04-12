@@ -113,11 +113,13 @@ $("#mafaComplateBtn").on("click", function() {
 $("#incomeBtn").on("click", function() {
 	let mafaNum;
 	let mafaTotalQty;
+	let pdorNum;
 	
 	for (let i = 0; i < document.querySelectorAll(".listItem").length; i++) {
 		if(document.querySelectorAll(".listItem")[i].classList.contains("selectActive")) {
 			mafaNum = document.querySelectorAll(".mafaNum")[i].innerText;
 			mafaTotalQty = document.querySelectorAll(".mafaTotalQty")[i].value;
+			pdorNum = document.querySelectorAll(".pdorNum")[i].innerText;
 		}
 	}
 	
@@ -129,8 +131,8 @@ $("#incomeBtn").on("click", function() {
       async: true 
       ,cache: false
       ,type: "post"
-      ,url: URL_INCOME_MOBILE_PROC
-      ,data: {"mafaNum" : mafaNum, "mafaTotalQty" : mafaTotalQty}
+      ,url: URL_INCOME_MOBILE_PROC	
+      ,data: {"mafaNum" : mafaNum, "mafaTotalQty" : mafaTotalQty, "pdorNum" : pdorNum}
       ,success: function(response) {
           location.href = URL_INCOME_MOBILE_LIST;
       }
