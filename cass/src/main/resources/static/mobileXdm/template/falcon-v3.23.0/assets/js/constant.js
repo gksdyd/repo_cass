@@ -30,6 +30,9 @@ const URL_MANUFACTURE_COMPLETE_PROC = "/mobileXdm/manufacture/MafaCompleteProc";
 
 // 상세 관련 경로
 const URL_REGISTER_ORDER_MOBILE_FORM = "/mobileXdm/manufacture/ManufactureXdmForm";
+const URL_DELIVERY_ORDER_MOBILE_FORM = "/mobileXdm/delivery/DeliveryXdmForm";
+const DELIVERY = "delivery";
+const MANUFACTURE = "manufacture";
 
 // 입고 관련 경로
 const URL_INCOME_MOBILE_PROC = "/mobileXdm/income/IncomeXdmProc";
