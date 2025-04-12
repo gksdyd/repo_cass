@@ -56,6 +56,7 @@
 			,p.pdorNum
 		<include refid = "selectCommon"></include>
 		ORDER BY a.incoSeq DESC
+		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
 	<select id="selectOneCountForDeli" resultType="Integer">
@@ -73,6 +74,8 @@
 			,a.incoModDate
 			,m.mafaNum
 		<include refid = "selectCommonForDeli"></include>
+		ORDER BY a.incoSeq DESC
+		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
 	  	 <select id="selectIncoStatus" resultMap="resultMapObj">

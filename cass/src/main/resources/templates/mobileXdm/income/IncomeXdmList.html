@@ -6,8 +6,8 @@
         <form name="formList" id="formList" method="post" autocomplete="off">
           <input type="hidden" name="thisPage" th:value="${incomeVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${incomeVo.rowNumToShow}"/>
-		  <input type="hidden" name="thisPageNew" th:value="${incomeVo.thisPageNew}" default="1"/>
-		  <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${incomeVo.rowNumToShowNew}"/>
+		  <input type="hidden" name="thisPageNew" th:value="${manuVo.thisPageNew}" default="1"/>
+		  <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${manuVo.rowNumToShowNew}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
           <div class="card mb-3" id="customersTable"	>
             <div class="card-header" id="search">
@@ -95,7 +95,7 @@
 		    <div class="col">
 				<ul class="pagination mb-0">
 					<li th:if="${manuVo.startPageNew gt manuVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${manuVo.startPageNew - 1}')|">
+					<a class="page-link fs-11" href="javascript:goListNew(${manuVo.startPageNew - 1})" th:attr="onclick=|goListNew('${manuVo.startPageNew - 1}')|">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 					</li>
@@ -154,16 +154,6 @@
             </div>
               </div>
             </div>
-<!--            <div class="mb-2 row g-3 ms-1 me-1">
-              <div class="col">
-                <button class="btn btn-danger" type="button" id="deleteBtn" value="1"><span class="bi-x"></span></button>
-                <button class="btn btn-danger" type="button" id="ueleteBtn" value="1"><span class="far fa-trash-alt"></span></button>
-              </div>
-              <div class="col" style="text-align: right;">
-                <button class="btn btn-success" type="button"><span class="far fa-file-excel"></span></button>
-                <button class="btn btn-primary" type="button" id="registerBtn"><span class="fas fa-plus"></span></button>
-              </div>
-            </div>-->
 			<div class="card-footer d-flex align-items-center justify-content-center">
 				<ul class="pagination mb-0">
 					<li th:if="${incomeVo.startPage gt incomeVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
