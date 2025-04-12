@@ -14,6 +14,7 @@
 			<when test="shOptionDate == 4">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
+        	<when test="shOption == 1">AND pdorNum = #{shValue}</when>
             <when test="shOption == 3">AND mafaNum = #{shValue}</when>
             <when test="shOption == 4">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>

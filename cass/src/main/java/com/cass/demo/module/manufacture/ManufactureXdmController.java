@@ -28,6 +28,7 @@ public class ManufactureXdmController extends BaseController {
 	public String manufactureXdmForm(@ModelAttribute("manuVo") ManufactureVo manufactureVo, 
 			@ModelAttribute("orderVo") ProductOrderVo orderVo, Model model) {
 		utildatetime(manufactureVo);
+		utildatetime(orderVo);
 		
 		manufactureVo.setParamsPaging(service.selectOneCount(manufactureVo));
 		model.addAttribute("manuList", service.selectList(manufactureVo));
