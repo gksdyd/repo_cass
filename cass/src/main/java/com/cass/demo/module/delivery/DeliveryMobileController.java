@@ -35,8 +35,8 @@ public class DeliveryMobileController extends BaseController {
 		incoVo.setParamsPaging(incomeService.selectOneCountForDeli(incoVo));
 		model.addAttribute("incoList", incomeService.selectListForDeli(incoVo));
 		
-		orderVo.setParamsPagingNew(orderService.selectOneCountForMafa(orderVo));
-		model.addAttribute("orderList", orderService.selectListForMafa(orderVo));
+		orderVo.setParamsPagingNew(orderService.selectOneCountForDeli(orderVo));
+		model.addAttribute("orderList", orderService.selectListForDeli(orderVo));
 		
 	    model.addAttribute("activePage", "delivery");
 		return "mobileXdm/delivery/DeliveryMobileXdmList";

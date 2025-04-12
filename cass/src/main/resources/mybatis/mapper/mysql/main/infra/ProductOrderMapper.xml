@@ -23,6 +23,24 @@
         </choose>
     </sql>
     
+    <sql id="selectCommonForDeli">	    
+	    from
+			productorder pdor 
+			left join (select productorder_pdorSeq from productorderlist group by productorder_pdorSeq) AS pdol on pdol.productorder_pdorSeq = pdor.pdorSeq
+			left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+		WHERE 1=1 
+			AND pdor.pdorDelNy = 0
+			AND pdor.pdorStatusCd = 6
+		<choose>
+			<when test="shOptionDate == 1">AND pdorRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND pdorModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+            <when test="shOption == 1">AND pdorNum = #{shValue}</when>
+            <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+    
 <select id="selectList" resultMap="resultMapObj">
 
 	select
@@ -81,6 +99,25 @@
 	<select id="selectOneCountForMafa" resultType="Integer">
 	Select count(*)
 	<include refid = "selectCommonForMafa"></include>
+	</select>
+	
+	<select id="selectListForDeli" resultMap="resultMapObj">
+	select
+		pdor.pdorSeq,
+		pdor.pdorNum,
+        pdor.pdorRegDate,
+        pdor.pdorModDate,
+        pdor.pdorTotalPrice,
+        pdor.pdorStatusCd,
+        d.dealName
+        <include refid = "selectCommonForDeli"></include>     
+		ORDER BY pdor.pdorSeq DESC
+		limit #{rowNumToShowNew} offset #{startRnumForMysqlNew}
+	</select>
+	
+	<select id="selectOneCountForDeli" resultType="Integer">
+	Select count(*)
+	<include refid = "selectCommonForDeli"></include>
 	</select>
 	
 	<select id="selectOneList" resultMap="resultMapObj">
