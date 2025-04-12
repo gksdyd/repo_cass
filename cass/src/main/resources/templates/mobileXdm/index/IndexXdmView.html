@@ -12,10 +12,10 @@
                 <h3>입고/출고</h3>
               </div>
               <div class="mb-2 row g-3">
-				<button class="btn btn-primary btn-sm" type="button" id="incomeBtn"><span class="fas fa-upload fs-8"></span>&emsp;입고하기</button>
+				<button class="btn btn-primary btn-sm" type="button" id="incomeUrlBtn"><span class="fas fa-upload fs-8"></span>&emsp;입고하기</button>
               </div>
               <div class="mb-4 row g-3">
-                <button class="btn btn-primary btn-sm" type="button" id="outcomeBtn"><span class="fas fa-download fs-8"></span>&emsp;출고하기</button>
+                <button class="btn btn-primary btn-sm" type="button" id="outcomeUrlBtn"><span class="fas fa-download fs-8"></span>&emsp;출고하기</button>
               </div>
               <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
@@ -55,12 +55,12 @@
     let goUrlXdmDeltProc = "/xdm/codegroup/CodeGroupXdmDeltProc";
     let goUrlXdmUeltProc = "/xdm/codegroup/CodeGroupXdmUeltProc"; */
     
-    $("#incomeBtn").on("click", function() {
-    	location = "/mobileXdm/income/IncomeXdmList";
+    $("#incomeUrlBtn").on("click", function() {
+    	location = URL_INCOME_MOBILE_LIST;
     });
     
-    $("#outcomeBtn").on("click", function() {
-    	location = "/mobileXdm/delivery/DeliveryMobileXdmList";
+    $("#outcomeUrlBtn").on("click", function() {
+    	location = URL_OUTCOM_MOBILE_LIST;
     });
  </script>
 </body>

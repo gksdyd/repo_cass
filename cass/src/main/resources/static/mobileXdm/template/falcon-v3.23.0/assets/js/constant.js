@@ -35,6 +35,9 @@ const URL_REGISTER_ORDER_MOBILE_FORM = "/mobileXdm/manufacture/ManufactureXdmFor
 const URL_INCOME_MOBILE_PROC = "/mobileXdm/income/IncomeXdmProc";
 const URL_INCOME_MOBILE_LIST = "/mobileXdm/income/IncomeXdmList";
 
+// 출고 관련 경로
+const URL_OUTCOM_MOBILE_LIST = "/mobileXdm/delivery/DeliveryMobileXdmList";
+
 // 정규식 상수
 const regex1 = /^[a-z|A-Z|0-9|]+$/;
 const regex2 = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|~|/|(-)|,|]+$/;
