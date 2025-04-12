@@ -23,6 +23,8 @@
 	    FROM manufacture AS m
 			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
 		where 1=1
+			AND m.mafaStausCd = 10
+			AND m.mafaUseNy = 1
 		<choose>
 			<when test="shOptionDate == 2">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			<when test="shOptionDate == 3">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -60,22 +62,21 @@
 		SELECT
 			m.mafaSeq 
 		    ,m.mafaStausCd
-<!-- 		    ,p.prdtName
-		    ,pol.pdolQty -->
 		    ,po.pdorNum
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
+		    ,m.mafaName
+		    ,m.mafaTotalQty
 		    <include refid = "selectCommonForInco"></include>
-			AND m.mafaStausCd = 10			
+			ORDER BY m.mafaSeq DESC
 		    limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
 	<select id="selectOneCountForInco" resultType="Integer">
     	select count(*)
 <!--     	FROM manufacture -->
-		    <include refid = "selectCommonForInco"></include>
-		AND m.mafaStausCd = 10			
+		    <include refid = "selectCommonForInco"></include>			
     </select>
     
     <insert id="insert">
@@ -86,6 +87,7 @@
     		mafaRegDate,
     		mafaTotalQty,
     		mafaDelNy,
+    		mafaUseNy,
     		productorder_pdorSeq
     	) VALUE (
     		#{prdtName},
@@ -94,6 +96,7 @@
     		date_format(NOW(), '%Y-%m-%d %H:%i:%S'),
     		#{pdolQty},
     		0,
+    		1,
     		(SELECT pdorSeq FROM productorder WHERE pdorNum = #{pdorNum})
     	)
     </insert>
@@ -107,6 +110,14 @@
     	SET
     		mafaStausCd = #{mafaStausCd},
     		mafaModDate = date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+    	WHERE 1=1
+    		AND mafaNum = #{mafaNum}
+    </update>
+    
+    <update id="updateNotUse">
+    	UPDATE manufacture
+    	SET
+    		mafaUseNy = 0
     	WHERE 1=1
     		AND mafaNum = #{mafaNum}
     </update>

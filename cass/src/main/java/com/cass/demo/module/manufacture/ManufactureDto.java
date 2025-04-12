@@ -10,6 +10,10 @@ public class ManufactureDto {
 	private String mafaModDate;
 	private String mafaNum;
 	private String mafaName;
+	private Integer mafaUseNy;
+	private Integer mafaTotalQty;
+	
+	private Integer incoNum;
 //	-----
 	public String getMafaSeq() {
 		return mafaSeq;
@@ -64,5 +68,23 @@ public class ManufactureDto {
 	}
 	public void setMafaName(String mafaName) {
 		this.mafaName = mafaName;
+	}
+	public Integer getMafaUseNy() {
+		return mafaUseNy;
+	}
+	public void setMafaUseNy(Integer mafaUseNy) {
+		this.mafaUseNy = mafaUseNy;
+	}
+	public Integer getIncoNum() {
+		return incoNum;
+	}
+	public void setIncoNum(Integer incoNum) {
+		this.incoNum = incoNum;
+	}
+	public Integer getMafaTotalQty() {
+		return mafaTotalQty;
+	}
+	public void setMafaTotalQty(Integer mafaTotalQty) {
+		this.mafaTotalQty = mafaTotalQty;
 	}
 }

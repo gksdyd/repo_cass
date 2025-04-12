@@ -4,23 +4,15 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
-          <input type="hidden" name="registerOrModifyFlag" id="registerOrModifyFlag" value="0">
           <input type="hidden" name="thisPage" th:value="${incomeVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${incomeVo.rowNumToShow}"/>
 		  <input type="hidden" name="thisPageNew" th:value="${incomeVo.thisPageNew}" default="1"/>
 		  <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${incomeVo.rowNumToShowNew}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
-          <div class="card mb-3" id="customersTable" data-list='{"valueNames":["#","incoSeq","ptorNum","papaName", "incoRegDate", "incoAmountPrice"],"page":10,"pagination":true}'>
+          <div class="card mb-3" id="customersTable"	>
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
                 <h1>입고 관리</h1>
-<!--                 <div class="col-4">
-                  <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example">
-                    <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option>
-                    <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option>
-                    <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>  
-                  </select>
-                </div> -->
               </div>
               <div class="mb-2 row g-3">
 				<div class="col-4">
@@ -94,13 +86,15 @@
 		  				<div class="#" th:text="${manuVo.totalRowsNew - ((manuVo.thisPageNew - 1) * manuVo.rowNumToShowNew + listStat.index)}"></div>
 		  		 	</div>
 		     		 	<div class="col-5 py-3">
-		  				<span class="d-flex fs-11">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
-		  				<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
-		  				<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
+		     		 		<input type="hidden" class="mafaTotalQty" th:value="${list.mafaTotalQty}">
+			  				<span class="d-flex fs-11">제작번호:&emsp;<div class="mafaNum" th:text="${list.mafaNum}"></div></span>
+			  				<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
+			  				<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
 		     		 	</div>
 		     			<div class="col-5 py-3 fs-11">
-		                  <span class="d-flex">제작품명:&emsp;<div th:text="${list.prdtName}"></div></span>
-		  				<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
+			                <span class="d-flex">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
+			                <span class="d-flex">제작품명:&emsp;<div th:text="${list.mafaName}"></div></span>
+			  				<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
 		     			</div>
 			  	   	</div>
 				</a>
@@ -125,7 +119,7 @@
 				</ul>
 			</div>
 			<div class="col" style="text-align: right;">
-				<button class="btn btn-primary fs-10" type="button" id="">입고</button>
+				<button class="btn btn-primary fs-10" type="button" id="incomeBtn">입고</button>
 			</div>
 		</div>
 	</div>	

@@ -92,3 +92,29 @@ $("#mafaComplateBtn").on("click", function() {
       }
 	});
 })
+
+$("#incomeBtn").on("click", function() {
+	let mafaNum;
+	let mafaTotalQty;
+	
+	for (let i = 0; i < document.querySelectorAll(".listItem").length; i++) {
+		if(document.querySelectorAll(".listItem")[i].classList.contains("selectActive")) {
+			mafaNum = document.querySelectorAll(".mafaNum")[i].innerText;
+			mafaTotalQty = document.querySelectorAll(".mafaTotalQty")[i].value;
+		}
+	}
+
+	$.ajax({
+      async: true 
+      ,cache: false
+      ,type: "post"
+      ,url: URL_INCOME_MOBILE_PROC
+      ,data: {"mafaNum" : mafaNum, "mafaTotalQty" : mafaTotalQty}
+      ,success: function(response) {
+          location.href = URL_INCOME_MOBILE_LIST;
+      }
+      ,error : function(jqXHR){
+        alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+      }
+	});
+})

@@ -15,4 +15,5 @@ public interface ManufactureDao {
 	public int insert(ProductOrderDto dto);
 	public int maxMafaNum();
 	public int update(ManufactureDto dto);
+	public int updateNotUse(ManufactureDto dto);
 }

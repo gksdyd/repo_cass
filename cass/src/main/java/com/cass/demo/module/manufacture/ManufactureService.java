@@ -40,4 +40,8 @@ public class ManufactureService {
 	public int update(ManufactureDto dto) {
 		return dao.update(dto);
 	}
+	
+	public int updateNotUse(ManufactureDto dto) {
+		return dao.updateNotUse(dto);
+	}
 }

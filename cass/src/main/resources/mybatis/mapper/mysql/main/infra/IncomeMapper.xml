@@ -82,4 +82,26 @@
 		 and codeGroup_cdgrSeq=4
 		order by codeSeq desc  		
  	</select>
+ 	
+ 	<insert id="insert">
+ 		INSERT INTO incoming (
+ 			incoNum,
+ 			incoStatusCd,
+ 			incoTotalQty,
+ 			incoRegDate,
+ 			incoDelNy,
+ 			manufacture_mafaSeq
+ 		) VALUE (
+ 			#{incoNum},
+ 			12,
+ 			#{mafaTotalQty},
+ 			date_format(NOW(), '%Y-%m-%d %H:%i:%S'),
+ 			0,
+ 			(SELECT mafaSeq FROM manufacture WHERE mafaNum = #{mafaNum})
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectMaxIncoNum" resultType="Integer">
+ 		SELECT MAX(incoNum) FROM incoming
+ 	</select>
 </mapper>

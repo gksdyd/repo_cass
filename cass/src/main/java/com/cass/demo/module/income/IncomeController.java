@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cass.demo.base.xdm.BaseController;
+import com.cass.demo.module.manufacture.ManufactureDto;
 import com.cass.demo.module.manufacture.ManufactureService;
 import com.cass.demo.module.manufacture.ManufactureVo;
 
@@ -35,5 +37,12 @@ public class IncomeController extends BaseController {
 		return "mobileXdm/income/IncomeXdmList";
 	}
 	
-
+	@ResponseBody
+	@RequestMapping(value = "/IncomeXdmProc")
+	public void incomeXdmProc(ManufactureDto dto) {
+		manufactureService.updateNotUse(dto);
+		
+		dto.setIncoNum(service.selectMaxIncoNum());
+		service.insert(dto);
+	}
 }

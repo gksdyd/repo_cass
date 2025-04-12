@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cass.demo.module.manufacture.ManufactureDto;
+
 @Service
 public class IncomeService {
 	
@@ -29,5 +31,13 @@ public class IncomeService {
 	
 	public List<IncomeDto> selectIncoStatus(){
 		return dao.selectIncoStatus();
+	}
+	
+	public int insert(ManufactureDto dto) {
+		return dao.insert(dto);
+	}
+	
+	public int selectMaxIncoNum() {
+		return dao.selectMaxIncoNum();
 	}
 }
