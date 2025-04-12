@@ -8,6 +8,7 @@
 	<sql id="selectCommon">	    
 	    FROM incoming as a 
 			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
+			left join productorder as p on m.productorder_pdorSeq = p.pdorSeq
 		where 1=1
 		
 		<if test="shStatus != null and !shStatus.equals('')">AND a.incoStatusCd = #{shStatus}</if>
@@ -52,7 +53,9 @@
 			,a.incoRegDate
 			,a.incoModDate
 			,m.mafaNum
+			,p.pdorNum
 		<include refid = "selectCommon"></include>
+		ORDER BY a.incoSeq DESC
 	</select>
 	
 	<select id="selectOneCountForDeli" resultType="Integer">

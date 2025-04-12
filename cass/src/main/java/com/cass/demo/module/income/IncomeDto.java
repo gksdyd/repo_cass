@@ -8,6 +8,8 @@ public class IncomeDto {
 	private String incoRegDate;
 	private String incoModDate;
 	private Integer mafaNum;
+	
+	private Integer pdorNum;
 //	-----
 	public String getIncoSeq() {
 		return incoSeq;
@@ -51,5 +53,10 @@ public class IncomeDto {
 	public void setMafaNum(Integer mafaNum) {
 		this.mafaNum = mafaNum;
 	}
-	
+	public Integer getPdorNum() {
+		return pdorNum;
+	}
+	public void setPdorNum(Integer pdorNum) {
+		this.pdorNum = pdorNum;
+	}	
 }
