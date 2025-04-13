@@ -33,7 +33,7 @@
             	</div>
                 <div class="col-5 py-3 px-x1">
 	                <span class="d-flex fs-11">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
-					<span class="d-flex fs-11">요청날짜:&emsp;<div th:text="${#strings.substring(list.deliModDate, 0, 10)}"></div></span>
+					<span class="d-flex fs-11">배송일:&emsp;&emsp;<div th:text="${#strings.substring(list.deliRegDate, 0, 10)}"></div></span>
                 </div>
                 <div class="col-5 py-3 px-x1 fs-10">
                 	<span class="d-flex fs-11">배송상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
