@@ -13,7 +13,6 @@
 		where 1=1
 			<choose>
 	            <when test="shOption == 1">AND b.prdtName LIKE CONCAT('%',#{shValue},'%')</when>
-<!-- 	            <when test="shOption == 2">AND c.partName LIKE CONCAT('%',#{shValue},'%')</when> -->
 	        </choose>
 			<choose>
 				<when test="shOptionDate == 1">AND a.stckQty > 0 AND a.stckModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
