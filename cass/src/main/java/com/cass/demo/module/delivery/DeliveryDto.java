@@ -13,6 +13,7 @@ public class DeliveryDto {
 	private Integer pdorTotalPrice;
 	
 	private Integer pdorNum;
+	private Integer pdorStatusCd;
 	private Integer productTotalCnt;
 	
 	private Integer mafaNum;
@@ -96,5 +97,11 @@ public class DeliveryDto {
 	}
 	public void setMafaTotalQty(String mafaTotalQty) {
 		this.mafaTotalQty = mafaTotalQty;
+	}
+	public Integer getPdorStatusCd() {
+		return pdorStatusCd;
+	}
+	public void setPdorStatusCd(Integer pdorStatusCd) {
+		this.pdorStatusCd = pdorStatusCd;
 	}
 }

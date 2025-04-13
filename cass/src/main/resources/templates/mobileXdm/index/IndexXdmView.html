@@ -17,18 +17,26 @@
               <div class="mb-4 row g-3">
                 <button class="btn btn-primary btn-sm" type="button" id="outcomeUrlBtn"><span class="fas fa-download fs-8"></span>&emsp;출고하기</button>
               </div>
+            </div>
+          </div>
+          <div class="card mb-3" id="customersTable">
+            <div class="card-header" id="search">
+              <div class="mb-2 row g-3">
+                <h3>배송리스트</h3>
+              </div>
               <div th:replace="~{mobileXdm/include/listRowNum :: listRowNum}"></div>
             </div>
             <div class="card-body p-0">
               <div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${list}">
-            	<div class="col-1 py-3 px-x1">
+            	<div class="col-2 py-3 px-x1">
             		<div th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></div>
             	</div>
-                <div class="col-6 py-3 px-x1">
+                <div class="col-5 py-3 px-x1">
 	                <span class="d-flex fs-11">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
 					<span class="d-flex fs-11">요청날짜:&emsp;<div th:text="${#strings.substring(list.deliModDate, 0, 10)}"></div></span>
                 </div>
-                <div class="col-4 py-3 px-x1 fs-10">
+                <div class="col-5 py-3 px-x1 fs-10">
+                	<span class="d-flex fs-11">배송상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
                 	<span class="d-flex fs-11">총 갯수:&emsp;<div th:text="${list.productTotalCnt}"></div></span>
                 </div>
               </div>
