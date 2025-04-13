@@ -84,7 +84,7 @@
 		     		 	</div>
 		     			<div class="col-5 py-3 fs-11">
 			                <span class="d-flex">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
-			                <span class="d-flex">제작품명:&emsp;<div th:text="${list.mafaName}"></div></span>
+			                <span class="d-flex">제작품명:&emsp;<div class="prdtName" th:text="${list.mafaName}"></div></span>
 			  				<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
 		     			</div>
 			  	   	</div>

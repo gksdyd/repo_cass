@@ -14,6 +14,8 @@ public class ManufactureDto {
 	private Integer mafaTotalQty;
 	
 	private Integer incoNum;
+	private Integer deliNum;
+	private Integer stckTotalQty;
 //	-----
 	public String getMafaSeq() {
 		return mafaSeq;
@@ -86,5 +88,17 @@ public class ManufactureDto {
 	}
 	public void setMafaTotalQty(Integer mafaTotalQty) {
 		this.mafaTotalQty = mafaTotalQty;
+	}
+	public Integer getDeliNum() {
+		return deliNum;
+	}
+	public void setDeliNum(Integer deliNum) {
+		this.deliNum = deliNum;
+	}
+	public Integer getStckTotalQty() {
+		return stckTotalQty;
+	}
+	public void setStckTotalQty(Integer stckTotalQty) {
+		this.stckTotalQty = stckTotalQty;
 	}
 }

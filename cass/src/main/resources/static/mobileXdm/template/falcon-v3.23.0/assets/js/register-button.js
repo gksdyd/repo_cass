@@ -114,12 +114,14 @@ $("#incomeBtn").on("click", function() {
 	let mafaNum;
 	let mafaTotalQty;
 	let pdorNum;
+	let prdtName;
 	
 	for (let i = 0; i < document.querySelectorAll(".listItem").length; i++) {
 		if(document.querySelectorAll(".listItem")[i].classList.contains("selectActive")) {
 			mafaNum = document.querySelectorAll(".mafaNum")[i].innerText;
 			mafaTotalQty = document.querySelectorAll(".mafaTotalQty")[i].value;
 			pdorNum = document.querySelectorAll(".pdorNum")[i].innerText;
+			prdtName = document.querySelectorAll(".prdtName")[i].innerText;
 		}
 	}
 	
@@ -132,7 +134,9 @@ $("#incomeBtn").on("click", function() {
       ,cache: false
       ,type: "post"
       ,url: URL_INCOME_MOBILE_PROC	
-      ,data: {"mafaNum" : mafaNum, "mafaTotalQty" : mafaTotalQty, "pdorNum" : pdorNum}
+      ,data: {"mafaNum" : mafaNum, "mafaTotalQty" : mafaTotalQty, "pdorNum" : pdorNum, 
+		"prdtName" : prdtName
+	  }
       ,success: function(response) {
           location.href = URL_INCOME_MOBILE_LIST;
       }
