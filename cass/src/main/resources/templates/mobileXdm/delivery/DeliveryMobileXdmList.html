@@ -15,13 +15,13 @@
               <div class="mb-2 row g-3">
                 <h1>출고관리</h1>
               </div>
-<!--              <div class="mb-2 row g-3">
+              <div class="mb-2 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
                     <option value="" th:selected="${deliVo.shOptionDate == null}">날짜</option>
-                    <option value="1" th:selected="${deliVo.shOptionDate == 1}">요청날짜</option>
-                    <option value="2" th:selected="${deliVo.shOptionDate == 2}">최근현황</option>
-                    <option value="3" th:selected="${deliVo.shOptionDate == 3}">입고일</option>
+                    <option value="1" th:selected="${deliVo.shOptionDate == 1}">주문일</option>
+                    <option value="2" th:selected="${deliVo.shOptionDate == 2}">수정일</option>
+                    <option value="3" th:selected="${deliVo.shOptionDate == 3}">출고일</option>
                   </select>
                 </div>
                 <div class="col-4">
@@ -36,8 +36,8 @@
                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
                     <option value="" th:selected="${deliVo.shOption == null}">검색구분</option>
                     <option value="1" th:selected="${deliVo.shOption == 1}">주문번호</option>
-                    <option value="2" th:selected="${deliVo.shOption == 2}">배송번호</option>
-                    <option value="3" th:selected="${deliVo.shOption == 3}">입고번호</option>
+                    <option value="2" th:selected="${deliVo.shOption == 2}">주문처명</option>
+                    <option value="3" th:selected="${deliVo.shOption == 3}">출고번호</option>
                     <option value="4" th:selected="${deliVo.shOption == 4}">제작번호</option>
                   </select>
                 </div>
@@ -48,7 +48,7 @@
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
                 </div>
-              </div>-->
+              </div>
             </div>
           </div>
 		  <div class="card mb-3">

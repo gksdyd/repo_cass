@@ -43,7 +43,6 @@ public class DeliveryMobileController extends BaseController {
 		for (int i = 0; i < list.size(); i++) {
 			String[] qtys = list.get(i).getTotalQtys().split(",");
 			list.get(i).setMafaTotalQty(qtys[count]);
-			System.out.println(list.get(i).getMafaTotalQty());
 			count++;
 			if (count == qtys.length) {
 				count= 0;

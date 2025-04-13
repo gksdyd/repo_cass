@@ -67,7 +67,6 @@ public class ProductOrderController extends BaseController {
 	}
 	@RequestMapping(value = "/ProductOrderXdmUpdt")
 	public String ProductOrderXdmUpdt(ProductOrderDto dto) {
-		System.out.println(dto.getPdolSeq());
 		productOrderService.update(dto);
 		return "redirect:/product/ProductOrderXdmList";
 	}
