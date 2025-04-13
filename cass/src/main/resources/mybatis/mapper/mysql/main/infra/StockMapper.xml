@@ -82,13 +82,33 @@
 		)
 	</insert>
 	
+	<insert id="insertForDeli">
+		insert into stock (
+			stckQty
+			,stckTotalQty
+			,stckModDate
+			,delivery_deliSeq
+			,incoming_incoSeq
+			,product_prdtSeq
+		) values (
+			#{pdolQty} * -1
+			,#{stckTotalQty} - #{pdolQty}
+			,date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+			,(SELECT deliSeq FROM delivery WHERE deliNum = #{deliNum})
+			,(SELECT incoSeq FROM incoming WHERE incoNum = #{incoNum})
+			,(SELECT prdtSeq FROM product WHERE prdtName = #{prdtName})
+		)
+	</insert>
+	
 	<select id="selectOneProductTotalQty" resultType="Integer">
 		SELECT
-			MAX(stckTotalQty)
+			stckTotalQty
 		FROM
 			stock
 		WHERE 1=1
 			AND (SELECT prdtSeq FROM product WHERE prdtName = #{prdtName}) = product_prdtSeq
+		ORDER BY stckSeq DESC
+		LIMIT 1
 	</select>
 	
 	<update id="update">

@@ -13,6 +13,7 @@ import com.cass.demo.base.xdm.BaseController;
 import com.cass.demo.module.productorder.ProductOrderDto;
 import com.cass.demo.module.productorder.ProductOrderService;
 import com.cass.demo.module.productorder.ProductOrderVo;
+import com.cass.demo.module.stock.StockService;
 
 
 
@@ -25,6 +26,9 @@ public class DeliveryMobileController extends BaseController {
 	
 	@Autowired
 	ProductOrderService orderService;
+	
+	@Autowired
+	StockService stockService;
 	
 	@RequestMapping(value = "/DeliveryMobileXdmList")
 	public String outcomeXdmList(Model model, @ModelAttribute("deliVo") DeliveryVo deliveryVo,
@@ -75,6 +79,14 @@ public class DeliveryMobileController extends BaseController {
 			dtos.get(i).setPdorNum(vo.getPdorNum());
 			dtos.get(i).setDeliNum(maxDeliNum.toString());
 			deliveryService.insert(dtos.get(i));
+			
+			Integer temp = stockService.selectOneProductTotalQty(dtos.get(i));
+			if (temp == null) {
+				return;
+			} else {
+				dtos.get(i).setStckTotalQty(temp);				
+			}
+			stockService.insertForDeli(dtos.get(i));
 		}
 	}
 }

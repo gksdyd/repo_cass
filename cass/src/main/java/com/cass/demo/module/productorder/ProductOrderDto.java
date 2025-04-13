@@ -35,6 +35,8 @@ public class ProductOrderDto {
 	
 	private String mafaNum;
 	private String deliNum;
+	private String incoNum;
+	private Integer stckTotalQty;
 	
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -201,5 +203,17 @@ public class ProductOrderDto {
 	}
 	public void setDeliNum(String deliNum) {
 		this.deliNum = deliNum;
+	}
+	public String getIncoNum() {
+		return incoNum;
+	}
+	public void setIncoNum(String incoNum) {
+		this.incoNum = incoNum;
+	}
+	public Integer getStckTotalQty() {
+		return stckTotalQty;
+	}
+	public void setStckTotalQty(Integer stckTotalQty) {
+		this.stckTotalQty = stckTotalQty;
 	}
 }
