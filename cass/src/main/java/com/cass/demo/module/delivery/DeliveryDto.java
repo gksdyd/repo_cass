@@ -15,6 +15,9 @@ public class DeliveryDto {
 	private Integer pdorNum;
 	private Integer productTotalCnt;
 	
+	private Integer mafaNum;
+	private String totalQtys;
+	private String mafaTotalQty;
 	
 	public String getDeliSeq() {
 		return deliSeq;
@@ -75,5 +78,23 @@ public class DeliveryDto {
 	}
 	public void setDeliNum(String deliNum) {
 		this.deliNum = deliNum;
+	}
+	public Integer getMafaNum() {
+		return mafaNum;
+	}
+	public void setMafaNum(Integer mafaNum) {
+		this.mafaNum = mafaNum;
+	}
+	public String getTotalQtys() {
+		return totalQtys;
+	}
+	public void setTotalQtys(String totalQtys) {
+		this.totalQtys = totalQtys;
+	}
+	public String getMafaTotalQty() {
+		return mafaTotalQty;
+	}
+	public void setMafaTotalQty(String mafaTotalQty) {
+		this.mafaTotalQty = mafaTotalQty;
 	}
 }

@@ -6,8 +6,9 @@
 <resultMap id="resultMapObj" type="com.cass.demo.module.delivery.DeliveryDto"></resultMap>
 
 	<sql id="selectCommon">
-	from
-	  delivery deli left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
+		from
+		  delivery deli
+		  left join productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
 		WHERE 1=1 
 			<choose>
 	            <when test="shOption == 1">AND pdor.pdorNum = #{shValue}</when>
@@ -30,6 +31,8 @@
 	    deli.deliRegDate,
 	    deli.deliModDate,
 	    deli.deliDesc,
+	    (SELECT a.mafaNum FROM manufacture a WHERE a.productorder_pdorSeq = pdor.pdorSeq limit 1) AS mafaNum,
+    	(SELECT group_concat(a.mafaTotalQty) FROM manufacture a WHERE a.productorder_pdorSeq = pdor.pdorSeq) AS totalQtys,
 	    (SELECT SUM(pdolQty) FROM productorderlist WHERE productorder_pdorSeq = pdorSeq) AS productTotalCnt
 		<include refid = "selectCommon"></include>
 		ORDER BY deli.deliSeq DESC

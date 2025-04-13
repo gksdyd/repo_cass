@@ -28,12 +28,24 @@ public class DeliveryMobileController extends BaseController {
 	
 	@RequestMapping(value = "/DeliveryMobileXdmList")
 	public String outcomeXdmList(Model model, @ModelAttribute("deliVo") DeliveryVo deliveryVo,
-			@ModelAttribute("orderVo") ProductOrderVo orderVo) throws Exception {		
+			@ModelAttribute("orderVo") ProductOrderVo orderVo) throws Exception {	
+		int count = 0;
+		
 		utildatetime(deliveryVo);
 		utildatetime(orderVo);
 		
 		deliveryVo.setParamsPaging(deliveryService.selectOneCount(deliveryVo));
-		model.addAttribute("incoList", deliveryService.selectList(deliveryVo));
+		List<DeliveryDto> list = deliveryService.selectList(deliveryVo);
+		for (int i = 0; i < list.size(); i++) {
+			String[] qtys = list.get(i).getTotalQtys().split(",");
+			list.get(i).setMafaTotalQty(qtys[count]);
+			System.out.println(list.get(i).getMafaTotalQty());
+			count++;
+			if (count == qtys.length) {
+				count= 0;
+			}
+		}
+		model.addAttribute("incoList", list);
 		
 		orderVo.setParamsPagingNew(orderService.selectOneCountForDeli(orderVo));
 		model.addAttribute("orderList", orderService.selectListForDeli(orderVo));
