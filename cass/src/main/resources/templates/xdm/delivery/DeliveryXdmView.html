@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-3">
                   <label for="pdorName" class="form-label">거래처명<sup> *</sup></label>
-                  <input type="text" class="form-control"  readonly>
+                  <input type="text" class="form-control" id="dealName" name="dealName" placeholder="자동생성" th:value="${item?.dealName}" readonly>
                 </div>
                 <div class="col-md-3">
                   <label for="tpolQty" class="form-label">출고 총 수량<sup> *</sup></label>
