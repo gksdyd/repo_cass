@@ -16,8 +16,9 @@
 					<when test="shOptionDate == 2">AND dealModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
         <choose>
-            <when test="shOption == 1">AND dealSeq = #{shValue}</when>
-            <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 1">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 2">AND dealAddress LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND dealManager LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
     </sql>
 	
@@ -75,7 +76,7 @@
 	</select>
 	
 	<insert id="insert">
-		insert into product (
+		insert into dealer (
 			dealName
 			,dealAddress
 			,dealManager
@@ -96,7 +97,7 @@
 			,CURRENT_TIMESTAMP
 			,#{dealDesc}
 		)
-		<selectKey resultType="String" keyProperty="prdtSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="dealSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>

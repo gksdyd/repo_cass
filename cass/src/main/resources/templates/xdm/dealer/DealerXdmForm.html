@@ -24,16 +24,15 @@
 
               <!-- Custom Styled Validation -->
               <form class="row g-3" method="post" id="form" name="form">
+               		<input type="hidden" name="dealSeq" >	               		
                 <div class="col-md-3" style="height: 100px;">
-               		<input type="hidden" name="seq" th:value="${item?.dealSeq}">
-               		<input type="hidden" name="cdUpdtDate" >	               		
                 	<label for="dealName" class="form-label">대리점명 <sup>*</sup></label>
-                	<input type="text" class="form-control" id="dealName" value="" placeholder="" th:value="${item?.dealName}">
+                	<input type="text" class="form-control" id="dealName" name="dealName"  value="" placeholder="" th:value="${item?.dealName}">
                 </div>
       
                 <div class="col-md-3" style="height: 100px;">
                   <label for="dealAddress" class="form-label">주소</label>
-                  <input type="text" class="form-control" id="dealAddress" value="" placeholder="회사 주소" th:value="${item?.dealAddress}">
+                  <input type="text" class="form-control" id="dealAddress" name="dealAddress" value="" placeholder="회사 주소" th:value="${item?.dealAddress}">
                 </div>
                 <div class="col-md-3">
                   <label for="dealManager" class="form-label">성함<sup>*</sup></label>
@@ -70,7 +69,7 @@
                   <button type="button" class="btn btn-danger" id="btnUelete" ><i class="bi bi-trash"></i></button>
                 </div>
                 <div class="col-md-6">
-                  <div style="display: flex;justify-content: end;"><button class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
+                  <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
                 </div>
               </form>
               
