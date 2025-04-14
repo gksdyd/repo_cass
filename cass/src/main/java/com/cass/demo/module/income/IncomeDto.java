@@ -7,9 +7,12 @@ public class IncomeDto {
 	private Integer incoTotalQty;
 	private String incoRegDate;
 	private String incoModDate;
+	private String incoDesc;
 	private Integer mafaNum;
 	
+	private String pdorSeq;
 	private Integer pdorNum;
+	private String dealName;
 //	-----
 	public String getIncoSeq() {
 		return incoSeq;
@@ -58,5 +61,24 @@ public class IncomeDto {
 	}
 	public void setPdorNum(Integer pdorNum) {
 		this.pdorNum = pdorNum;
-	}	
+	}
+	public String getDealName() {
+		return dealName;
+	}
+	public void setDealName(String dealName) {
+		this.dealName = dealName;
+	}
+	public String getIncoDesc() {
+		return incoDesc;
+	}
+	public void setIncoDesc(String incoDesc) {
+		this.incoDesc = incoDesc;
+	}
+	public String getPdorSeq() {
+		return pdorSeq;
+	}
+	public void setPdorSeq(String pdorSeq) {
+		this.pdorSeq = pdorSeq;
+	}
+	
 }

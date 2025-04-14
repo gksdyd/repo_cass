@@ -9,6 +9,7 @@
 	    FROM incoming as a 
 			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
 			left join productorder as p on m.productorder_pdorSeq = p.pdorSeq
+			
 		where 1=1
 		
 		<if test="shStatus != null and !shStatus.equals('')">AND a.incoStatusCd = #{shStatus}</if>
@@ -18,9 +19,9 @@
 			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
-            <!-- <when test="shOption == 1">AND incoNum = #{shValue}</when> -->
-            <when test="shOption == 2">AND incoNum = #{shValue}</when>
-            <when test="shOption == 3">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 1">AND incoNum = #{shValue}</when>
+            <when test="shOption == 2">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 3">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
     </sql>
     
@@ -57,6 +58,33 @@
 		<include refid = "selectCommon"></include>
 		ORDER BY a.incoSeq DESC
 		limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT  
+			a.incoSeq
+			,a.incoNum
+			,a.incoStatusCd
+			,a.incoTotalQty
+			,a.incoRegDate
+			,a.incoModDate
+			,m.mafaNum
+			,p.pdorNum
+			,p.pdorSeq
+			,p.pdorStatusCd
+			,d.dealName
+<!-- 			,pl.pdolSeq -->
+<!-- 			,pl.pdolQty -->
+<!-- 			,pl.pdolAmountPrice -->
+<!-- 			,pt.prdtName -->
+<!-- 			,pt.prdtPrice -->
+		FROM incoming as a 
+			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
+			left join productorder as p on m.productorder_pdorSeq = p.pdorSeq
+<!-- 			left join productorderlist as pl on p.pdorSeq = pl.productorder_pdorSeq -->
+<!-- 			left join product as pt on pl.product_prdtSeq = pt.prdtSeq -->
+			left join dealer as d on p.dealer_dealSeq = d.dealSeq
+		where 1=1
+		and	incoSeq = #{incoSeq}
 	</select>
 	
 	<select id="selectOneCountForDeli" resultType="Integer">

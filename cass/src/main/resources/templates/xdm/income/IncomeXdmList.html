@@ -40,10 +40,10 @@
                 </div>
             </div>
             <div class="col-md-2" style="height: 10px;">
-                <select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-					<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-					<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-					<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
+                <select id="incoStatusCd" name="incoStatusCd" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shStatus == null}">삭제여부</option>
+					<option value="1" th:selected="${vo.shStatus == 1}">Y</option>
+					<option value="0" th:selected="${vo.shStatus == 0}">N</option>            
 				</select>
                 <div class="invalid-feedback">
                   항목중 하나를 선택 해주세요.
@@ -104,7 +104,7 @@
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                       <td><a th:href="@{/xdm/codegroup/CodeGroupXdmForm(incoSeq=${list.incoSeq})}" th:text="${list.incoNum}"></a></td>
+                       <td><a th:href="@{/xdm/income/IncomeXdmView(incoSeq=${list.incoSeq})}" th:text="${list.incoNum}"></a></td>
 	                   <td th:text="${list.mafaNum}"></td>
                        <td th:text = "${list.incoTotalQty}"></td>
                        <td th:text = "${@codeService.selectOneCachedCode(list.incoStatusCd)}"></td>
