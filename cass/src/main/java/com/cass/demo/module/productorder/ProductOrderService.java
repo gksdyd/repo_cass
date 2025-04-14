@@ -56,8 +56,8 @@ public class ProductOrderService {
 	public int ueletePdol(ProductOrderDto productOrderDto) {
 		return productOrderDao.ueletePdol(productOrderDto);
 	}
-	public int insertTemp(ProductOrderDto productOrderDto) {
-		return productOrderDao.insertTemp(productOrderDto);
+	public int insertOrderList(ProductOrderDto productOrderDto) {
+		return productOrderDao.insertOrderList(productOrderDto);
 	}
 	public int insert(ProductOrderDto productOrderDto) {
 		return productOrderDao.insert(productOrderDto);

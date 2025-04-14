@@ -9,8 +9,8 @@
 let createFeedInfo = document.getElementById("createFeedInfo");
 let createDelBtn = document.getElementById("createDelBtn");
 
-let scaleNameArray = document.getElementById("scaleNameArray");
-let scaleCountArray = document.getElementById("scaleCountArray");
+let scaleNameArr = document.getElementById("scaleNameArray");
+let scaleCountArr = document.getElementById("scaleCountArray");
 
 var num = 1;
 
@@ -89,8 +89,8 @@ scaleInfoSave = function() {
     scaleCountArray.push(scaleCount[i].value);
   }
   
-  scaleNameArray.value = scaleNameArray;
-  scaleCountArray.value = scaleCountArray;
+  scaleNameArr.value = scaleNameArray;
+  scaleCountArr.value = scaleCountArray;
 }
 
 // 수정시 초기화하는 함수

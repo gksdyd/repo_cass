@@ -149,77 +149,19 @@
     <script type="text/javascript">
     let seq = document.querySelector("input[name=pdorSeq]");
     let form = document.querySelector("form[name=form]");
-//     let formList = document.querySelector("form[name=formList]");
-//     let tempList = document.querySelector("form[name=tempList]");
-    
-    
-//     $("#pdorName").on("keyup", function(){
-//     	let regExp = /^[A-Za-zㄱ-ㅎ가-힣0-9_]{2,}$/
-// 		$("#pdorName").removeClass("is-invalid");
-// 		if(!regExp.test($("#pdorName").val())) {
-// 			$("#pdorName").removeClass("is-valid");
-// 			$("#pdorName").addClass("is-invalid");
-// 			document.getElementById("name-invalid-feedback").innerText = "한영과 숫자만 입력해주세요";
-// 			document.getElementById("btnSubmit").setAttribute("disabled", "");
-// 		} else {
-// 			$("#pdorName").removeClass("is-invalid");
-// 			$("#pdorName").addClass("is-valid");
-// 			document.getElementById("btnSubmit").removeAttribute("disabled", "");
-// 		}
-// 	});
-//     $("#pdorNameEng").on("keyup", function(){
-//     	let regExp = /^[A-Za-z0-9_]+$/
-// 		$("#pdorNameEng").removeClass("is-invalid");
-// 		if(!regExp.test($("#pdorNameEng").val())) {
-// 			$("#pdorNameEng").removeClass("is-valid");
-// 			$("#pdorNameEng").addClass("is-invalid");
-// 			document.getElementById("nameeng-invalid-feedback").innerText = "알파벳과 숫자만 입력해주세요";
-// 			document.getElementById("btnSubmit").setAttribute("disabled", "");
-// 		} else {
-// 			$("#pdorNameEng").removeClass("is-invalid");
-// 			$("#pdorNameEng").addClass("is-valid");
-// 			document.getElementById("btnSubmit").removeAttribute("disabled", "");
-// 		}
-// 	});
-    
-    
-//     function validationInst() {
-// 	    if(validationUpdt() == false) return false;
-// 	    if(document.getElementById("codegroup_pdorgSeq").value == null || document.getElementById("codegroup_pdorgSeq").value == "") {
-//     		document.getElementById("codegroup_pdorgSeq").classList.add("is-invalid");
-//     		return false;
-// 		} else {
-//     		document.getElementById("codegroup_pdorgSeq").classList.remove("is-invalid");			
-// 		}
-// 		if(document.getElementById("pdorName").value.trim() == null || document.getElementById("pdorName").value.trim() == "") {
-//     		document.getElementById("pdorName").classList.add("is-invalid");
-// 			return false;
-// 		} else {
-//     		document.getElementById("pdorName").classList.remove("is-invalid");
-// 		}		
-// 		if(document.getElementById("pdorNameEng").value.trim() == null || document.getElementById("pdorNameEng").value.trim() == "") {
-// 			document.getElementById("pdorNameEng").classList.add("is-invalid");
-// 			return false;
-// 		} else {
-//     		document.getElementById("pdorNameEng").classList.remove("is-invalid");
-// 		}	
-// 	}
-	
-// 	function validationUpdt() {		
-// 	}
 
 	document.getElementById("btnSubmit").onclick = function () {
-			alert("2");
-		if(seq.value == "0" || seq.value == "") {
+			scaleInfoSave();
+		/* if(seq.value == "0" || seq.value == "") {
 // 			if(validationInst() == false) return false;
-			form.action = "/product/ProductOrderXdmInst";
+			form.action = "/productorder/ProductOrderXdmInst";
 			form.submit();
 			alert("3");
-		} else {
+		} else { */
 // 			if(validationUpdt() == false) return false;
-			form.action = "/product/ProductOrderXdmUpdt";
+			form.action = "/productorder/ProductOrderXdmInst";
 			form.submit();
-		}
+		//}
 	}
 	
 	document.getElementById("ueletePdol").onclick = function () {

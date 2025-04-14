@@ -1,6 +1,8 @@
 package com.cass.demo.module.productorder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductOrderDto {
 	
@@ -37,6 +39,9 @@ public class ProductOrderDto {
 	private String deliNum;
 	private String incoNum;
 	private Integer stckTotalQty;
+	
+	List<String> scaleNameArray = new ArrayList<>();
+	List<Integer> scaleCountArray = new ArrayList<>();
 	
 	public String getPdorSeq() {
 		return pdorSeq;
@@ -215,5 +220,17 @@ public class ProductOrderDto {
 	}
 	public void setStckTotalQty(Integer stckTotalQty) {
 		this.stckTotalQty = stckTotalQty;
+	}
+	public List<String> getScaleNameArray() {
+		return scaleNameArray;
+	}
+	public void setScaleNameArray(List<String> scaleNameArray) {
+		this.scaleNameArray = scaleNameArray;
+	}
+	public List<Integer> getScaleCountArray() {
+		return scaleCountArray;
+	}
+	public void setScaleCountArray(List<Integer> scaleCountArray) {
+		this.scaleCountArray = scaleCountArray;
 	}
 }

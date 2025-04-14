@@ -24,7 +24,7 @@ public interface ProductOrderDao {
 	public List<ProductOrderDto> selectOneList(ProductOrderVo productOrderVo);
 	
 	public int ueletePdol(ProductOrderDto productOrderDto);
-	public int insertTemp(ProductOrderDto productOrderDto);
+	public int insertOrderList(ProductOrderDto productOrderDto);
 	public int insert(ProductOrderDto productOrderDto);
 	public int insertOL(ProductOrderDto productOrderDto);
 	public int update(ProductOrderDto productOrderDto);

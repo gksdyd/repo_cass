@@ -270,14 +270,19 @@
 			,#{product_prdtSeq}
 		)	
 	</insert>
-	<insert id="insertTemp">
+	
+	<insert id="insertOrderList">
 	insert into productorderlist (
 			pdolQty
+			,pdolAmountPrice
+			,pdolRegDate
 			,product_prdtSeq
 			,productorder_pdorSeq
 		) values (
 			#{pdolQty}
-			,#{product_prdtSeq}
+			,(SELECT prdtPrice FROM product WHERE prdtName = #{prdtName}) * #{pdolQty}
+			,date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+			,(SELECT prdtSeq FROM product WHERE prdtName = #{prdtName})
 			,#{pdorSeq}
 		)	
 	</insert>

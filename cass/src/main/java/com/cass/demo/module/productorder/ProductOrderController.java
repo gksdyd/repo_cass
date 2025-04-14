@@ -70,19 +70,19 @@ public class ProductOrderController extends BaseController {
 		return "redirect:/product/ProductOrderXdmForm";
 	}
 	
-	@RequestMapping(value = "/ProductOrderXdmTempInst")
-	public String ProductOrderXdmTempInst(ProductOrderDto dto) {
-		productOrderService.insertTemp(dto);
-		return "redirect:/product/ProductOrderXdmList";
-	}
 	@RequestMapping(value = "/ProductOrderXdmInst")
 	public String ProductOrderXdmInst(ProductOrderDto dto) {
-		dto.setPdorNum(productOrderService.selectMaxNum()+1);
 		productOrderService.insert(dto);
-		dto.setPdorSeq(productOrderService.selectMaxSeq().toString());
-		productOrderService.insertOL(dto);
-		return "redirect:/product/ProductOrderXdmList";
+		
+		System.out.println(dto.getScaleNameArray().size());
+		for (int i = 0; i < dto.getScaleNameArray().size(); i++) {
+			dto.setPdolQty(dto.getScaleCountArray().get(i));
+			dto.setPrdtName(dto.getScaleNameArray().get(i));
+			productOrderService.insertOrderList(dto);
+		}
+		return "redirect:/productorder/ProductOrderXdmList";
 	}
+	
 	@RequestMapping(value = "/ProductOrderXdmUpdt")
 	public String ProductOrderXdmUpdt(ProductOrderDto dto) {
 		productOrderService.update(dto);
