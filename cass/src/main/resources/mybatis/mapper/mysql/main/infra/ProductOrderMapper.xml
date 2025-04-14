@@ -315,6 +315,7 @@
 			LEFT JOIN product b ON b.prdtSeq = a.product_prdtSeq
 		WHERE 1=1
 			AND productorder_pdorSeq = #{pdorSeq}
+			AND pdolDelNy = 0
 	</select>
 	
 	<update id="updateOrderList">
