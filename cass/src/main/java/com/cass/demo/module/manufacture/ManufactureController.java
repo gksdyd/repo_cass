@@ -25,7 +25,7 @@ public class ManufactureController extends BaseController  {
 	ProductOrderService orderService;
 	
 	@RequestMapping(value = "/ManufactureXdmList")
-	public String manufactureXdmForm(@ModelAttribute("manuVo") ManufactureVo manufactureVo, 
+	public String manufactureXdmForm(@ModelAttribute("vo") ManufactureVo manufactureVo, 
 			@ModelAttribute("orderVo") ProductOrderVo orderVo, Model model) {
 		utildatetime(manufactureVo);
 		utildatetime(orderVo);

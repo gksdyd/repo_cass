@@ -104,7 +104,7 @@
 	               		</td>
 	               	</tr>
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
-	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
+	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()' th:value="${list.mafaSeq}"></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 	                   <td th:text="${list.incoNum}"></td>
                        <td><a th:href="@{/xdm/codegroup/CodeGroupXdmForm(incoSeq=${list.incoSeq})}" th:text="${list.ptorNum}"></a></td>
