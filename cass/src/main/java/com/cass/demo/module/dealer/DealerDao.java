@@ -16,4 +16,6 @@ public interface DealerDao {
 	public int insert(DealerDto dealerDto);
 	public int update(DealerDto dealerDto);
 	public int uelete(DealerDto dealerDto);
+	
+	public List<DealerDto> selectListDealerName();
 }

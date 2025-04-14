@@ -15,4 +15,6 @@ public interface ProductDao {
 	public int insert(ProductDto productDto);
 	public int update(ProductDto productDto);
 	public int uelete(ProductDto productDto);
+	
+	public List<ProductDto> selectListProduct();
 }

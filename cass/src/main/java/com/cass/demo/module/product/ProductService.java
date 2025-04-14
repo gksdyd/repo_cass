@@ -38,4 +38,8 @@ public class ProductService {
 	public int uelete(ProductDto productDto) {
 		return productDao.uelete(productDto);
 	}
+	
+	public List<ProductDto> selectListProduct() {
+		return productDao.selectListProduct();
+	}
 }

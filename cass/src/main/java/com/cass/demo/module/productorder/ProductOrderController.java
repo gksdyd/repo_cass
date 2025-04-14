@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cass.demo.base.xdm.BaseController;
+import com.cass.demo.module.dealer.DealerService;
+import com.cass.demo.module.product.ProductService;
 
 
 
@@ -16,6 +18,11 @@ public class ProductOrderController extends BaseController {
 	@Autowired
 	ProductOrderService productOrderService;
 	
+	@Autowired
+	DealerService dealerService;
+	
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping(value = "/ProductOrderXdmList")
 	public String productXdmList(Model model, ProductOrderVo vo, ProductOrderDto dto) {
@@ -36,7 +43,8 @@ public class ProductOrderController extends BaseController {
 	public String productXdmForm(Model model, ProductOrderVo vo, ProductOrderDto dto) {
 		
 		if (vo.getPdorSeq().equals("0") || vo.getPdorSeq().equals("")) {
-//			insert mode
+			model.addAttribute("dealerList", dealerService.selectListDealerName());
+			model.addAttribute("productList", productService.selectListProduct());
 		} else {
 //			update mode
 			model.addAttribute("item", productOrderService.selectOne(vo));

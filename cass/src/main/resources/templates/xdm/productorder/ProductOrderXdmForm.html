@@ -24,7 +24,7 @@
               <h1 class="card-title" style="height: 100px;" >기본정보</h1>
 
               <!-- Custom Styled Validation -->
-              <form class="row g-3 needs-validation" method="post" id="form" name="form" novalidate>
+              <form class="g-3 needs-validation" method="post" id="form" name="form" novalidate>
                 <input type="hidden" name="pdorSeq" th:value="${item?.pdorSeq}">	
                 <input type="hidden" name="pdorNum" th:value="${item?.pdorNum}">	
                 <input type="hidden" name="pdorStatusCd" th:value="${item?.pdorStatusCd}">	
@@ -42,66 +42,47 @@
 <!--                 <div class="col-md-9"> -->
                   
 <!--                 </div> -->
-                <div class="col-md-3" style="height: 100px;">
-                  <label for="code" class="form-label">코드<sup>*</sup></label>
-                  <input type="text" class="form-control" id="pdorSeq" placeholder="자동생성" th:value="${item?.pdorSeq}" required disabled>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="another" class="form-label">주문번호</label>
-                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" disabled>
-                </div>
-                
-                <div class="col-md-3">
-                  <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
-                  <select class="form-select" id="dealer_dealSeq" name="dealer_dealSeq" aria-label="Default select example">
-                    <option value="">주문처 선택</option>
-					<option th:value="1">저울판매점</option>
-					<option th:value="2">저울소매점</option>
-                  </select>
-                  <div class="invalid-feedback" id="name-invalid-feedback">
-                    거래처명을 입력해주세요.
-                  </div>
-                </div>
-                <div class="col-md-3" style="height: 100px;">
-                  <label for="pdorStatusCd" class="form-label">주문상태<sup>*</sup></label>
-                  <select class="form-select" id="pdorStatusCd" name="pdorStatusCd" th:value="${item?.pdorStatusCd}" disabled required>
-                    <option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.pdorStatusCd}"></option>
-                  </select>
-                  <div class="invalid-feedback">
-                    항목중 하나를 선택 해주세요.
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <label for="product_prdtSeq" class="form-label">상품이름<sup>*</sup></label>
-                  <select class="form-select" id="product_prdtSeq" name="product_prdtSeq" aria-label="Default select example">
-                    <option value="">주문저울 선택</option>
-					<option th:value="1">EBW</option>
-					<option th:value="2">ECN</option>
-					<option th:value="3">CN1</option>
-					<option th:value="4">CL8000</option>
-					<option th:value="5">MWII-H</option>
-					<option th:value="6">SW</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label for="tpolQty" class="form-label">주문수량<sup>*</sup></label>
-                  <input type="text" class="form-control" id="pdolQty" name="pdolQty" placeholder="수량" required>
-                </div>
-                <div class="col-md-3">
-                  <label for="product_prdtSeq" class="form-label">상품이름<sup>*</sup></label>
-                  <select class="form-select" id="product_prdtSeq" name="product_prdtSeq" aria-label="Default select example">
-                    <option value="">주문저울 선택</option>
-					<option th:value="1">EBW</option>
-					<option th:value="2">ECN</option>
-					<option th:value="3">CN1</option>
-					<option th:value="4">CL8000</option>
-					<option th:value="5">MWII-H</option>
-					<option th:value="6">SW</option>
-                  </select>
-                </div>
+				<div class="row">
+	                <div class="col-md-3" style="height: 100px;">
+	                  <label for="code" class="form-label">코드<sup>*</sup></label>
+	                  <input type="text" class="form-control" id="pdorSeq" placeholder="자동생성" th:value="${item?.pdorSeq}" required disabled>
+	                  <div class="valid-feedback">
+	                    Looks good!
+	                  </div>
+	                </div>
+	                <div class="col-md-3">
+	                  <label for="another" class="form-label">주문번호</label>
+	                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" disabled>
+	                </div>
+	                
+	                <div class="col-md-3">
+	                  <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
+	                  <select class="form-select" id="dealer_dealSeq" name="dealer_dealSeq" aria-label="Default select example">
+	                    <option value="">주문처 선택</option>
+						<option th:each="list : ${dealerList}" th:text="${list.dealName}" th:value="${list.dealSeq}"></option>
+	                  </select>
+	                  <div class="invalid-feedback" id="name-invalid-feedback">
+	                    거래처명을 입력해주세요.
+	                  </div>
+	                </div>
+	                <div class="col-md-3" style="height: 100px;">
+	                  <label for="pdorStatusCd" class="form-label">주문상태<sup>*</sup></label>
+	                  <select class="form-select" id="pdorStatusCd" name="pdorStatusCd" th:value="${item?.pdorStatusCd}" disabled required>
+	                    <option th:each="list : ${@codeService.selectListCachedCode(2)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.pdorStatusCd}"></option>
+	                  </select>
+	                  <div class="invalid-feedback">
+	                    항목중 하나를 선택 해주세요.
+	                  </div>
+	                </div>
+	            </div>
+            	<div class="row mt-4">
+	                <div class="col-md-3">
+	                  <label for="product_prdtSeq" class="form-label">상품이름<sup>*</sup></label>
+	                  <select class="form-select" id="product_prdtSeq" name="product_prdtSeq" aria-label="Default select example">
+	                    <option value="">주문저울 선택</option>
+						<option th:each="list : ${productList}" th:text="${list.prdtName}" th:value="${list.prdtSeq}"></option>
+	                  </select>
+	                </div>
                 <div class="col-md-2">
                   <label for="tpolQty" class="form-label">주문수량<sup>*</sup></label>
                   <input type="text" class="form-control" id="pdolQty" name="pdolQty" placeholder="수량" required>
@@ -110,12 +91,13 @@
                 <button type="button" class="btn btn-primary"id="btntemplus" name="btntemplus"><i class="bi bi-plus-lg"></i></button>
                 
                 </div>
-<!--                 <div class="col-md-6"></div> -->
-                <div class="col-md-6" style="height: 150px;">
-                  <label for="pdorDesc" class="form-label">설명</label>
-                  <textarea class="form-control" id="pdorDesc" name="pdorDesc" th:text="${item?.pdorDesc}"></textarea>
                 </div>
-                <div class="col-md-6"></div>
+				<div class="row mt-4">
+	                <div class="col-md-6" style="height: 150px;">
+	                  <label for="pdorDesc" class="form-label">설명</label>
+	                  <textarea class="form-control" id="pdorDesc" name="pdorDesc" th:text="${item?.pdorDesc}"></textarea>
+	                </div>
+	            </div>
               </form>
               
 <section class="section">
@@ -197,7 +179,7 @@
                   </table>
                   <div class="row">
                   <div class="col-md-6">
-                  <a href="/product/ProductOrderXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+                  <a href="/productorder/ProductOrderXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
                   <button class="btn btn-danger">X</button>
                   <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
                 </div>

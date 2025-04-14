@@ -44,4 +44,8 @@ public class DealerService {
 	public int uelete(DealerDto dealerDto) {
 		return dealerDao.uelete(dealerDto);
 	}
+	
+	public List<DealerDto> selectListDealerName() {
+		return dealerDao.selectListDealerName();
+	}
 }

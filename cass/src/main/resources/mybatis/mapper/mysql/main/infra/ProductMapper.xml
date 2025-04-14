@@ -47,14 +47,13 @@
 <!-- 	limit #{rowNumToShow} offset #{startRnumForMysql} -->
 	</select>
 	
-	<select id="selectGroupList" resultMap="resultMapObj">
+	<select id="selectListProduct" resultMap="resultMapObj">
 		select
 			prdtSeq
 			,prdtName
 		from
 			product
 		where 1=1			
-		order by prdtSeq desc
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">

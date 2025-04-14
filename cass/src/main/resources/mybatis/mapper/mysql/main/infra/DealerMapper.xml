@@ -120,4 +120,12 @@
 		where
 			dealSeq = #{dealSeq}
 	</update>
+	
+	<select id="selectListDealerName" resultMap="resultMapObj">
+		SELECT
+			dealSeq
+		    ,dealName
+		from
+			dealer
+	</select>
 </mapper>
