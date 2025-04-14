@@ -88,30 +88,30 @@
                   <tr>
                     <th data-sortable="false"  style="text-align: center; width: 100px;"><div class="checked"><input type="checkbox" class="form-check" name="allChk" onclick='selectAll(this)'></div></th>
                     <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
-                    <th class="list-sort" style="text-align: center;">입고번호</th>
-                    <th class="list-sort" style="text-align: center;">발주번호</th>
-                    <th class="list-sort" style="text-align: center;">발주처명</th>
-                    <th class="list-sort" style="text-align: center;">입고수량</th>
-                    <th class="list-sort" style="text-align: center;">입고총액</th>
-                    <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">입고일</th>
+                    <th class="list-sort" style="text-align: center;">제작번호</th>
+                    <th class="list-sort" style="text-align: center;">주문번호</th>
+                    <th class="list-sort" style="text-align: center;">주문처명</th>
+                    <th class="list-sort" style="text-align: center;">제작수량</th>
+                    <th class="list-sort" style="text-align: center;">제작상태</th>
+                    <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">제작일</th>
 <!--                     <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">수정일</th> -->
                   </tr>
                 </thead>
                 <tbody>
-                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+                    <tr th:if="${#lists.isEmpty(manuList)}" class="hover-action-trigger btn-reveal-trigger position-static">
 	               		<td colspan="10">
 	               			<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 	               		</td>
 	               	</tr>
-	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
+	                   <tr th:if="${!#lists.isEmpty(manuList)}" th:each ="list : ${manuList}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()' th:value="${list.mafaSeq}"></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-	                   <td th:text="${list.incoNum}"></td>
-                       <td><a th:href="@{/xdm/codegroup/CodeGroupXdmForm(incoSeq=${list.incoSeq})}" th:text="${list.ptorNum}"></a></td>
-                       <td th:text = "${list.papaName}"></td>
-                       <td th:text = "${list.incoTotalQty}"></td>
-                       <td th:text = "${list.incoAmountPrice}"></td>
-                       <td th:text = "${list.incoRegDate}"></td>
+                       <td><a th:href="@{/manufacture/ManufactureXdmView(mafaSeq=${list.mafaSeq})}" th:text="${list.mafaNum}"></a></td>
+	                   <td th:text = "${list.pdorNum}"></td>
+                       <td th:text = "${list.dealName}"></td>
+                       <td th:text = "${list.mafaTotalQty}"></td>
+                       <td th:text = "${@codeService.selectOneCachedCode(list.mafaStausCd)}"></td>
+                       <td th:text = "${list.mafaModDate}"></td>
 	                   </tr>
                   </tbody>
                   <tfoot>

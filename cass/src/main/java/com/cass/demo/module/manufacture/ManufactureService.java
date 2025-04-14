@@ -16,6 +16,9 @@ public class ManufactureService {
 	public List<ManufactureDto> selectList(ManufactureVo vo) {
 		return dao.selectList(vo);
 	}
+	public ManufactureDto selectOne(ManufactureDto dto) {
+		return dao.selectOne(dto);
+	}
 
 	public int selectOneCount(ManufactureVo vo) {
 		return dao.selectOneCount(vo);

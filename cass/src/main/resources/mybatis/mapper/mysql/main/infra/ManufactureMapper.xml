@@ -8,6 +8,7 @@
 	<sql id="selectCommon">	    
 	    FROM manufacture AS m
 			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
+			LEFT JOIN dealer AS d ON po.dealer_dealSeq = d.dealSeq
 		where 1=1
 			AND mafaStausCd = 8
 		<choose>
@@ -42,17 +43,40 @@
 		SELECT
 			m.mafaSeq 
 		    ,m.mafaStausCd
+		    ,m.mafaTotalQty
 		    ,po.pdorTotalQty
 		    ,po.pdorNum
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
 		    ,m.mafaName
-		    ,po.pdorNum
+		    ,d.dealName
 		    <include refid = "selectCommon"></include>
 		    ORDER BY m.mafaSeq DESC
 		    limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			m.mafaSeq 
+		    ,m.mafaStausCd
+		    ,m.mafaTotalQty
+		    ,po.pdorTotalQty
+		    ,po.pdorNum
+		    ,m.mafaRegDate
+		    ,m.mafaModDate
+		    ,m.mafaNum
+		    ,m.mafaName
+		    ,d.dealName
+	     FROM manufacture AS m
+			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
+			LEFT JOIN dealer AS d ON po.dealer_dealSeq = d.dealSeq
+		 where 1=1
+		 and mafaSeq = #{mafaSeq}
+	</select>
+	
+	
+	
 	
 	<select id="selectOneCount" resultType="Integer">
     	select count(*)

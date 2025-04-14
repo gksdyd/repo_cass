@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{xdm/include/headNice :: headNice}"></div>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">page 1</a></li>
+          <li class="breadcrumb-item">page 2</li>
+          <li class="breadcrumb-item active">Default</li>
+        </ol>
+      </nav>
+      <h1>주문관리</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+        <div class="col-lg-12">
+          <div class="card" >
+            <div class="card-body">
+              <h1 class="card-title" style="height: 100px;" >입고정보</h1>
+
+              <!-- Custom Styled Validation -->
+              <div class="row g-3">
+                <input type="hidden" name="mafaSeq" th:value="${item?.mafaSeq}">	
+                <div class="col-md-3" style="height: 100px;">
+                  <label for="code" class="form-label">제작번호<sup>*</sup></label>
+                  <input type="text" class="form-control" id="mafaNum" name="mafaNum" placeholder="자동생성" th:value="${item?.mafaNum}" readonly>
+                </div>
+                <div class="col-md-3" style="height: 100px;">
+                  <label for="code" class="form-label">주문번호<sup>*</sup></label>
+                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="another" class="form-label">제작상태</label>
+                  <input type="text" class="form-control" id="mafaStausCd" name="mafaStausCd" th:value="${@codeService.selectOneCachedCode(item?.mafaStausCd)}" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
+                  <input type="text" class="form-control" id="dealName" name="dealName" th:value="${item?.dealName}" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="tpolQty" class="form-label">제작총수량<sup>*</sup></label>
+                  <input type="text" class="form-control" id="mafaTotalQty" name="mafaTotalQty" th:value="${item?.mafaTotalQty}" readonly>
+                </div>
+                <div class="col-md-6"></div>
+              </form>
+              
+              
+<section class="section">
+<p>주문내역</p>
+        <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
+        <input type="hidden" name="pdorSeq">
+              <!-- Table with stripped rows -->
+              <table class="table datatable" style="text-align: center;">
+                <thead>
+                  <tr>
+                    <th class="list-sort" style="text-align: center;">주문번호</th>
+                    <th class="list-sort" style="text-align: center;">주문상품</th>
+					<th class="list-sort" style="text-align: center;">주문수량</th>
+                    <th class="list-sort" style="text-align: center;">상품단가</th>
+                    <th class="list-sort" style="text-align: center;">주문총액</th>
+                    <th class="list-sort" style="text-align: center;">주문상태</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+	               		<td colspan="10">
+	               			<p class="fs-0" style="padding-top: 12px;">주문내역이 없습니다!</p>
+	               		</td>
+	               	</tr>
+	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
+					   <td th:text = "${list.pdolSeq}"></td>
+					   <td th:text = "${list.prdtName}"></td>
+					   <td th:text = "${list.pdolQty}"></td>
+					   <td th:text = "${list.prdtPrice}"></td>
+					   <td th:text = "${list.pdolAmountPrice}"></td>
+					   <td th:text = "${@codeService.selectOneCachedCode(list.pdolStatusCd)}"></td>
+	                   </tr>
+                  </tbody>
+                  <tfoot>
+                   
+                  </tfoot>
+                  
+                  </table>
+                  <div class="row">
+                  <div class="col-md-6">
+                  <a href="/manufacture/ManufactureXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+                  <button class="btn btn-danger">X</button>
+                  <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
+                </div>
+                <div class="col-md-6">
+<!--                   <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div> -->
+                </div>
+                  </div>
+       </form>
+    </section>
+       
+            </div>
+          </div>
+		<div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalConfirmTitle">title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="modalConfirmBody">
+						body
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫힘</button>
+						<button type="button" class="btn btn-danger" name="" id="btnModalDelete"></button>
+						<button type="button" class="btn btn-danger" name="" id="btnModalUelete">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
+
+    <script type="text/javascript">
+	
+	</script>
+
+</body>
+
+</html>

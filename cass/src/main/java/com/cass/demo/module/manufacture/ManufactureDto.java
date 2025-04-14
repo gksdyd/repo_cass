@@ -12,10 +12,12 @@ public class ManufactureDto {
 	private String mafaName;
 	private Integer mafaUseNy;
 	private Integer mafaTotalQty;
+	private Integer pdorTotalQty;
 	
 	private Integer incoNum;
 	private Integer deliNum;
 	private Integer stckTotalQty;
+	private String dealName;
 //	-----
 	public String getMafaSeq() {
 		return mafaSeq;
@@ -101,4 +103,17 @@ public class ManufactureDto {
 	public void setStckTotalQty(Integer stckTotalQty) {
 		this.stckTotalQty = stckTotalQty;
 	}
+	public String getDealName() {
+		return dealName;
+	}
+	public void setDealName(String dealName) {
+		this.dealName = dealName;
+	}
+	public Integer getPdorTotalQty() {
+		return pdorTotalQty;
+	}
+	public void setPdorTotalQty(Integer pdorTotalQty) {
+		this.pdorTotalQty = pdorTotalQty;
+	}
+	
 }

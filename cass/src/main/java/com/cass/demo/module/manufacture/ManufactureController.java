@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cass.demo.base.xdm.BaseController;
+import com.cass.demo.module.income.IncomeDto;
 import com.cass.demo.module.productorder.ProductOrderDto;
 import com.cass.demo.module.productorder.ProductOrderService;
 import com.cass.demo.module.productorder.ProductOrderVo;
@@ -45,6 +46,13 @@ public class ManufactureController extends BaseController  {
 	public String manufactureXdmForm(ProductOrderVo pdorVo, Model model) {
 		model.addAttribute("list", orderService.selectOneList(pdorVo));
 		return "xdm/manufacture/ManufactureXdmForm";
+	}
+	
+	@RequestMapping(value = "/ManufactureXdmView")
+	public String ManufactureXdmView(Model model, ManufactureDto dto) {
+		
+		model.addAttribute("item", service.selectOne(dto));
+		return "xdm/manufacture/ManufactureXdmView";
 	}
 	
 	@ResponseBody

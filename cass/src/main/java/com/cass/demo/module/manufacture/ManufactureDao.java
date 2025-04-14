@@ -9,6 +9,7 @@ import com.cass.demo.module.productorder.ProductOrderDto;
 @Repository
 public interface ManufactureDao {
 	public List<ManufactureDto> selectList(ManufactureVo vo);
+	public ManufactureDto selectOne(ManufactureDto dto);
 	public int selectOneCount(ManufactureVo vo);
 	public List<ManufactureDto> selectListForInco(ManufactureVo vo);
 	public int selectOneCountForInco(ManufactureVo vo);
