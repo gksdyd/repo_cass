@@ -1,8 +1,11 @@
 package com.cass.demo.module.productorder;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cass.demo.base.xdm.BaseController;
@@ -40,7 +43,7 @@ public class ProductOrderController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/ProductOrderXdmForm")
-	public String productXdmForm(Model model, ProductOrderVo vo, ProductOrderDto dto) {
+	public String productXdmForm(Model model, @ModelAttribute("vo") ProductOrderVo vo, ProductOrderDto dto) {
 		model.addAttribute("dealerList", dealerService.selectListDealerName());
 		model.addAttribute("productList", productService.selectListProduct());
 		if (vo.getPdorSeq().equals("0") || vo.getPdorSeq().equals("")) {
@@ -57,9 +60,14 @@ public class ProductOrderController extends BaseController {
 			model.addAttribute("item", dto);
 		} else {
 //			update mode
+			vo.setFlag(1);
+			List<ProductOrderDto> dtos = productOrderService.selectOrderList(dto);
+			for (int i = 0; i < dtos.size(); i++) {
+				dto.getScaleNameArray().add(dtos.get(i).getPrdtName());
+				dto.getScaleCountArray().add(dtos.get(i).getPdolQty());
+			}
 			model.addAttribute("item", productOrderService.selectOne(vo));
-			model.addAttribute("list", productOrderService.selectedOneList(vo));
-			model.addAttribute("temp", productOrderService.selectedTempList(vo));
+			model.addAttribute("dto", dto);
 		}
 		return "xdm/productorder/ProductOrderXdmForm";
 	}
@@ -74,7 +82,6 @@ public class ProductOrderController extends BaseController {
 	public String ProductOrderXdmInst(ProductOrderDto dto) {
 		productOrderService.insert(dto);
 		
-		System.out.println(dto.getScaleNameArray().size());
 		for (int i = 0; i < dto.getScaleNameArray().size(); i++) {
 			dto.setPdolQty(dto.getScaleCountArray().get(i));
 			dto.setPrdtName(dto.getScaleNameArray().get(i));

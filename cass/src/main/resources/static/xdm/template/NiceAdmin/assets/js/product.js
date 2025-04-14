@@ -95,55 +95,54 @@ scaleInfoSave = function() {
 
 // 수정시 초기화하는 함수
 initInfo = function() {
-  let scaleNameArray = scaleNameArray.value.replace(/\[|\]/g, "").split(',');
-  let scaleCountArray = scaleCountArray.value.replace(/\[|\]/g, "").split(',');
-  scaleNameArray.value = scaleNameArray;
-  scaleCountArray.value = scaleCountArray;
-  $("#feedInfoSeqArray").val($("#feedInfoSeqArray").val().replace(/\[|\]/g, "").split(','));
+  let scaleNameArray = scaleNameArr.value.replace(/\[|\]/g, "").split(',');
+  let scaleCountArray = scaleCountArr.value.replace(/\[|\]/g, "").split(',');
+  scaleNameArr.value = scaleNameArray;
+  scaleCountArr.value = scaleCountArray;
 
-  if (priceArray != "") {
-    for (let i = 0; i < priceArray.length; i++) {
-      let inputGroup = document.createElement('div');
-      inputGroup.setAttribute("class", "input-group mb-2");
+  if (scaleNameArray != "") {
+    for (let i = 0; i < scaleNameArray.length; i++) {
+		let inputGroup = document.createElement('div');
+	  	inputGroup.setAttribute("class", "input-group mb-2");
 
-      let createNum = document.createElement('span');
-      createNum.setAttribute("class", "input-group-text fs-11");
-      createNum.innerHTML = num;
-
-      let createScale = document.createElement('span');
-      createScale.setAttribute("class", "input-group-text fs-11");
-      createScale.innerHTML = "원";
-
-      let createScaleName = document.createElement('input');
-      createScaleName.setAttribute("type", "text");
-      createScaleName.setAttribute("class", "form-control fs-11 text-right scaleName");
-      createScaleName.setAttribute("style", "text-align: right");
-      createScaleName.setAttribute("value", scaleNameArray[i]);
-
-      let createCount = document.createElement('span');
-      createCount.setAttribute("class", "input-group-text fs-11");
-      createCount.innerHTML = "Kg";
-
-      let createInputCount = document.createElement('input');
-      createInputCount.setAttribute("type", "text");
-      createInputCount.setAttribute("class", "form-control fs-11 scaleCount");
-      createInputCount.setAttribute("style", "text-align: right");
-      createInputCount.setAttribute("value", scaleCountArray[i]);
-
-      let createDel = document.createElement('button');
-      createDel.setAttribute("type", "button");
-      createDel.setAttribute("class", "btn btn-outline-danger mb-1 fs-11 ms-2 removeBtn");
-      createDel.setAttribute("value", num++);
-      createDel.innerHTML = "삭제";
-
-      inputGroup.appendChild(createNum);
-      inputGroup.appendChild(createScale);
-      inputGroup.appendChild(createScaleName);
-      inputGroup.appendChild(createCount);
-      inputGroup.appendChild(createInputCount);
-      inputGroup.appendChild(createDel);
-
-      createFeedInfo.appendChild(inputGroup);
+		  let createNum = document.createElement('span');
+		  createNum.setAttribute("class", "input-group-text fs-11");
+		  createNum.innerHTML = num;
+		
+		  let createScale = document.createElement('span');
+		  createScale.setAttribute("class", "input-group-text fs-11");
+		  createScale.innerHTML = "저울 이름";
+		
+		  let createScaleName = document.createElement('input');
+		  createScaleName.setAttribute("type", "text");
+		  createScaleName.setAttribute("class", "form-control fs-11 text-right scaleName");
+		  createScaleName.setAttribute("style", "text-align: right");
+		  createScaleName.setAttribute("value", scaleNameArray[i]);
+		  
+		  let createCount = document.createElement('span');
+		  createCount.setAttribute("class", "input-group-text fs-11");
+		  createCount.innerHTML = "갯수";
+		
+		  let createInputCount = document.createElement('input');
+		  createInputCount.setAttribute("type", "text");
+		  createInputCount.setAttribute("class", "form-control fs-11 scaleCount");
+		  createInputCount.setAttribute("style", "text-align: right");
+		  createInputCount.setAttribute("value", scaleCountArray[i]);
+		
+		  let createDel = document.createElement('button');
+		  createDel.setAttribute("type", "button");
+		  createDel.setAttribute("class", "btn btn-outline-danger mb-1 fs-11 ms-2 removeBtn");
+		  createDel.setAttribute("value", num++);
+		  createDel.innerHTML = "삭제";
+		
+		  inputGroup.appendChild(createNum);
+		  inputGroup.appendChild(createScale);
+		  inputGroup.appendChild(createScaleName);
+		  inputGroup.appendChild(createCount);
+		  inputGroup.appendChild(createInputCount);
+		  inputGroup.appendChild(createDel);
+		
+		  document.getElementById("addOrder").appendChild(inputGroup);
     }
   } 
 }

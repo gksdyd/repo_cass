@@ -245,7 +245,7 @@
 		and pdolDelNy = 0
 	</select>
 	
-	<select id="selectedTempList" resultMap="resultMapObj">
+	<select id="selectedList" resultMap="resultMapObj">
 
 	select
 		tpol.tpolSeq
@@ -302,4 +302,15 @@
 		where
 			pdorNum = #{pdorNum}
 	</update>
+	
+	<select id="selectOrderList" resultMap="resultMapObj">
+		SELECT
+			a.pdolQty,
+			b.prdtName
+		FROM
+			productorderlist a
+			LEFT JOIN product b ON b.prdtSeq = a.product_prdtSeq
+		WHERE 1=1
+			AND productorder_pdorSeq = #{pdorSeq}
+	</select>
 </mapper>

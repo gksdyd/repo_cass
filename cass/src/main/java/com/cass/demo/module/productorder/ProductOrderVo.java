@@ -10,6 +10,8 @@ public class ProductOrderVo extends BaseVo{
  	private String pdorSeq;
 	private String pdolSeq;
 	private String tpolSeq;
+	
+	private int flag = 0;
   
 	public Integer getPdorNum() {
 		return pdorNum;
@@ -49,5 +51,13 @@ public class ProductOrderVo extends BaseVo{
 
 	public void setTpolSeq(String tpolSeq) {
 		this.tpolSeq = tpolSeq;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 }

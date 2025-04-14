@@ -33,4 +33,6 @@ public interface ProductOrderDao {
 	public Integer selectMaxNum();
 
 	public Integer updateOrder(ProductOrderVo productOrderVo);
+	
+	public List<ProductOrderDto> selectOrderList(ProductOrderDto productOrderDto);
 }

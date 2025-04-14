@@ -29,8 +29,9 @@
                 <input type="hidden" name="pdorNum" th:value="${item?.pdorNum}">	
                 <input type="hidden" name="pdorStatusCd" th:value="${item?.pdorStatusCd}">	
                 <input type="hidden" name="productorder_pdorSeq" th:value="${item?.pdorSeq}">
-                <input type="hidden" id="scaleNameArray" name="scaleNameArray">
-                <input type="hidden" id="scaleCountArray" name="scaleCountArray">
+                <input type="hidden" id="scaleNameArray" name="scaleNameArray" th:value="${dto.scaleNameArray}">
+                <input type="hidden" id="scaleCountArray" name="scaleCountArray" th:value="${dto.scaleCountArray}">
+                <input type="hidden" id="flag" th:value="${vo.flag}">
 				<div class="row">
 	                <div class="col-md-3" style="height: 100px;">
 	                  <label for="code" class="form-label">코드<sup>*</sup></label>
@@ -95,14 +96,6 @@
 			        </div>
 			        <hr>
     			</section>
-              
-				<section class="section mb-4">
-					<p class="fs-0" style="padding-top: 12px;">주문내역</p>
-					<div class="row">
-	            		<div class="col-6" id="prevOrder"></div>
-	            	</div>
-	            	<hr>
-            	</section>
             </form>
             	
             <div class="row">
@@ -151,17 +144,13 @@
     let form = document.querySelector("form[name=form]");
 
 	document.getElementById("btnSubmit").onclick = function () {
-			scaleInfoSave();
-		/* if(seq.value == "0" || seq.value == "") {
-// 			if(validationInst() == false) return false;
+		scaleInfoSave();
+		if($("#flag").val() == 1) {
+			form.action = "/productorder/ProductOrderXdmUpdt";
+		} else {
 			form.action = "/productorder/ProductOrderXdmInst";
-			form.submit();
-			alert("3");
-		} else { */
-// 			if(validationUpdt() == false) return false;
-			form.action = "/productorder/ProductOrderXdmInst";
-			form.submit();
-		//}
+		}
+		form.submit();
 	}
 	
 	document.getElementById("ueletePdol").onclick = function () {

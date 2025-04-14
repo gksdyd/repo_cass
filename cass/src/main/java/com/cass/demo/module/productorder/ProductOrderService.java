@@ -79,4 +79,7 @@ public class ProductOrderService {
 	public Integer updateOrder(ProductOrderVo productOrderVo) {
 		return productOrderDao.updateOrder(productOrderVo);
 	}
+	public List<ProductOrderDto> selectOrderList(ProductOrderDto productOrderDto) {
+		return productOrderDao.selectOrderList(productOrderDto);
+	}
 }
