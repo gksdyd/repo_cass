@@ -41,10 +41,10 @@ public class ProductOrderController extends BaseController {
 	
 	@RequestMapping(value = "/ProductOrderXdmForm")
 	public String productXdmForm(Model model, ProductOrderVo vo, ProductOrderDto dto) {
-		
+		model.addAttribute("dealerList", dealerService.selectListDealerName());
+		model.addAttribute("productList", productService.selectListProduct());
 		if (vo.getPdorSeq().equals("0") || vo.getPdorSeq().equals("")) {
-			model.addAttribute("dealerList", dealerService.selectListDealerName());
-			model.addAttribute("productList", productService.selectListProduct());
+		
 		} else {
 //			update mode
 			model.addAttribute("item", productOrderService.selectOne(vo));
