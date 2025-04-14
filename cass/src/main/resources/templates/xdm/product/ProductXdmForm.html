@@ -28,12 +28,12 @@
                		<input type="hidden" name="prdtSeq" th:value="${item?.prdtSeq}">
                		<input type="hidden" name="cdUpdtDate" >	               		
                 	<label for="prdtName" class="form-label">상품 이름 <sup>*</sup></label>
-                	<input type="text" class="form-control" id="prdtName" value="" placeholder="상품 이름" th:value="${item?.prdtName}">
+                	<input type="text" class="form-control" id="prdtName" name="prdtName" value="" placeholder="상품 이름" th:value="${item?.prdtName}">
                 </div>
       
                 <div class="col-md-3" style="height: 100px;">
                   <label for="prdtSN" class="form-label">시리얼 번호</label>
-                  <input type="text" class="form-control" id="prdtSN" value="" placeholder="숫자" th:value="${item?.prdtSN}">
+                  <input type="text" class="form-control" id="prdtSN" name="prdtSN" value="" placeholder="숫자" th:value="${item?.prdtSN}">
                 </div>
                 <div class="col-md-3">
                   <label for="prdtPrice" class="form-label">가격<sup>*</sup></label>
@@ -58,7 +58,7 @@
                 
                 <div class="col-md-3" style="height: 100px;">
                   <label for="prdtDelNy" class="form-label">삭제<sup>*</sup></label>
-                  <select class="form-select" id="prdtDelNy" name="prdtUseNy" th:selected="${item?.prdtDelNy}">
+                  <select class="form-select" id="prdtDelNy" name="prdtDelNy" th:selected="${item?.prdtDelNy}">
                     <option value="">선택해주세요.</option>                                            
                     <option value="1" th:selected="${item?.prdtDelNy == 1}" th:text="사용"></option>
 					<option value="0" th:selected="${item?.prdtDelNy == 0}" th:text="미사용"></option>
