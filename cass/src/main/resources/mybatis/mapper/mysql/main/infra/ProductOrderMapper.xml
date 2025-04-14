@@ -278,12 +278,14 @@
 			,pdolRegDate
 			,product_prdtSeq
 			,productorder_pdorSeq
+			,pdolDelNy
 		) values (
 			#{pdolQty}
 			,(SELECT prdtPrice FROM product WHERE prdtName = #{prdtName}) * #{pdolQty}
 			,date_format(NOW(), '%Y-%m-%d %H:%i:%S')
 			,(SELECT prdtSeq FROM product WHERE prdtName = #{prdtName})
 			,#{pdorSeq}
+			,0
 		)	
 	</insert>
 	
@@ -305,6 +307,7 @@
 	
 	<select id="selectOrderList" resultMap="resultMapObj">
 		SELECT
+			a.pdolSeq,
 			a.pdolQty,
 			b.prdtName
 		FROM
@@ -313,4 +316,23 @@
 		WHERE 1=1
 			AND productorder_pdorSeq = #{pdorSeq}
 	</select>
+	
+	<update id="updateOrderList">
+		UPDATE productorderlist
+		SET
+			pdolQty = #{pdolQty}
+			,pdolAmountPrice = (SELECT prdtPrice FROM product WHERE prdtName = #{prdtName}) * #{pdolQty}
+			,pdolModDate = date_format(NOW(), '%Y-%m-%d %H:%i:%S')
+			,product_prdtSeq = (SELECT prdtSeq FROM product WHERE prdtName = #{prdtName})
+		WHERE 1=1
+			AND pdolSeq = #{pdolSeq}
+	</update>
+	
+	<update id="deletOrderList">
+		UPDATE productorderlist
+		SET
+			pdolDelNy = 1
+		WHERE 1=1
+			AND pdolSeq = #{pdolSeq}
+	</update>
 </mapper>

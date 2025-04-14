@@ -82,4 +82,12 @@ public class ProductOrderService {
 	public List<ProductOrderDto> selectOrderList(ProductOrderDto productOrderDto) {
 		return productOrderDao.selectOrderList(productOrderDto);
 	}
+	
+	public int updateOrderList(ProductOrderDto productOrderDto) {
+		return productOrderDao.updateOrderList(productOrderDto);
+	}
+	
+	public int deletOrderList(ProductOrderDto productOrderDto) {
+		return productOrderDao.deletOrderList(productOrderDto);
+	}
 }

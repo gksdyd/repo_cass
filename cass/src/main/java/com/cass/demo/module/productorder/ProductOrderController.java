@@ -93,6 +93,50 @@ public class ProductOrderController extends BaseController {
 	@RequestMapping(value = "/ProductOrderXdmUpdt")
 	public String ProductOrderXdmUpdt(ProductOrderDto dto) {
 		productOrderService.update(dto);
-		return "redirect:/product/ProductOrderXdmList";
+		
+		List<ProductOrderDto> dtos = productOrderService.selectOrderList(dto);
+		int count = dtos.size();
+		int size = count;
+		int flag = 0;
+		
+		// 사료의 정보 갯수 증가, 감소 여부 체크
+		if (dto.getScaleNameArray().size() > count) {
+			size = dto.getScaleNameArray().size();
+			flag = 1;
+		} else if (dto.getScaleNameArray().size() < count) {
+			flag = -1;
+		}
+		
+		// 사료의 정보 갯수 증가, 감소에 따른 insert, update, delete
+		for (int i = 0; i < size; i++) {
+			if (flag == -1) {
+				if (i < dto.getScaleNameArray().size()) {
+					dto.setPdolSeq(dtos.get(i).getPdolSeq());
+					dto.setPdolQty(dto.getScaleCountArray().get(i));
+					dto.setPrdtName(dto.getScaleNameArray().get(i));
+					productOrderService.updateOrderList(dto);				
+				} else {
+					dto.setPdolSeq(dtos.get(i).getPdolSeq());
+					productOrderService.deletOrderList(dto);	
+				}
+			} else if (flag == 1) {
+				if (i < count) {
+					dto.setPdolSeq(dtos.get(i).getPdolSeq());
+					dto.setPdolQty(dto.getScaleCountArray().get(i));
+					dto.setPrdtName(dto.getScaleNameArray().get(i));
+					productOrderService.updateOrderList(dto);			
+				} else {
+					dto.setPdolQty(dto.getScaleCountArray().get(i));
+					dto.setPrdtName(dto.getScaleNameArray().get(i));
+					productOrderService.insertOrderList(dto);
+				}
+			} else if (flag == 0) {
+				dto.setPdolSeq(dtos.get(i).getPdolSeq());
+				dto.setPdolQty(dto.getScaleCountArray().get(i));
+				dto.setPrdtName(dto.getScaleNameArray().get(i));
+				productOrderService.updateOrderList(dto);
+			}
+		}
+		return "redirect:/productorder/ProductOrderXdmList";
 	}
 }

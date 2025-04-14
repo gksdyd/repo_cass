@@ -35,4 +35,6 @@ public interface ProductOrderDao {
 	public Integer updateOrder(ProductOrderVo productOrderVo);
 	
 	public List<ProductOrderDto> selectOrderList(ProductOrderDto productOrderDto);
+	public int updateOrderList(ProductOrderDto productOrderDto);
+	public int deletOrderList(ProductOrderDto productOrderDto);
 }
