@@ -20,6 +20,8 @@ public class DeliveryDto {
 	private String totalQtys;
 	private String mafaTotalQty;
 	
+	private String dealName;
+	
 	public String getDeliSeq() {
 		return deliSeq;
 	}
@@ -104,4 +106,12 @@ public class DeliveryDto {
 	public void setPdorStatusCd(Integer pdorStatusCd) {
 		this.pdorStatusCd = pdorStatusCd;
 	}
+	public String getDealName() {
+		return dealName;
+	}
+	public void setDealName(String dealName) {
+		this.dealName = dealName;
+	}
+	
+	
 }

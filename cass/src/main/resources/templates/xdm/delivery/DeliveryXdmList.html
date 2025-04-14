@@ -17,7 +17,6 @@
 
     <section class="section">
         <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
-			<input type="hidden" name="pdorSeq">
             <div class="col-md-2" style="height: 10px;">
                 <select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
@@ -114,7 +113,7 @@
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
                        <td th:text = "${list.pdorNum}"></td>
-					   <td><a href = "javascript:void(0);" th:text="${list.deliNum}" th:attr="onclick=|goForm('${list.deliNum}')|"></a></td>
+					   <td><a th:href="@{/delivery/DeliveryXdmView(deliSeq=${list.deliSeq})}" th:text="${list.deliNum}"></a></td>
                        <td th:text = "${list.productTotalCnt}"></td>
                       <td th:text = "${@codeService.selectOneCachedCode(list.deliStausCd)}"></td>
                        <td th:text = "${list.deliRegDate}"></td>
@@ -168,13 +167,6 @@
 
 	<script>
 		let form = document.querySelector("form[name=formList]");
-		let seq = document.querySelector("input[name=pdorSeq]");
-
-		goForm = function (keyValue) {
-		    seq.value = keyValue;
-		    form.action = "/delivery/DeliveryXdmForm";
-		    form.submit();
-		}
 		
 		$.datetimepicker.setLocale('ko');
 		$(window).on("load", function () {

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{xdm/include/headNice :: headNice}"></div>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">page 1</a></li>
+          <li class="breadcrumb-item">page 2</li>
+          <li class="breadcrumb-item active">Default</li>
+        </ol>
+      </nav>
+      <h1>주문관리</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        
+        <div class="col-lg-12">
+          <div class="card" >
+            <div class="card-body">
+              <h1 class="card-title" style="height: 100px;" >출고정보</h1>
+
+              <!-- Custom Styled Validation -->
+              <div class="row g-3">
+                <input type="hidden" name="deliSeq" th:value="${item?.deliSeq}">	
+                <div class="col-md-3" style="height: 100px;">
+                  <label for="code" class="form-label">출고번호<sup> *</sup></label>
+                  <input type="text" class="form-control" id="deliNum" name="deliNum" placeholder="자동생성" th:value="${item?.deliNum}" readonly>
+                </div>
+                <div class="col-md-3" style="height: 100px;">
+                  <label for="code" class="form-label">제작번호<sup> *</sup></label>
+                  <input type="text" class="form-control" id="mafaNum" name="mafaNum" placeholder="자동생성" th:value="${item?.mafaNum}" readonly>
+                </div>
+                <div class="col-md-3" style="height: 100px;">
+                  <label for="code" class="form-label">주문번호<sup> *</sup></label>
+                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="another" class="form-label">출고상태</label>
+                  <input type="text" class="form-control" id="deliStausCd" name="deliStausCd" th:value="${@codeService.selectOneCachedCode(item?.deliStausCd)}"  readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="pdorName" class="form-label">거래처명<sup> *</sup></label>
+                  <input type="text" class="form-control"  readonly>
+                </div>
+                <div class="col-md-3">
+                  <label for="tpolQty" class="form-label">출고 총 수량<sup> *</sup></label>
+                  <input type="text" class="form-control" id="totalQtys" name="totalQtys" th:value="${item?.totalQtys}" readonly>
+                </div>
+                <div class="col-md-6" style="height: 150px;">
+                  <label for="pdorDesc" class="form-label">비고</label>
+                  <textarea class="form-control" id="deliDesc" name="deliDesc" th:value="${item?.deliDesc}"></textarea>
+                </div>
+                <div class="col-md-6"></div>
+              </form>    
+            </div>
+          </div>
+		<div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalConfirmTitle">title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="modalConfirmBody">
+						body
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫힘</button>
+						<button type="button" class="btn btn-danger" name="" id="btnModalDelete"></button>
+						<button type="button" class="btn btn-danger" name="" id="btnModalUelete">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+          
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
+
+    <script type="text/javascript">
+	
+	</script>
+
+</body>
+
+</html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cass.demo.module.income.IncomeDto;
 import com.cass.demo.module.productorder.ProductOrderDto;
 
 @Service
@@ -24,7 +25,8 @@ public class DeliveryService {
 		return deliveryDao.deliMaxNum();
 	}
 	
-	public int insert(ProductOrderDto dto) {
-		return deliveryDao.insert(dto);
+	public DeliveryDto selectOne(DeliveryDto dto) {
+		return deliveryDao.selectOne(dto);
 	}
+	
 }

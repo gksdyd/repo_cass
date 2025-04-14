@@ -12,5 +12,5 @@ public interface DeliveryDao {
 	public List<DeliveryDto> selectList(DeliveryVo deliveryVo);
 	public int selectOneCount(DeliveryVo deliveryVo);
 	public int deliMaxNum();
-	public int insert(ProductOrderDto dto);
+	public DeliveryDto selectOne(DeliveryDto dto);
 }

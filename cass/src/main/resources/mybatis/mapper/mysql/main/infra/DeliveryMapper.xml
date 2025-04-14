@@ -54,7 +54,7 @@
 	
 	<insert id="insert">
     	INSERT INTO delivery (
-    		deliNum,
+    		deliNum,1
     		deliStausCd,
     		deliRegDate,
     		deliDelNy,
@@ -67,4 +67,29 @@
     		(SELECT pdorSeq FROM productorder WHERE pdorNum = #{pdorNum})
     	)
     </insert>
+    
+    
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+			pdor.pdorNum,
+			pdor.pdorStatusCd,
+			pdor.pdorTotalPrice,
+			deli.deliSeq,
+			deli.deliNum,
+		    deli.deliStausCd,
+		    deli.deliRegDate,
+		    deli.deliModDate,
+		    deli.deliDesc,
+		    d.dealName,
+		    (SELECT a.mafaNum FROM manufacture a WHERE a.productorder_pdorSeq = pdor.pdorSeq limit 1) AS mafaNum,
+	    	(SELECT group_concat(a.mafaTotalQty) FROM manufacture a WHERE a.productorder_pdorSeq = pdor.pdorSeq) AS totalQtys,
+		    (SELECT SUM(pdolQty) FROM productorderlist WHERE productorder_pdorSeq = pdorSeq) AS productTotalCnt
+        FROM
+		  delivery deli
+		  LEFT JOIN productorder pdor ON deli.productorder_pdorSeq = pdor.pdorSeq
+		  LEFT JOIN dealer as d on pdor.dealer_dealSeq = d.dealSeq
+		  
+		WHERE 1=1 
+       	AND	deliSeq = #{deliSeq}
+    </select>
 </mapper>
