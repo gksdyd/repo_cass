@@ -16,4 +16,5 @@ public interface StockDao {
 	public Integer selectOneProductTotalQty(ManufactureDto dto);
 	public Integer selectOneProductTotalQty(ProductOrderDto dto);
 	public Integer insertForDeli(ProductOrderDto dto);
+	public List<StockDto> selectListStock(StockVo vo);
 }

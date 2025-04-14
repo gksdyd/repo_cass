@@ -19,7 +19,7 @@ public class StockMobileController extends BaseController {
 	public String stockXdmList(@ModelAttribute("vo") StockVo vo, Model model) {
 		utildatetime(vo);
 		vo.setParamsPaging(stockService.selectOneCount(vo));
-		model.addAttribute("list", stockService.selectList(vo));
+		model.addAttribute("list", stockService.selectListStock(vo));
 		model.addAttribute("activePage", "stock");
 		return "mobileXdm/stock/StockXdmList";
 	}

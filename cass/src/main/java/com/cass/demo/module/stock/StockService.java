@@ -37,4 +37,8 @@ public class StockService {
 	public Integer insertForDeli(ProductOrderDto dto) {
 		return stockDao.insertForDeli(dto);
 	}
+	
+	public List<StockDto> selectListStock(StockVo vo) {
+		return stockDao.selectListStock(vo);
+	}
 }

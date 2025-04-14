@@ -15,10 +15,20 @@
 	            <when test="shOption == 1">AND b.prdtName LIKE CONCAT('%',#{shValue},'%')</when>
 	        </choose>
 			<choose>
-				<when test="shOptionDate == 1">AND a.stckQty > 0 AND a.stckModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 1">AND a.stckModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				<when test="shOptionDate == 2">AND 0 > a.stckQty AND a.stckModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			</choose>
     </sql>
+    
+	<sql id="selectCommonStock">
+	    FROM product
+	    WHERE 1=1
+	        <choose>
+	            <when test="shOption == 1">
+	                AND prdtName LIKE CONCAT('%', #{shValue}, '%')
+	            </when>
+	        </choose>
+	</sql>
     
     <select id="selectOneCount" resultType="Integer">
     	select count(*)
@@ -139,5 +149,16 @@
 		WHERE 1=1
 			AND codeDelNy = 0
 		    AND codeUseNy = 1
+   	</select>
+   	
+   	<select id="selectListStock" resultMap="resultMapObj">
+   	
+	   	SELECT 
+		  prdtName,
+		  (SELECT stckQty FROM stock WHERE product_prdtSeq = prdtSeq ORDER BY stckSeq DESC LIMIT 1) AS stckQty,
+		  (SELECT stckTotalQty FROM stock WHERE product_prdtSeq = prdtSeq ORDER BY stckSeq DESC LIMIT 1) AS stckTotalQty,
+		  (SELECT stckModDate FROM stock WHERE product_prdtSeq = prdtSeq ORDER BY stckSeq DESC LIMIT 1) AS stckModDate
+		<include refid = "selectCommonStock"></include>
+  	
    	</select>
 </mapper>
