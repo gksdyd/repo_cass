@@ -54,7 +54,7 @@
 	
 	<insert id="insert">
     	INSERT INTO delivery (
-    		deliNum,1
+    		deliNum,
     		deliStausCd,
     		deliRegDate,
     		deliDelNy,
