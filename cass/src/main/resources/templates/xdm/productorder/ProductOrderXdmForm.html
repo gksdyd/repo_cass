@@ -28,20 +28,9 @@
                 <input type="hidden" name="pdorSeq" th:value="${item?.pdorSeq}">	
                 <input type="hidden" name="pdorNum" th:value="${item?.pdorNum}">	
                 <input type="hidden" name="pdorStatusCd" th:value="${item?.pdorStatusCd}">	
-                <input type="hidden" name="productorder_pdorSeq" th:value="${item?.pdorSeq}">	
-<!--                 <div class="col-md-3" style="height: 100px;"> -->
-<!--                   <label for="codegroup_pdorgSeq" class="form-label">코드그룹<sup>*</sup></label> -->
-<!--                   <select class="form-select" id="codegroup_pdorgSeq" name="codegroup_pdorgSeq" required> -->
-<!--                     <option value="">선택하세요</option> -->
-<!-- 	                <option th:each ="list : ${list}" th:value="${list.pdorgSeq}" th:text="${list.pdorgName}" th:selected="${list.pdorgSeq == item?.codegroup_pdorgSeq}"></option>                                               -->
-<!--                   </select> -->
-<!--                   <div class="invalid-feedback"> -->
-<!--                     코드그룹을 선택 해주세요. -->
-<!--                   </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-md-9"> -->
-                  
-<!--                 </div> -->
+                <input type="hidden" name="productorder_pdorSeq" th:value="${item?.pdorSeq}">
+                <input type="hidden" id="scaleNameArray" name="scaleNameArray">
+                <input type="hidden" id="scaleCountArray" name="scaleCountArray">
 				<div class="row">
 	                <div class="col-md-3" style="height: 100px;">
 	                  <label for="code" class="form-label">코드<sup>*</sup></label>
@@ -78,14 +67,14 @@
             	<div class="row mt-4">
 	                <div class="col-md-3">
 	                  <label for="product_prdtSeq" class="form-label">상품이름<sup>*</sup></label>
-	                  <select class="form-select" id="product_prdtSeq" name="product_prdtSeq" aria-label="Default select example">
+	                  <select class="form-select" id="product_prdtSeq" aria-label="Default select example">
 	                    <option value="">주문저울 선택</option>
 						<option th:each="list : ${productList}" th:text="${list.prdtName}" th:value="${list.prdtSeq}"></option>
 	                  </select>
 	                </div>
                 <div class="col-md-2">
                   <label for="tpolQty" class="form-label">주문수량<sup>*</sup></label>
-                  <input type="text" class="form-control" id="pdolQty" name="pdolQty" placeholder="수량" required>
+                  <input type="text" class="form-control" id="pdolQty" placeholder="수량" required>
                 </div>
                 <div class="col-md-1" style="padding-top: 3.5ex;">
                 <button type="button" class="btn btn-primary"id="btntemplus" name="btntemplus"><i class="bi bi-plus-lg"></i></button>
@@ -98,100 +87,36 @@
 	                  <textarea class="form-control" id="pdorDesc" name="pdorDesc" th:text="${item?.pdorDesc}"></textarea>
 	                </div>
 	            </div>
-              </form>
               
-<section class="section">
-		<p class="fs-0" style="padding-top: 12px;">주문추가</p>
-        <form class="row g-3 needs-validation" id="tempList" name="tempList" method="post" novalidate>
-        <input type="hidden" name="tpolSeq">
-              <table class="table datatable" style="text-align: center;">
-                <thead>
-                  <tr>
-                    <th class="list-sort" style="text-align: center;">번호</th>
-                    <th class="list-sort" style="text-align: center;">상품명</th>
-					<th class="list-sort" style="text-align: center;">수량</th>
-                    <th class="list-sort" style="text-align: center;">단가</th>
-                    <th class="list-sort" style="text-align: center;">총액</th>
-                    <th class="list-sort" style="text-align: center;">삭제</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr th:if="${#lists.isEmpty(temp)}" class="hover-action-trigger btn-reveal-trigger position-static">
-	               		<td colspan="10">
-	               			<p class="fs-0" style="padding-top: 12px;">주문내역이 없습니다!</p>
-	               		</td>
-	               	</tr>
-	                   <tr th:if="${!#lists.isEmpty(temp)}" th:each ="temp : ${temp}">
-					   <td th:text = "${temp.tpolSeq}"></td>
-					   <td th:text = "${temp.prdtName}"></td>
-					   <td th:text = "${temp.tpolQty}"></td>
-					   <td th:text = "${temp.prdtPrice}"></td>
-					   <td th:text = "${temp.tpolTotalPrice}"></td>
-					   <td><button type="button" id="ueletePdol" name="ueletePdol" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
-	                   </tr>
-                  </tbody>
-                  <tfoot>
-                   
-                  </tfoot>
-                  
-                  </table>
-                  
-       </form>
-    </section>
+				<section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">주문추가</p>
+					<div class="row">
+			            <div class="col-6" id="addOrder"></div>
+			        </div>
+			        <hr>
+    			</section>
               
-<section class="section">
-<p>주문내역</p>
-        <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
-        <input type="hidden" name="pdorSeq">
-              <!-- Table with stripped rows -->
-              <table class="table datatable" style="text-align: center;">
-                <thead>
-                  <tr>
-                    <th class="list-sort" style="text-align: center;">주문번호</th>
-                    <th class="list-sort" style="text-align: center;">주문상품</th>
-					<th class="list-sort" style="text-align: center;">주문수량</th>
-                    <th class="list-sort" style="text-align: center;">상품단가</th>
-                    <th class="list-sort" style="text-align: center;">주문총액</th>
-                    <th class="list-sort" style="text-align: center;">주문상태</th>
-                    <th class="list-sort" style="text-align: center;">주문삭제</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
-	               		<td colspan="10">
-	               			<p class="fs-0" style="padding-top: 12px;">주문내역이 없습니다!</p>
-	               		</td>
-	               	</tr>
-	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
-					   <td th:text = "${list.pdolSeq}"></td>
-					   <td th:text = "${list.prdtName}"></td>
-					   <td th:text = "${list.pdolQty}"></td>
-					   <td th:text = "${list.prdtPrice}"></td>
-					   <td th:text = "${list.pdolAmountPrice}"></td>
-					   <td th:text = "${@codeService.selectOneCachedCode(list.pdolStatusCd)}"></td>
-					   <td><button type="button" id="ueletePdol" name="ueletePdol" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
-	                   </tr>
-                  </tbody>
-                  <tfoot>
-                   
-                  </tfoot>
-                  
-                  </table>
-                  <div class="row">
-                  <div class="col-md-6">
-                  <a href="/productorder/ProductOrderXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
-                  <button class="btn btn-danger">X</button>
-                  <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
-                </div>
-                <div class="col-md-6">
-                  <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
-                </div>
-                  </div>
-       </form>
-    </section>
-       
+				<section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">주문내역</p>
+					<div class="row">
+	            		<div class="col-6" id="prevOrder"></div>
+	            	</div>
+	            	<hr>
+            	</section>
+            </form>
+            	
+            <div class="row">
+            	<div class="col-md-6">
+             	<a href="/productorder/ProductOrderXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+               	<button class="btn btn-danger">X</button>
+               	<button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
+            	</div>
+            	<div class="col-md-6">
+              		<div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
+            	</div>
             </div>
           </div>
+        </div>
 		<div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -219,6 +144,7 @@
   </main><!-- End #main -->
 
   <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
+  <script th:inline="javascript" src="/xdm/template/NiceAdmin/assets/js/product.js"></script>
 
     <script type="text/javascript">
     let seq = document.querySelector("input[name=pdorSeq]");
