@@ -10,4 +10,9 @@ public interface ProductDao {
 	public List<ProductDto> selectList(ProductVo vo);
 	public int selectOneCount(ProductVo Vo);
 	public ProductDto selectOne(ProductDto productDto);
+	public ProductDto selectOne(ProductVo Vo);
+	
+	public int insert(ProductDto productDto);
+	public int update(ProductDto productDto);
+	public int uelete(ProductDto productDto);
 }

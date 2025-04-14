@@ -87,6 +87,7 @@
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
           <div class="card" >
             <div class="card-body">
+              <input type="hidden" name="prdtSeq">
             <div th:replace="~{xdm/include/totalAndRowNum :: totalAndRowNum}"></div>
             </div>
 
@@ -111,7 +112,7 @@
 	               		</td>
 	               	</tr>
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
-	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
+	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()' th:value="${list.prdtSeq}" value=""></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 	                   <td><a th:href="@{/product/productXdmMfom(prdtSeq=${list.prdtSeq})}" th:text = "${list.prdtName}"></a></td>
 	                   <td th:text = "${list.prdtSN}"></td>
@@ -149,13 +150,13 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 padding-left">
-                  <button class="btn btn-danger">X</button>
-                  <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                  <button type="button" class="btn btn-danger">X</button>
+                  <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
                 </div>
                 <div class="col-md-6 padding-right" style="display: flex; justify-content: end;">
                     
                     <button class="btn btn-success btn-right"><i class="bi bi-journal-x"></i></button>
-                  <a href="" class="btn btn-primary"><i class="bi bi-plus-lg"></i></a>
+                  <button type="button" id="btnForm" class="btn btn-primary"><i class="bi bi-plus-lg"></i></button>
                 </div>
                 </div>
             </div>
@@ -168,6 +169,7 @@
 
 	<script>
 		let form = document.querySelector("form[name=formList]");
+		let seq = document.querySelector("input[name=prdtSeq]");
 		
 		$.datetimepicker.setLocale('ko');
 		$(window).on("load", function () {
@@ -211,6 +213,15 @@
 		document.getElementById("changeRowNum").onchange = function () {
 		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
 		    form.action = "/product/ProductXdmList";
+		    form.submit();
+		}
+		
+		document.getElementById("btnForm").onclick = function () {
+		    goForm(0);
+		}
+		goForm = function (keyValue) {
+		    seq.value = keyValue;
+		    form.action = "/product/productXdmForm";
 		    form.submit();
 		}
 		

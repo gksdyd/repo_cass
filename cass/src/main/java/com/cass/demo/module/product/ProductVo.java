@@ -6,8 +6,10 @@ public class ProductVo extends BaseVo {
 
 	private String seq;
 	
-	private int prdtUseNy = 1;
-	private int prdtDelNy = 0;
+	private String prdtSeq;
+	
+	private Integer prdtUseNy = 1;
+	private Integer prdtDelNy = 0;
 //	-----
 	public String getSeq() {
 		return seq;
@@ -15,17 +17,23 @@ public class ProductVo extends BaseVo {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
-	public int getPrdtUseNy() {
+	public String getPrdtSeq() {
+		return prdtSeq;
+	}
+	public void setPrdtSeq(String prdtSeq) {
+		this.prdtSeq = prdtSeq;
+	}
+	public Integer getPrdtUseNy() {
 		return prdtUseNy;
 	}
-	public void setPrdtUseNy(int prdtUseNy) {
+	public void setPrdtUseNy(Integer prdtUseNy) {
 		this.prdtUseNy = prdtUseNy;
 	}
-	public int getPrdtDelNy() {
+	public Integer getPrdtDelNy() {
 		return prdtDelNy;
 	}
-	public void setPrdtDelNy(int prdtDelNy) {
+	public void setPrdtDelNy(Integer prdtDelNy) {
 		this.prdtDelNy = prdtDelNy;
 	}
-	
+
 }

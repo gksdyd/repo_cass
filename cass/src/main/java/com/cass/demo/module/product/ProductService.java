@@ -22,4 +22,20 @@ public class ProductService {
 	public ProductDto selectOne(ProductDto productDto) {
 		return productDao.selectOne(productDto);
 	}
+	
+	public ProductDto selectOne(ProductVo Vo) {
+		return productDao.selectOne(Vo);
+	}
+	
+	public int insert(ProductDto productDto) {
+		return productDao.insert(productDto);
+	}
+	
+	public int update(ProductDto productDto) {
+		return productDao.update(productDto);
+	}
+	
+	public int uelete(ProductDto productDto) {
+		return productDao.uelete(productDto);
+	}
 }

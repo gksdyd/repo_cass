@@ -1,14 +1,14 @@
 package com.cass.demo.module.product;
 
 public class ProductDto {
-
+	
 	private String prdtSeq;
 	private String prdtName;
 	private String prdtSN;
 	private Integer prdtPrice;
 	private Integer prdtCateCd;
-	private int prdtUseNy;
-	private int prdtDelNy;
+	private Integer  prdtUseNy;
+	private Integer  prdtDelNy;
 	private String prdtRegDate;
 	private String prdtModDate;
 	private String prdtDesc;
@@ -43,16 +43,16 @@ public class ProductDto {
 	public void setPrdtCateCd(Integer prdtCateCd) {
 		this.prdtCateCd = prdtCateCd;
 	}
-	public int getPrdtUseNy() {
+	public Integer getPrdtUseNy() {
 		return prdtUseNy;
 	}
-	public void setPrdtUseNy(int prdtUseNy) {
+	public void setPrdtUseNy(Integer prdtUseNy) {
 		this.prdtUseNy = prdtUseNy;
 	}
-	public int getPrdtDelNy() {
+	public Integer getPrdtDelNy() {
 		return prdtDelNy;
 	}
-	public void setPrdtDelNy(int prdtDelNy) {
+	public void setPrdtDelNy(Integer prdtDelNy) {
 		this.prdtDelNy = prdtDelNy;
 	}
 	public String getPrdtRegDate() {
@@ -73,5 +73,5 @@ public class ProductDto {
 	public void setPrdtDesc(String prdtDesc) {
 		this.prdtDesc = prdtDesc;
 	}
-	
+
 }
