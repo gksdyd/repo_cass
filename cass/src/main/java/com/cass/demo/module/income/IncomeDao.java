@@ -9,6 +9,7 @@ import com.cass.demo.module.manufacture.ManufactureDto;
 @Repository
 public interface IncomeDao {
 	public List<IncomeDto> selectList(IncomeVo vo);
+	public List<IncomeDto> selectOneList(IncomeDto dto);
 	public int selectOneCount(IncomeVo vo);
 	public IncomeDto selectOne(IncomeDto dto);
 	public List<IncomeDto> selectListForDeli(IncomeVo vo);

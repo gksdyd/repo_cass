@@ -63,6 +63,7 @@
 		    ,m.mafaTotalQty
 		    ,po.pdorTotalQty
 		    ,po.pdorNum
+		    ,po.pdorSeq
 		    ,m.mafaRegDate
 		    ,m.mafaModDate
 		    ,m.mafaNum
@@ -75,7 +76,38 @@
 		 and mafaSeq = #{mafaSeq}
 	</select>
 	
-	
+	<select id="selectOneList" resultMap="resultMapObj">
+	select
+		pdor.pdorSeq,
+		pdor.pdorNum,
+        pdor.pdorRegDate,
+        pdor.pdorModDate,
+        pdor.pdorTotalQty,
+        pdor.pdorTotalPrice,
+        pdor.pdorDesc,
+        pdor.pdorDelNy,
+        pdor.pdorStatusCd,
+        pdor.dealer_dealSeq,
+        pdol.pdolSeq,        
+        pdol.pdolQty,
+        pdol.pdolAmountPrice,
+        pdol.pdolDelNy,
+        pdol.product_prdtSeq,
+        pdol.pdolStatusCd,
+        prdt.prdtName,
+        prdt.prdtPrice,
+        d.dealName,
+        d.dealManager
+        
+	from
+		manufacture m
+	  left join productorder pdor on m.productorder_pdorSeq = pdor.pdorSeq
+	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	  left join product prdt on prdt.prdtSeq = pdol.product_prdtSeq
+	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
+	WHERE 1=1
+		and	mafaSeq = #{mafaSeq}
+	</select>
 	
 	
 	<select id="selectOneCount" resultType="Integer">
