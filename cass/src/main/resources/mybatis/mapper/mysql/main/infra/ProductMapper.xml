@@ -44,7 +44,7 @@
 		<include refid = "selectCommon"></include>
 		order by prdtSeq desc
 	) aa
-<!-- 	limit #{rowNumToShow} offset #{startRnumForMysql} -->
+	limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	
 	<select id="selectListProduct" resultMap="resultMapObj">
@@ -102,33 +102,33 @@
 	</insert>
 	
 	<update id="update">
-		update code set
-			codeName = #{codeName}
-			,codeNameEng = #{codeNameEng}
-			,codeUseNy = #{codeUseNy}
-			,codeModDate = CURRENT_TIMESTAMP
-			,codeDesc = #{codeDesc}
-			,codegroup_cdgrSeq = #{codegroup_cdgrSeq}
+		update product set
+			prdtName = #{prdtName}
+			,prdtSN = #{prdtSN}
+			,prdtPrice = #{prdtPrice}
+			,prdtCateCd = #{prdtCateCd}
+			,prdtUseNy = #{prdtUseNy}
+			,prdtDelNy = #{prdtDelNy}
+			,prdtModDate = CURRENT_TIMESTAMP
 		where
-			codeSeq = #{codeSeq}
+			prdtSeq = #{prdtSeq}
 	</update>
 	
 	<update id="uelete">
-		update code set
-			codeDelNy = 1
+		update product set
+			prdtDelNy = 1
 		where
-			codeSeq = #{codeSeq}
+			prdtSeq = #{prdtSeq}
 	</update>
 	
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
-			codeSeq
-			, codeName
-			, codegroup_cdgrSeq
+			prdtSeq
+			, prdtName
 		FROM
-			code
+			product
 		WHERE 1=1
-			AND codeDelNy = 0
-		    AND codeUseNy = 1
+			AND prdtDelNy = 0
+		    AND prdtUseNy = 1
    	</select>
 </mapper>

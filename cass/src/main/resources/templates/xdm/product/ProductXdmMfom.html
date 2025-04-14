@@ -25,7 +25,7 @@
               <h1 class="card-title" style="height: 100px;" >기본정보</h1>
 
               <!-- Custom Styled Validation -->
-              <form class="row g-3 needs-validation" action="/product/productXdmUpdt" method="post" id="form" novalidate>
+              <form class="row g-3 needs-validation" action="/product/productXdmUpdt" method="post" id="form" name="form" novalidate>
                 <div class="col-md-3" style="height: 100px;">
                 <input type="hidden" name="seq" th:value="${item?.prdtSeq}">
                   <label for="prdtName" class="form-label">상품 이름<sup>*</sup></label>
@@ -59,17 +59,71 @@
                     <option value="1" th:selected="${item?.prdtDelNy == 1}" th:text="Y"></option>
                   </select>
                 </div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6">
-                  <a href="/product/ProductXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a></div>
-                <div class="col-md-6">
-                  <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnsave"><i class="bi bi-server"></i></button></div>
-                </div>
+                <section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">상품추가</p>
+					<div class="row">
+			            <div class="col-6" id="addProduct"></div>
+			        </div>
+			        <hr>
+    			</section>
+              
+				<section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">상품내역</p>
+					<div class="row">
+	            		<div class="col-6" id="prevProduct"></div>
+	            	</div>
+	            	<hr>
+            	</section>
               </form><!-- End Custom Styled Validation -->
 
+               <div class="row">
+            	<div class="col-md-6">
+             	<a href="/product/ProductXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+               	<button class="btn btn-danger">X</button>
+               	<button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
+            	</div>
+            	<div class="col-md-6">
+              		<div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
+            	</div>
+               </div>
             </div>
           </div>
-
+          
+          <div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalAlertTitle">title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="modalAlertBody">
+						body
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" data-bs-dismiss="modal" id="closeModal">닫힘</button>
+					</div>
+				</div>
+			</div>
+		</div>
+          
+		  <div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalConfirmTitle">title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="modalConfirmBody">
+						body
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫힘</button>
+						<button type="button" class="btn btn-danger" name="btnModalDelete" id="btnModalDelete"></button>
+						<button type="button" class="btn btn-danger" name="btnModalUelete" id="btnModalUelete">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
           
 
         </div>
@@ -79,13 +133,39 @@
   </main><!-- End #main -->
 
   <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
-
+  <script th:inline="javascript" src="/xdm/template/NiceAdmin/assets/js/product.js"></script>
+  
     <script type="text/javascript">
-
-    document.getElementById("btnsave").onclick = function() {
-		document.getElementById("form").submit();
-	}
+    let seq = document.querySelector("input[name=pdorSeq]");
+    let form = document.querySelector("form[name=form]");
     
+    document.getElementById("btnSubmit").onclick = function () {
+		alert("2");
+	if(seq.value == "0" || seq.value == "") {
+//			if(validationInst() == false) return false;
+		form.action = "/product/ProductXdmInst";
+		form.submit();
+		alert("3");
+	} else {
+//			if(validationUpdt() == false) return false;
+		form.action = "/product/ProductXdmUpdt";
+		form.submit();
+	}
+ }
+
+	document.getElementById("btnUelete").onclick = function () {
+		document.querySelector("#modalConfirmTitle").textContent = "확 인";
+		document.querySelector("#modalConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";
+		document.querySelector("#btnModalUelete").style.display = '';
+		document.querySelector("#btnModalDelete").style.display = 'none';
+		$("#modalConfirm").modal("show");
+	}
+	
+	document.getElementById("btnModalUelete").onclick = function () {
+		form.action = "/product/productXdmUele";
+		form.submit();
+	}
+
 	</script>
 
 </body>

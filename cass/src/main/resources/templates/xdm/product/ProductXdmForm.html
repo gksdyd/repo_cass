@@ -64,8 +64,26 @@
 					<option value="0" th:selected="${item?.prdtDelNy == 0}" th:text="미사용"></option>
                   </select>
                 </div>
-                
-                <div class="col-md-6"></div>
+                <section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">상품추가</p>
+					<div class="row">
+			            <div class="col-6" id="addOrder"></div>
+			        </div>
+			        <hr>
+    			</section>
+              
+				<section class="section mb-4">
+					<p class="fs-0" style="padding-top: 12px;">상품내역</p>
+					<div class="row">
+	            		<div class="col-6" id="prevOrder"></div>
+	            	</div>
+	            	<hr>
+            	</section>
+            	
+              </form>
+              
+              <!-- End Custom Styled Validation -->
+			<div class="row">
                 <div class="col-md-6">
                   <a href="/product/ProductXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
                   <button class="btn btn-danger">X</button>
@@ -74,54 +92,35 @@
                 <div class="col-md-6">
                   <div style="display: flex;justify-content: end;"><button class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
                 </div>
-              </form>
-              
-              <!-- End Custom Styled Validation -->
-
             </div>
           </div>
-          
-		<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="modalAlertTitle">title</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body" id="modalAlertBody">
-						body
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" data-bs-dismiss="modal" id="closeModal">닫힘</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+         </div>
 		<div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="modalConfirmTitle">title</h5>
-						<button type="button" class="btn-close" id="btnX" data-bs-dismiss="modal" aria-label="Close"></button>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body" id="modalConfirmBody">
 						body
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-secondary" id="btnClose" data-bs-dismiss="modal">닫힘</button>
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫힘</button>
 						<button type="button" class="btn btn-danger" name="" id="btnModalDelete"></button>
 						<button type="button" class="btn btn-danger" name="" id="btnModalUelete">삭제</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		 </div>
+		 
         </div>
       </div>
     </section>
 
   </main><!-- End #main -->
 <div th:replace="~{xdm/include/footerNice :: footerNice}"></div>
+<script th:inline="javascript" src="/xdm/template/NiceAdmin/assets/js/product.js"></script>
 
 <script type="text/javascript">
 	let seq = document.querySelector("input[name=prdtSeq]");
