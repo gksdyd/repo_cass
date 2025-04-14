@@ -90,6 +90,7 @@
                     <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
                     <th class="list-sort" style="text-align: center;">입고번호</th>
                     <th class="list-sort" style="text-align: center;">제작번호</th>
+                    <th class="list-sort" style="text-align: center;">주문번호</th>
                     <th class="list-sort" style="text-align: center;">입고수량</th>
                     <th class="list-sort" style="text-align: center;">입고상태</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">입고일</th>
@@ -106,6 +107,7 @@
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
                        <td><a th:href="@{/xdm/income/IncomeXdmView(incoSeq=${list.incoSeq})}" th:text="${list.incoNum}"></a></td>
 	                   <td th:text="${list.mafaNum}"></td>
+	                   <td th:text="${list.pdorNum}"></td>
                        <td th:text = "${list.incoTotalQty}"></td>
                        <td th:text = "${@codeService.selectOneCachedCode(list.incoStatusCd)}"></td>
                        <td th:text = "${list.incoRegDate}"></td>
@@ -184,16 +186,16 @@
 	    });
 		
 		document.getElementById("btnSearch").onclick = function () {
-			form.action = "/member/memberXdmList";
+			form.action = "/xdm/income/IncomeXdmList";
 			form.submit();
 		};
 		document.getElementById("btnReset").onclick = function () {
-			location = "/member/memberXdmList";
+			location = "/xdm/income/IncomeXdmList";
 		};
 		
 		goList = function (thisPage) {
 		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = "/member/memberXdmList";
+		    form.action = "/xdm/income/IncomeXdmList";
 		    form.submit();
 		}
 		document.getElementById("changeRowNum").onchange = function () {

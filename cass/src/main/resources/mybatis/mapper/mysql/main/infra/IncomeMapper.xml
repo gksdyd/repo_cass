@@ -21,7 +21,7 @@
         <choose>
             <when test="shOption == 1">AND incoNum = #{shValue}</when>
             <when test="shOption == 2">AND mafaNum = #{shValue}</when>
-            <when test="shOption == 3">AND prdtName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND pdorNum = #{shValue}</when>
         </choose>
     </sql>
     

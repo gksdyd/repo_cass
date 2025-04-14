@@ -28,27 +28,27 @@
                 <input type="hidden" name="incoSeq" th:value="${item?.incoSeq}">	
                 <div class="col-md-3" style="height: 100px;">
                   <label for="code" class="form-label">입고번호<sup>*</sup></label>
-                  <input type="text" class="form-control" id="incoNum" name="incoNum" placeholder="자동생성" th:value="${item?.incoNum}" required>
+                  <input type="text" class="form-control" id="incoNum" name="incoNum" placeholder="자동생성" th:value="${item?.incoNum}" readonly>
                 </div>
                 <div class="col-md-3" style="height: 100px;">
                   <label for="code" class="form-label">제작번호<sup>*</sup></label>
-                  <input type="text" class="form-control" id="mafaNum" name="mafaNum" placeholder="자동생성" th:value="${item?.mafaNum}" required>
+                  <input type="text" class="form-control" id="mafaNum" name="mafaNum" placeholder="자동생성" th:value="${item?.mafaNum}" readonly>
                 </div>
                 <div class="col-md-3" style="height: 100px;">
                   <label for="code" class="form-label">주문번호<sup>*</sup></label>
-                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" required>
+                  <input type="text" class="form-control" id="pdorNum" name="pdorNum" placeholder="자동생성" th:value="${item?.pdorNum}" readonly>
                 </div>
                 <div class="col-md-3">
                   <label for="another" class="form-label">입고상태</label>
-                  <input type="text" class="form-control" id="incoStatusCd" name="incoStatusCd" th:value="${@codeService.selectOneCachedCode(item?.incoStatusCd)}" >
+                  <input type="text" class="form-control" id="incoStatusCd" name="incoStatusCd" th:value="${@codeService.selectOneCachedCode(item?.incoStatusCd)}" readonly>
                 </div>
                 <div class="col-md-3">
                   <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
-                  <input type="text" class="form-control" id="dealName" name="dealName" th:value="${item?.dealName}">
+                  <input type="text" class="form-control" id="dealName" name="dealName" th:value="${item?.dealName}" readonly>
                 </div>
                 <div class="col-md-3">
                   <label for="tpolQty" class="form-label">입고총수량<sup>*</sup></label>
-                  <input type="text" class="form-control" id="incoTotalQty" name="incoTotalQty" th:value="${item?.incoTotalQty}">
+                  <input type="text" class="form-control" id="incoTotalQty" name="incoTotalQty" th:value="${item?.incoTotalQty}" readonly>
                 </div>
                 <div class="col-md-6" style="height: 150px;">
                   <label for="pdorDesc" class="form-label">비고</label>
@@ -96,12 +96,12 @@
                   </table>
                   <div class="row">
                   <div class="col-md-6">
-                  <a href="/product/ProductOrderXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+                  <a href="/xdm/income/IncomeXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
                   <button class="btn btn-danger">X</button>
                   <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
                 </div>
                 <div class="col-md-6">
-                  <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div>
+<!--                   <div style="display: flex;justify-content: end;"><button type="button" class="btn btn-primary" id="btnSubmit"><i class="bi bi-server"></i></button></div> -->
                 </div>
                   </div>
        </form>
