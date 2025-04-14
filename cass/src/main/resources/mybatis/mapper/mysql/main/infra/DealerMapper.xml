@@ -52,26 +52,36 @@
 	</select>
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			dealSeq,
-		    dealName,
-		    dealAddress,
-		    dealZipCode,
-		    dealAddressDetail,
-		    dealGpsX,
-		    dealGpsY,
-		    dealManager,
-		    dealTel,
-		    dealManagerTel,
-		    dealFaxNum,
-		    dealDesc,
-		    dealRegDate,
-		    dealModDate,
-		    dealUseNy,
-		    dealDelNy
+			dealSeq
+		    ,dealName
+		    ,dealAddress
+		    ,dealZipCode
+		    ,dealAddressDetail
+		    ,dealGpsX
+		    ,dealGpsY
+		    ,dealManager
+		    ,dealTel
+		    ,dealManagerTel
+		    ,dealFaxNum
+		    ,dealDesc
+		    ,dealRegDate
+		    ,dealModDate
+		    ,dealUseNy
+		    ,dealDelNy
 		FROM
 			dealer
 		WHERE 1=1
 			AND dealSeq = #{dealSeq}
 	</select>
-
+	
+	<update id="update">
+		update dealer set
+			dealName = #{dealName}
+			,dealAddress = #{dealAddress}
+			,dealManager = #{dealManager}
+			,dealManagerTel = #{dealManagerTel}
+			,dealModDate = CURRENT_TIMESTAMP
+		where
+			dealSeq = #{dealSeq}
+	</update>
 </mapper>

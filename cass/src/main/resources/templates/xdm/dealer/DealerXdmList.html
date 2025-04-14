@@ -87,6 +87,7 @@
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
           <div class="card" >
             <div class="card-body">
+            	<input type="hidden" name="dealSeq">
             <div th:replace="~{xdm/include/totalAndRowNum :: totalAndRowNum}"></div>
             </div>
 
@@ -113,12 +114,12 @@
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                       <td th:text = "${list.dealName}"></td>
+                       <td><a th:href="@{/dealer/dealerXdmMfom(dealSeq=${list.dealSeq})}" th:text = "${list.dealName}"></a></td>
                        <td th:text = "${list.dealAddress}"></td>
                        <td th:text = "${list.dealManager}"></td>
                        <td th:text = "${list.dealManagerTel}"></td>
 <!--                        <td th:text = "${@codeService.selectOneCachedCode(list.membCateCd)}"></td> -->
-<!--                        <td><a th:href="@{/member/memberXdmMfom(seq=${list.membSeq})}" th:text="${list.membId}"></a></td> -->
+<!--                        <td><a th:href="@{/dealer/dealerXdmMfom(seq=${list.membSeq})}" th:text="${list.membId}"></a></td> -->
 <!--                        <td>1</td> -->
                        <td th:text = "${list.dealRegDate}"></td>
                        <td th:text = "${list.dealModDate}"></td>
@@ -158,7 +159,7 @@
                 <div class="col-md-6 padding-right" style="display: flex; justify-content: end;">
                     
                     <button class="btn btn-success btn-right"><i class="bi bi-journal-x"></i></button>
-                  <a href="" class="btn btn-primary"><i class="bi bi-plus-lg"></i></a>
+                  <button type="button" id="btnForm" class="btn btn-primary"><i class="bi bi-plus-lg"></i></button>
                 </div>
                 </div>
             </div>
@@ -171,6 +172,7 @@
 
 	<script>
 		let form = document.querySelector("form[name=formList]");
+		let seq = document.querySelector("input[name=dealSeq]");
 		
 		$.datetimepicker.setLocale('ko');
 		$(window).on("load", function () {
@@ -197,21 +199,30 @@
 	    });
 		
 		document.getElementById("btnSearch").onclick = function () {
-			form.action = "/member/memberXdmList";
+			form.action = "/dealer/dealerXdmList";
 			form.submit();
 		};
 		document.getElementById("btnReset").onclick = function () {
-			location = "/member/memberXdmList";
+			location = "/dealer/dealerXdmList";
 		};
 		
 		goList = function (thisPage) {
 		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = "/member/memberXdmList";
+		    form.action = "/dealer/dealerXdmList";
 		    form.submit();
 		}
 		document.getElementById("changeRowNum").onchange = function () {
 		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-		    form.action = "/member/memberXdmList";
+		    form.action = "/dealer/dealerXdmList";
+		    form.submit();
+		}
+		
+		document.getElementById("btnForm").onclick = function () {
+		    goForm(0);
+		}
+		goForm = function (keyValue) {
+		    seq.value = keyValue;
+		    form.action = "/dealer/dealerXdmForm";
 		    form.submit();
 		}
 		

@@ -28,4 +28,20 @@ public class DealerService {
 	public DealerDto selectOne(DealerDto dealerDto) {
 		return dealerDao.selectOne(dealerDto);
 	}
+	
+	public DealerDto selectOne(DealerVo Vo) {
+		return dealerDao.selectOne(Vo);
+	}
+	
+	public int insert(DealerDto dealerDto) {
+		return dealerDao.insert(dealerDto);
+	}
+	
+	public int update(DealerDto dealerDto) {
+		return dealerDao.update(dealerDto);
+	}
+	
+	public int uelete(DealerDto dealerDto) {
+		return dealerDao.uelete(dealerDto);
+	}
 }
