@@ -147,8 +147,8 @@
         pdor.pdorStatusCd,
         pdor.dealer_dealSeq,
         d.dealName,
-        d.dealManager
-        
+        d.dealManager,
+        pdor.dealer_dealSeq
 	from
 	  productorder pdor 
 	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq

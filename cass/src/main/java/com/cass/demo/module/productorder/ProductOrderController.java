@@ -44,7 +44,17 @@ public class ProductOrderController extends BaseController {
 		model.addAttribute("dealerList", dealerService.selectListDealerName());
 		model.addAttribute("productList", productService.selectListProduct());
 		if (vo.getPdorSeq().equals("0") || vo.getPdorSeq().equals("")) {
-		
+			Integer maxSeq = productOrderService.selectMaxSeq();
+			if (maxSeq == null) {
+				maxSeq = 1;
+			}
+			dto.setPdorSeq((++maxSeq).toString());
+			Integer maxNum = productOrderService.selectMaxNum();
+			if (maxNum == null) {
+				maxNum = 1001;
+			}
+			dto.setPdorNum(maxNum + 1);
+			model.addAttribute("item", dto);
 		} else {
 //			update mode
 			model.addAttribute("item", productOrderService.selectOne(vo));
@@ -67,9 +77,9 @@ public class ProductOrderController extends BaseController {
 	}
 	@RequestMapping(value = "/ProductOrderXdmInst")
 	public String ProductOrderXdmInst(ProductOrderDto dto) {
-		dto.setPdorNum(productOrderService.selectMaxNum(dto)+1);
+		dto.setPdorNum(productOrderService.selectMaxNum()+1);
 		productOrderService.insert(dto);
-		dto.setPdorSeq(productOrderService.selectMaxSeq(dto).toString());
+		dto.setPdorSeq(productOrderService.selectMaxSeq().toString());
 		productOrderService.insertOL(dto);
 		return "redirect:/product/ProductOrderXdmList";
 	}

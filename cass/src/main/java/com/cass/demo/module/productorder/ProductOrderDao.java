@@ -29,8 +29,8 @@ public interface ProductOrderDao {
 	public int insertOL(ProductOrderDto productOrderDto);
 	public int update(ProductOrderDto productOrderDto);
 	
-	public Integer selectMaxSeq(ProductOrderDto productOrderDto);
-	public Integer selectMaxNum(ProductOrderDto productOrderDto);
+	public Integer selectMaxSeq();
+	public Integer selectMaxNum();
 
 	public Integer updateOrder(ProductOrderVo productOrderVo);
 }

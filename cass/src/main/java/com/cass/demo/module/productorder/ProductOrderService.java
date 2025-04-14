@@ -69,11 +69,11 @@ public class ProductOrderService {
 		return productOrderDao.update(productOrderDto);
 	}
 	
-	public Integer selectMaxSeq(ProductOrderDto productOrderDto) {
-		return productOrderDao.selectMaxSeq(productOrderDto);
+	public Integer selectMaxSeq() {
+		return productOrderDao.selectMaxSeq();
 	}
-	public Integer selectMaxNum(ProductOrderDto productOrderDto) {
-		return productOrderDao.selectMaxNum(productOrderDto);
+	public Integer selectMaxNum() {
+		return productOrderDao.selectMaxNum();
 	}
 	
 	public Integer updateOrder(ProductOrderVo productOrderVo) {

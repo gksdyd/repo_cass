@@ -59,7 +59,7 @@
 	                  <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
 	                  <select class="form-select" id="dealer_dealSeq" name="dealer_dealSeq" aria-label="Default select example">
 	                    <option value="">주문처 선택</option>
-						<option th:each="list : ${dealerList}" th:text="${list.dealName}" th:value="${list.dealSeq}"></option>
+						<option th:each="list : ${dealerList}" th:text="${list.dealName}" th:value="${list.dealSeq}" th:selected="${item.dealer_dealSeq} == ${list.dealSeq}"></option>
 	                  </select>
 	                  <div class="invalid-feedback" id="name-invalid-feedback">
 	                    거래처명을 입력해주세요.
