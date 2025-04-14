@@ -187,16 +187,16 @@
 	    });
 		
 		document.getElementById("btnSearch").onclick = function () {
-			form.action = "/member/memberXdmList";
+			form.action = "/manufacture/ManufactureXdmList";
 			form.submit();
 		};
 		document.getElementById("btnReset").onclick = function () {
-			location = "/member/memberXdmList";
+			location = "/manufacture/ManufactureXdmList";
 		};
 		
 		goList = function (thisPage) {
 		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = "/member/memberXdmList";
+		    form.action = "/manufacture/ManufactureXdmList";
 		    form.submit();
 		}
 		document.getElementById("changeRowNum").onchange = function () {

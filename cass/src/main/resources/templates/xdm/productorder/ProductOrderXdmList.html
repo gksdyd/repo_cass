@@ -193,7 +193,7 @@
 
 		goForm = function (keyValue) {
 		    seq.value = keyValue;
-		    form.action = "/product/ProductOrderXdmForm";
+		    form.action = "/productorder/ProductOrderXdmForm";
 		    form.submit();
 		}
 		
@@ -222,21 +222,21 @@
 	    });
 		
 		document.getElementById("btnSearch").onclick = function () {
-			form.action = "/product/ProductOrderXdmList";
+			form.action = "/productorder/ProductOrderXdmList";
 			form.submit();
 		};
 		document.getElementById("btnReset").onclick = function () {
-			location = "/product/ProductOrderXdmList";
+			location = "/productorder/ProductOrderXdmList";
 		};
 		
 		goList = function (thisPage) {
 		    document.querySelector("input[name=thisPage]").value = thisPage;
-		    form.action = "/product/ProductOrderXdmList";
+		    form.action = "/productorder/ProductOrderXdmList";
 		    form.submit();
 		}
 		document.getElementById("changeRowNum").onchange = function () {
 		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-		    form.action = "/product/ProductOrderXdmList";
+		    form.action = "/productorder/ProductOrderXdmList";
 		    form.submit();
 		}
 		

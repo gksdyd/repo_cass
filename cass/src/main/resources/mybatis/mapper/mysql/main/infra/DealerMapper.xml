@@ -74,13 +74,49 @@
 			AND dealSeq = #{dealSeq}
 	</select>
 	
+	<insert id="insert">
+		insert into product (
+			dealName
+			,dealAddress
+			,dealManager
+			,dealManagerTel
+			,dealUseNy
+			,dealDelNy
+			,dealRegDate
+			,dealModDate
+			,dealDesc
+		) values (
+			#{dealName}
+			,#{dealAddress}
+			,#{dealManager}
+			,#{dealManagerTel}
+			,#{dealUseNy}
+			,#{dealDelNy}
+			,CURRENT_TIMESTAMP
+			,CURRENT_TIMESTAMP
+			,#{dealDesc}
+		)
+		<selectKey resultType="String" keyProperty="prdtSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	<update id="update">
 		update dealer set
 			dealName = #{dealName}
 			,dealAddress = #{dealAddress}
 			,dealManager = #{dealManager}
 			,dealManagerTel = #{dealManagerTel}
+			,dealUseNy = #{dealUseNy}
+			,dealDelNy = #{dealDelNy}
 			,dealModDate = CURRENT_TIMESTAMP
+		where
+			dealSeq = #{dealSeq}
+	</update>
+	
+	<update id="uelete">
+		update dealer set
+			dealDelNy = 1
 		where
 			dealSeq = #{dealSeq}
 	</update>

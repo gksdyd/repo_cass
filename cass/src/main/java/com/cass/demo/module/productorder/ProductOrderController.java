@@ -10,7 +10,7 @@ import com.cass.demo.base.xdm.BaseController;
 
 
 @Controller
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/productorder")
 public class ProductOrderController extends BaseController {
 	
 	@Autowired

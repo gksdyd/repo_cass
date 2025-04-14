@@ -46,19 +46,19 @@ public class DealerXdmController extends BaseController{
 	@RequestMapping(value = "/dealer/dealerXdmInst")
 	public String dealerXdmInst(DealerDto dealerDto) {
 		dealerService.insert(dealerDto);
-		return "redirect:/dealer/DealerXdmList";
+		return "redirect:/dealer/dealerXdmList";
 	}
 	
 	@RequestMapping(value = "/dealer/dealerXdmUpdt")
 	public String dealerXdmUpdt(DealerDto dealerDto) {
 		dealerService.update(dealerDto);
-		return "redirect:/dealer/DealerXdmList";
+		return "redirect:/dealer/dealerXdmList";
 	}
 	
 	@RequestMapping(value = "/dealer/dealerXdmUele")
 	public String dealerXdmUele(DealerDto dealerDto) {
 		dealerService.uelete(dealerDto);
-		return "redirect:/dealer/DealerXdmList";
+		return "redirect:/dealer/dealerXdmList";
 	}
 }
 
