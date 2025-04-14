@@ -33,6 +33,7 @@ public class IncomeXdmController extends BaseController {
 	public String IncomeXdmView(Model model, IncomeDto dto) {
 		
 		model.addAttribute("item", service.selectOne(dto));
+		model.addAttribute("list", service.selectOneList(dto));
 		return "xdm/income/IncomeXdmView";
 	}
 

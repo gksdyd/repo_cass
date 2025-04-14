@@ -16,6 +16,9 @@ public class IncomeService {
 	public List<IncomeDto> selectList(IncomeVo vo) {
 		return dao.selectList(vo);
 	}
+	public List<IncomeDto> selectOneList(IncomeDto dto) {
+		return dao.selectOneList(dto);
+	}
 	public IncomeDto selectOne(IncomeDto dto) {
 		return dao.selectOne(dto);
 	}

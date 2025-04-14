@@ -1,7 +1,10 @@
 package com.cass.demo.module.manufacture;
 
-public class ManufactureDto {
+import com.cass.demo.base.xdm.BaseDto;
+
+public class ManufactureDto extends BaseDto{
 	private String mafaSeq;
+	private String productorder_pdorSeq;
 	private String prdtName;
 	private Integer pdorNum;
 	private Integer mafaStausCd;
@@ -114,6 +117,12 @@ public class ManufactureDto {
 	}
 	public void setPdorTotalQty(Integer pdorTotalQty) {
 		this.pdorTotalQty = pdorTotalQty;
+	}
+	public String getProductorder_pdorSeq() {
+		return productorder_pdorSeq;
+	}
+	public void setProductorder_pdorSeq(String productorder_pdorSeq) {
+		this.productorder_pdorSeq = productorder_pdorSeq;
 	}
 	
 }

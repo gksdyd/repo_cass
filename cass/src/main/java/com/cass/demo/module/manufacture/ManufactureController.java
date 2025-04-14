@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cass.demo.base.xdm.BaseController;
-import com.cass.demo.module.income.IncomeDto;
 import com.cass.demo.module.productorder.ProductOrderDto;
 import com.cass.demo.module.productorder.ProductOrderService;
 import com.cass.demo.module.productorder.ProductOrderVo;
@@ -51,7 +50,11 @@ public class ManufactureController extends BaseController  {
 	@RequestMapping(value = "/ManufactureXdmView")
 	public String ManufactureXdmView(Model model, ManufactureDto dto) {
 		
+		dto.setPdorSeq(dto.getProductorder_pdorSeq());
+		System.out.println("dto.getPdorSeq(): " + dto.getPdorSeq());
+		System.out.println("dto.getMAfaSeq(): " + dto.getMafaSeq());
 		model.addAttribute("item", service.selectOne(dto));
+		model.addAttribute("list", service.selectOneList(dto));
 		return "xdm/manufacture/ManufactureXdmView";
 	}
 	

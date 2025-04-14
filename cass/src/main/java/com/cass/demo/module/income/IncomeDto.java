@@ -1,6 +1,8 @@
 package com.cass.demo.module.income;
 
-public class IncomeDto {
+import com.cass.demo.base.xdm.BaseDto;
+
+public class IncomeDto extends BaseDto{
 	private String incoSeq;
 	private Integer incoNum;
 	private Integer incoStatusCd;
