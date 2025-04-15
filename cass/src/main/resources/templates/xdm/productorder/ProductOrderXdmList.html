@@ -125,7 +125,7 @@
 					   <td><a href = "javascript:void(0);" th:text="${list.pdorNum}" th:attr="onclick=|goForm('${list.pdorSeq}')|"></a></td>
 					   <td th:text = "${list.dealName}"></td>
 					   <td th:text = "${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></td>
-					   <td th:if="${list.pdorTotalPrice} != null" th:text = "'￦ ' + ${list.pdorTotalPrice}"></td>
+					   <td th:if="${list.pdorTotalPrice} != null" th:text="'￦ ' + ${#numbers.formatInteger(list.pdorTotalPrice,3,'COMMA')}"></td>
 					   <td th:if="${list.pdorTotalPrice} == null"></td>
 <!-- 					   <td th:text = "${list.dealer_dealSeq}"></td> -->
 <!-- 					   <td th:text = "${list.pdolSeq}"></td> -->
