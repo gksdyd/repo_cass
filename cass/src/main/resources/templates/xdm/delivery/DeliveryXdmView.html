@@ -12,7 +12,7 @@
           <li class="breadcrumb-item active">Default</li>
         </ol>
       </nav>
-      <h1>주문관리</h1>
+      <h1>출고관리</h1>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -55,7 +55,54 @@
                   <textarea class="form-control" id="deliDesc" name="deliDesc" th:value="${item?.deliDesc}"></textarea>
                 </div>
                 <div class="col-md-6"></div>
-              </form>    
+              </div>    
+            <section class="section">
+		<p>주문내역</p>
+        <div class="row">
+        <input type="hidden" name="pdorSeq" th:value="${item?.pdorSeq}">
+              <!-- Table with stripped rows -->
+              <table class="table datatable" style="text-align: center;">
+                <thead>
+                  <tr>
+                    <th class="list-sort" style="text-align: center;">주문번호</th>
+                    <th class="list-sort" style="text-align: center;">주문상품</th>
+					<th class="list-sort" style="text-align: center;">주문수량</th>
+                    <th class="list-sort" style="text-align: center;">상품단가</th>
+                    <th class="list-sort" style="text-align: center;">주문총액</th>
+                    <th class="list-sort" style="text-align: center;">주문상태</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+	               		<td colspan="10">
+	               			<p class="fs-0" style="padding-top: 12px;">주문내역이 없습니다!</p>
+	               		</td>
+	               	</tr>
+	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
+					   <td th:text = "${list.pdolSeq}"></td>
+					   <td th:text = "${list.prdtName}"></td>
+					   <td th:text = "${list.pdolQty}"></td>
+					   <td th:text = "${list.prdtPrice}"></td>
+					   <td th:text = "${list.pdolAmountPrice}"></td>
+					   <td th:text = "${@codeService.selectOneCachedCode(list.pdolStatusCd)}"></td>
+	                   </tr>
+                  </tbody>
+                  <tfoot>
+                   
+                  </tfoot>
+                  
+                  </table>
+                  <div class="row">
+                  <div class="col-md-6">
+                  <a href="/delivery/DeliveryXdmList" class="btn btn-outline-dark"><i class="bi bi-blockquote-right"></i></a>
+                  <button class="btn btn-danger">X</button>
+                  <button type="button" class="btn btn-danger" id="btnUelete"><i class="bi bi-trash"></i></button>
+                </div>
+                <div class="col-md-6">
+                </div>
+                  </div>
+       </div>
+    </section>
             </div>
           </div>
 		<div class="modal" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -50,9 +50,6 @@ public class ManufactureController extends BaseController  {
 	@RequestMapping(value = "/ManufactureXdmView")
 	public String ManufactureXdmView(Model model, ManufactureDto dto) {
 		
-		dto.setPdorSeq(dto.getProductorder_pdorSeq());
-		System.out.println("dto.getPdorSeq(): " + dto.getPdorSeq());
-		System.out.println("dto.getMAfaSeq(): " + dto.getMafaSeq());
 		model.addAttribute("item", service.selectOne(dto));
 		model.addAttribute("list", service.selectOneList(dto));
 		return "xdm/manufacture/ManufactureXdmView";

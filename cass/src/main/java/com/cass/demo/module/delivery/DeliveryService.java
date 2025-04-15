@@ -17,6 +17,10 @@ public class DeliveryService {
 	public List<DeliveryDto> selectList(DeliveryVo deliveryVo) {
 		return deliveryDao.selectList(deliveryVo);
 	}
+	
+	public List<DeliveryDto> selectOneList(DeliveryDto dto) {
+		return deliveryDao.selectOneList(dto);
+	}
 	public int selectOneCount(DeliveryVo deliveryVo) {
 		return deliveryDao.selectOneCount(deliveryVo);
 	}

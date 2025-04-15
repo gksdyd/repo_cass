@@ -43,6 +43,7 @@ public class DeliveryXdmController extends BaseController{
 	public String deliveryXdmView(Model model, DeliveryDto dto) {
 		
 		model.addAttribute("item", deliveryService.selectOne(dto));
+		model.addAttribute("list", deliveryService.selectOneList(dto));
 		
 		return "xdm/delivery/DeliveryXdmView";
 	}

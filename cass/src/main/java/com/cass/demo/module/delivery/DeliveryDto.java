@@ -1,6 +1,8 @@
 package com.cass.demo.module.delivery;
 
-public class DeliveryDto {
+import com.cass.demo.base.xdm.BaseDto;
+
+public class DeliveryDto extends BaseDto{
 	
 	private String deliSeq;
 	private String deliNum;

@@ -10,6 +10,7 @@ import com.cass.demo.module.productorder.ProductOrderDto;
 public interface DeliveryDao {
 	
 	public List<DeliveryDto> selectList(DeliveryVo deliveryVo);
+	public List<DeliveryDto> selectOneList(DeliveryDto dto);
 	public int selectOneCount(DeliveryVo deliveryVo);
 	public int deliMaxNum();
 	public int insert(ProductOrderDto dto);
