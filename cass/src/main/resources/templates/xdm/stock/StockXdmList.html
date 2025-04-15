@@ -93,7 +93,8 @@
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
 	                   <td th:text = "${list.prdtName}"></td>
-	                   <td th:text = "${list.stckQty}"></td>
+	                   <td th:text="${list.stckQty > 0 ? '+' + list.stckQty : list.stckQty}"
+						   th:classappend="${list.stckQty > 0} ? 'text-danger' : (${list.stckQty < 0} ? 'text-primary' : '')"></td>
 	                   <td th:text = "${list.stckTotalQty}"></td>
 	                   <td th:text = "${list.stckModDate}"></td>
 	                   </tr>
