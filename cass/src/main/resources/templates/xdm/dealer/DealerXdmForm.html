@@ -27,7 +27,7 @@
                		<input type="hidden" name="dealSeq" >	               		
                 <div class="col-md-3" style="height: 100px;">
                 	<label for="dealName" class="form-label">대리점명 <sup>*</sup></label>
-                	<input type="text" class="form-control" id="dealName" name="dealName"  value="" placeholder="" th:value="${item?.dealName}">
+                	<input type="text" class="form-control" id="dealName" name="dealName"  value="" placeholder="대리점명" th:value="${item?.dealName}">
                 </div>
       
                 <div class="col-md-3" style="height: 100px;">
@@ -41,7 +41,7 @@
                 
                 <div class="col-md-3">
                   <label for="dealManagerTel" class="form-label">매니저번호</label>
-                  <input type="text" class="form-control" id="dealManagerTel" name="dealManagerTel" th:value="${item?.dealManagerTel}" required>
+                  <input type="text" class="form-control" id="dealManagerTel" name="dealManagerTel" placeholder="xxx-xxxx-xxxx" th:value="${item?.dealManagerTel}" required>
                 </div>
                 
                 <div class="col-md-3" style="height: 100px;">
