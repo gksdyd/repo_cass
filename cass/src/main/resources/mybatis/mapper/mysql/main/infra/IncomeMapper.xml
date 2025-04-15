@@ -16,7 +16,6 @@
 		
 		<choose>
 			<when test="shOptionDate == 1">AND incoRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND incoModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
         <choose>
             <when test="shOption == 1">AND incoNum = #{shValue}</when>
