@@ -34,14 +34,8 @@ public class IncomeController extends BaseController {
 	StockService stockService;
 	
 	@RequestMapping(value = "/IncomeXdmList")
-	public String incomeXdmForm(@ModelAttribute("incomeVo") IncomeVo incomeVo, 
-			@ModelAttribute("manuVo") ManufactureVo manuVo, Model model) {
-		utildatetime(incomeVo);
+	public String incomeXdmForm(@ModelAttribute("manuVo") ManufactureVo manuVo, Model model) {
 		utildatetime(manuVo);
-
-		model.addAttribute("selectIncoStatus",service.selectIncoStatus());
-		incomeVo.setParamsPaging(service.selectOneCount(incomeVo));
-		model.addAttribute("list", service.selectList(incomeVo));
 		
 		manuVo.setParamsPagingNew(manufactureService.selectOneCountForInco(manuVo));
 		model.addAttribute("orderList", manufactureService.selectListForInco(manuVo));

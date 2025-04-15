@@ -4,8 +4,6 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
-          <input type="hidden" name="thisPage" th:value="${incomeVo.thisPage}" default="1"/>
-          <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${incomeVo.rowNumToShow}"/>
 		  <input type="hidden" name="thisPageNew" th:value="${manuVo.thisPageNew}" default="1"/>
 		  <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${manuVo.rowNumToShowNew}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
@@ -17,30 +15,30 @@
 				<div class="mb-2 row g-3">
 	                <div class="col-4">
 	                  <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
-	                    <option value="" th:selected="${incomeVo.shOptionDate == null}">날짜</option>
-	                    <!--<option value="1" th:selected="${incomeVo.shOptionDate == 1}">입고일</option>-->
+	                    <option value="" th:selected="${manuVo.shOptionDate == null}">날짜</option>
+	                    <!--<option value="1" th:selected="${manuVo.shOptionDate == 1}">입고일</option>-->
 						<option value="2" th:selected="${manuVo.shOptionDate == 2}">제작일</option>
 						<option value="3" th:selected="${manuVo.shOptionDate == 3}">완료일</option>
 	                  </select>
 	                </div>
 	                <div class="col-4">
-	                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(incomeVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+	                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(manuVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
 	                </div>
 	                <div class="col-4">
-	                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(incomeVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+	                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(manuVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
 	                </div>
 				</div>
 	              <div class="mb-4 row g-3">
 	                <div class="col-4">
 	                  <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
-	                    <option value="" th:selected="${incomeVo.shOption == null}">검색구분</option>
-	                    <!--<option value="2" th:selected="${incomeVo.shOption == 2}">입고번호</option>-->
-	                    <option value="3" th:selected="${incomeVo.shOption == 3}">제작번호</option>
-						<option value="5" th:selected="${manuVo.shOption == 4}">제작품명</option>
+	                    <option value="" th:selected="${manuVo.shOption == null}">검색구분</option>
+	                    <!--<option value="2" th:selected="${manuVo.shOption == 2}">입고번호</option>-->
+	                    <option value="3" th:selected="${manuVo.shOption == 3}">제작번호</option>
+						<option value="4" th:selected="${manuVo.shOption == 4}">제작품명</option>
 	                  </select>
 	                </div>
 	                <div class="col-4">
-	                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${incomeVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
+	                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${manuVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
 	                </div>
 	                <div class="col-4">
 	                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
