@@ -25,7 +25,7 @@
               <h1 class="card-title" style="height: 100px;" >기본정보</h1>
 
               <!-- Custom Styled Validation -->
-              <form class="row g-3 needs-validation" action="/dealer/dealerXdmUpdt" method="post" id="form" novalidate>
+              <form class="row g-3 needs-validation" method="post" id="form" name="form" novalidate>
                 <div class="col-md-3" style="height: 100px;">
                 <input type="hidden" name="seq" th:value="${item?.dealSeq}">
                   <label for="dealName" class="form-label">대리점명<sup>*</sup></label>
@@ -117,8 +117,8 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-secondary" id="btnClose" data-bs-dismiss="modal">닫힘</button>
-						<button type="button" class="btn btn-danger" name="" id="btnModalDelete"></button>
-						<button type="button" class="btn btn-danger" name="" id="btnModalUelete">삭제</button>
+						<button type="button" class="btn btn-danger" name="btnModalDelete" id="btnModalDelete"></button>
+						<button type="button" class="btn btn-danger" name="btnModalUelete" id="btnModalUelete">삭제</button>
 					</div>
 				</div>
 			</div>
@@ -134,7 +134,7 @@
   <script th:inline="javascript" src="/xdm/template/NiceAdmin/assets/js/product.js"></script>
   
     <script type="text/javascript">
-    let seq = document.querySelector("input[name=pdorSeq]");
+    let seq = document.querySelector("input[name=dealSeq]");
     let form = document.querySelector("form[name=form]");
     
     document.getElementById("btnSubmit").onclick = function () {
