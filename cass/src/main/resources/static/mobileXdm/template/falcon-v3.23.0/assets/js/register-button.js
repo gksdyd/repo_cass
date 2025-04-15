@@ -67,7 +67,7 @@ $("#mafaBtn").on("click", function() {
       ,url: URL_MANUFACTURE_MOBILE_PROC
       ,data: {"pdorNum" : value}
       ,success: function(response) {
-          location.href = URL_MANUFACTURE_MOBILE_LIST;
+          location.href = URL_PRODUCT_MOBILE_LIST;
       }
       ,error : function(jqXHR){
         alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
