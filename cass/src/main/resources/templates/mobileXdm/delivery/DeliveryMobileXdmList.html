@@ -52,7 +52,7 @@
 					<label class="form-label-JHY" for="description">Total: </label>
 					<label class="form-label-JHY" for="description" th:text="${orderVo.totalRowsNew}"></label>
 				</div>
-				<div class="col-4 col-lg-2" style="text-align: right;">
+				<div class="col-4 col-lg-3" style="text-align: right;">
 					<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
 						<option value="5" th:selected="${orderVo.rowNumToShowNew eq 5}">5</option>
 						<option value="10" th:selected="${orderVo.rowNumToShowNew eq 10}">10</option>
@@ -107,12 +107,14 @@
   					<button class="btn btn-primary fs-10" type="button" id="detailBtn" value="delivery">상세</button>
   				</div>
   			</div>
+  			</div>
+  			</div>
         </form>
         <div th:replace="~{mobileXdm/include/foot :: foot}"></div>
       </div>
     </div>
   </main>
-<!--  <div th:replace="~{xdm/include/modal :: modal}"></div>-->
+  <div th:replace="~{mobileXdm/include/modal :: modal}"></div>
   <div th:replace="~{mobileXdm/include/includeMobileFalcon :: includeMobileFalcon}"></div>
   <div th:replace="~{mobileXdm/include/includeMobileCommon :: includeMobileCommon}"></div>
   <div th:replace="~{mobileXdm/include/includeXdmList :: includeXdmList}"></div>
