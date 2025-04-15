@@ -7,11 +7,20 @@
           <input type="hidden" id="pdorNum" name="pdorNum">
           <input type="hidden" name="thisPage" th:value="${manuVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${manuVo.rowNumToShow}"/>
+          <input type="hidden" name="thisPageNew" th:value="${orderVo.thisPageNew}" default="1"/>
+          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${orderVo.rowNumToShowNew}"/>
           <input type="hidden" id="mafaSeq" name="mafaSeq" value=0/>
           <div class="card mb-3" id="customersTable">
             <div class="card-header" id="search">
               <div class="mb-2 row g-3">
                 <h1>제작 관리</h1>
+<!--                 <div class="col-4">
+                  <select class="form-select-JHY" id="shDelFlag" name="shDelFlag" aria-label="Default select example">
+                    <option value="" th:selected="${vo.shDelFlag == null}">삭제여부</option>
+                    <option value="1" th:selected="${vo.shDelFlag == 1}">Y</option>
+                    <option value="0" th:selected="${vo.shDelFlag == 0}">N</option>  
+                  </select>
+                </div> -->
               </div>
               <div class="mb-2 row g-3">
                 <div class="col-4">
@@ -48,6 +57,76 @@
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header">
+              	<h5>주문 리스트</h5>
+            	<div class="row">
+					<div class="col">
+						<label class="form-label-JHY" for="description">Total: </label>
+						<label class="form-label-JHY" for="description" th:text="${orderVo.totalRowsNew}"></label>
+					</div>
+					<div class="col-4 col-lg-2" style="text-align: right;">
+						<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
+							<option value="5" th:selected="${orderVo.rowNumToShowNew eq 5}">5</option>
+							<option value="10" th:selected="${orderVo.rowNumToShowNew eq 10}">10</option>
+							<option value="30" th:selected="${orderVo.rowNumToShowNew eq 30}">30</option>
+							<option value="50" th:selected="${orderVo.rowNumToShowNew eq 50}">50</option>
+							<option value="80" th:selected="${orderVo.rowNumToShowNew eq 80}">80</option>
+							<option value="100" th:selected="${orderVo.rowNumToShowNew eq 100}">100</option>   
+						</select>
+					</div>
+				</div>
+            </div>
+            <div class="card-body p-0">
+            	<div class="table-responsive scrollbar">
+             		<a class="item" href="javascript:void(0);" th:each="list : ${orderList}">
+	             		<div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
+	         				<div class="col-2 py-3 px-x1">
+	         					<div class="# " th:text="${orderVo.totalRowsNew - ((orderVo.thisPageNew - 1) * orderVo.rowNumToShowNew + listStat.index)}"></div>
+	         			 	</div>
+	             		 	<div class="col-5 py-3">
+								<span class="d-flex fs-11">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
+								<span class="d-flex fs-11">주문일시:&emsp;<div th:text="${#strings.substring(list.pdorRegDate, 0, 10)}"></div></span>
+								<span class="d-flex fs-11">수정일시:&emsp;<div th:text="${#strings.substring(list.pdorModDate, 0, 10)}"></div></span>
+	             		 	</div>
+	             			<div class="col-5 py-3 fs-11">
+				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
+								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
+	             			</div>
+	         		   	</div>
+         		   	</a>
+           		</div>
+           	</div>
+            <div class="card-footer d-flex align-items-center justify-content-center">
+	            <div class="col">
+					<ul class="pagination mb-0">
+						<li th:if="${orderVo.startPageNew gt orderVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" href="javascript:goListNew(${orderVo.startPageNew - 1})" th:attr="onclick=|goListNew('${orderVo.startPageNew - 1}')|">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+						</li>
+						<li th:each="num: ${#numbers.sequence(orderVo.startPageNew, orderVo.endPageNew)}" th:classappend="${num eq orderVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
+						</li>
+						<li th:if="${orderVo.endPageNew ne orderVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${orderVo.endPageNew + 1}')|">
+							<i class="fas fa-chevron-right"></i>
+						</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col" style="text-align: right;">
+					<button class="btn btn-success fs-10" type="button" id="mafaBtn">제작</button>
+					<button class="btn btn-primary fs-10" type="button" id="detailBtn" value="manufacture">상세</button>
+				</div>
+			</div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header">
+              	<h5>제작 리스트</h5>
               	<div class="row">
 					<div class="col">
 						<label class="form-label-JHY" for="description">Total: </label>
