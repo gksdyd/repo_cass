@@ -41,6 +41,21 @@
         </choose>
     </sql>
     
+     <sql id="selectCommon">	    
+		from
+	  productorder pdor 
+	  left join dealer d ON pdor.dealer_dealSeq = d.dealSeq
+		WHERE 1=1 
+		<choose>
+			<when test="shOptionDate == 1">AND pdorRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND pdorModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+            <when test="shOption == 1">AND pdorNum = #{shValue}</when>
+            <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+    
 <select id="selectList" resultMap="resultMapObj">
 
 	select
@@ -59,13 +74,8 @@
 <!--         pdol.pdolAmountPrice, -->
 <!--         pdol.product_prdtSeq, -->
         d.dealName,
-        d.dealManager
-        
-	from
-	  productorder pdor 
-<!-- 	  left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq -->
-	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
-		WHERE 1=1 
+        d.dealManager       
+        <include refid = "selectCommon"></include>     
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 
@@ -76,11 +86,8 @@
 	
 	Select count(*)
 	
-	From
-	
-		productorder pdor 
-		left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
-		WHERE 1=1 
+<include refid = "selectCommon"></include>
+ 
 	</select>
 
 	<select id="selectListForMafa" resultMap="resultMapObj">
