@@ -4,8 +4,6 @@
 
 		<div th:replace="~{mobileXdm/include/head :: head}"></div>
         <form name="formList" id="formList" method="post" autocomplete="off">
-          <input type="hidden" name="thisPageNew" th:value="${deliVo.thisPageNew}" default="1"/>
-          <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${deliVo.rowNumToShowNew}"/>
           <input type="hidden" name="thisPage" th:value="${orderVo.thisPage}" default="1"/>
           <input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${orderVo.rowNumToShow}"/>
           <input type="hidden" id="deliSeq" name="deliSeq" value=0/>
@@ -18,31 +16,31 @@
               <div class="mb-2 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
-                    <option value="" th:selected="${deliVo.shOptionDate == null}">날짜</option>
-                    <option value="1" th:selected="${deliVo.shOptionDate == 1}">주문일</option>
-                    <option value="2" th:selected="${deliVo.shOptionDate == 2}">수정일</option>
-                    <!--<option value="3" th:selected="${deliVo.shOptionDate == 3}">출고일</option>-->
+                    <option value="" th:selected="${orderVo.shOptionDate == null}">날짜</option>
+                    <option value="1" th:selected="${orderVo.shOptionDate == 1}">주문일</option>
+                    <option value="2" th:selected="${orderVo.shOptionDate == 2}">수정일</option>
+                    <!--<option value="3" th:selected="${orderVo.shOptionDate == 3}">출고일</option>-->
                   </select>
                 </div>
                 <div class="col-4">
-                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(deliVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(orderVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
                 </div>
                 <div class="col-4">
-                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(deliVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(orderVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
                 </div>
               </div>
               <div class="mb-4 row g-3">
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
-                    <option value="" th:selected="${deliVo.shOption == null}">검색구분</option>
-                    <option value="1" th:selected="${deliVo.shOption == 1}">주문번호</option>
-                    <option value="2" th:selected="${deliVo.shOption == 2}">주문처명</option>
-                    <!--<option value="3" th:selected="${deliVo.shOption == 3}">출고번호</option>-->
-                    <!--<option value="4" th:selected="${deliVo.shOption == 4}">제작번호</option>-->
+                    <option value="" th:selected="${orderVo.shOption == null}">검색구분</option>
+                    <option value="1" th:selected="${orderVo.shOption == 1}">주문번호</option>
+                    <option value="2" th:selected="${orderVo.shOption == 2}">주문처명</option>
+                    <!--<option value="3" th:selected="${orderVo.shOption == 3}">출고번호</option>-->
+                    <!--<option value="4" th:selected="${orderVo.shOption == 4}">제작번호</option>-->
                   </select>
                 </div>
                 <div class="col-4">
-                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${deliVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
+                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${orderVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
                 </div>
                 <div class="col-4">
                   <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
@@ -79,7 +77,7 @@
   	             		 	</div>
   	             			<div class="col-5 py-3 fs-11">
   				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
-  								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+  								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="'￦ ' + ${#numbers.formatInteger(list.pdorTotalPrice,3,'COMMA')}"></div></span>
   								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
   	             			</div>
   	         		   	</div>

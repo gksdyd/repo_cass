@@ -75,7 +75,7 @@
 	             		 	</div>
 	             			<div class="col-5 py-3 fs-11">
 				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
-								<span class="d-flex fs-11">주문총액:&emsp;<div th:if="${list.pdorTotalPrice} != null" th:text="'￦ ' + ${#numbers.formatInteger(list.pdorTotalPrice,3,'COMMA')}"></div></span>
+								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="'￦ ' + ${#numbers.formatInteger(list.pdorTotalPrice,3,'COMMA')}"></div></span>
 								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
 	             			</div>
 	         		   	</div>

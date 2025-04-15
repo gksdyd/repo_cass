@@ -113,7 +113,8 @@
         pdor.pdorModDate,
         pdor.pdorTotalPrice,
         pdor.pdorStatusCd,
-        d.dealName
+        d.dealName,
+        pdor.pdorTotalPrice
         <include refid = "selectCommonForDeli"></include>     
 		ORDER BY pdor.pdorSeq DESC
 		limit #{rowNumToShowNew} offset #{startRnumForMysqlNew}
