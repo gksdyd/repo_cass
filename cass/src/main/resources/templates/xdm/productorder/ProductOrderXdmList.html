@@ -19,6 +19,18 @@
         <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
         <input type="hidden" name="pdorSeq">           
             <div class="col-md-2">
+                <select id="shStatusCd" name="shStatusCd" class="form-select form-select-sm">
+					<option value="" th:selected="${vo.shStatusCd == null}">주문상태</option>
+					<option value="1" th:selected="${vo.shStatusCd == 1}">주문접수</option>
+					<option value="2" th:selected="${vo.shStatusCd == 2}">주문제작</option>
+					<option value="3" th:selected="${vo.shStatusCd == 3}">주문배송</option>
+					<option value="4" th:selected="${vo.shStatusCd == 4}">완료</option>
+				</select>
+                  <div class="invalid-feedback">
+                    항목중 하나를 선택 해주세요.
+                  </div>
+            </div>
+            <div class="col-md-2">
                 <select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
 					<option value="1" th:selected="${vo.shOptionDate == 1}">주문일시</option>
@@ -31,13 +43,13 @@
             <div class="col-md-2">
                 <input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
                 <div class="invalid-feedback">
-                  코드를 입력해주세요.
+                  시작일을 입력해주세요.
                 </div>
             </div>
             <div class="col-md-2">
                 <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
                 <div class="invalid-feedback">
-                  코드를 입력해주세요.
+                  종료일을 입력해주세요.
                 </div>
             </div>
             <div class="col-md-2">
@@ -53,7 +65,7 @@
             <div class="col-md-2">
                 <input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
                 <div class="invalid-feedback">
-                  코드를 입력해주세요.
+                  검색어를 입력해주세요.
                 </div>
             </div>
             <div class="col-md-2">
@@ -131,12 +143,12 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 padding-left">
-                  <button class="btn btn-danger">X</button>
-                  <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+<!--                   <button class="btn btn-danger">X</button> -->
+<!--                   <button class="btn btn-danger"><i class="bi bi-trash"></i></button> -->
                 </div>
                 <div class="col-md-6 padding-right" style="display: flex; justify-content: end;">
                     
-                    <button type="button" class="btn btn-success btn-right"><i class="bi bi-journal-x"></i></button>
+<!--                     <button type="button" class="btn btn-success btn-right"><i class="bi bi-journal-x"></i></button> -->
                     <button type="button" class="btn btn-primary"id="btnForm" name="btnForm"><i class="bi bi-plus-lg"></i></button>
 <!--                   <a href="javascript:void(0);" id="btnForm" name="btnForm" class="btn btn-primary"><i class="bi bi-plus-lg"></i></a> -->
                 </div>

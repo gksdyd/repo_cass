@@ -6,13 +6,14 @@ public class ProductOrderVo extends BaseVo{
 	
 	private Integer pdorNum;
 	private Integer pdorStatusCd;
+	private Integer shStatusCd;
 
  	private String pdorSeq;
 	private String pdolSeq;
 	private String tpolSeq;
 	
 	private int flag = 0;
-  
+//	-----
 	public Integer getPdorNum() {
 		return pdorNum;
 	}
@@ -60,4 +61,13 @@ public class ProductOrderVo extends BaseVo{
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
+
+	public Integer getShStatusCd() {
+		return shStatusCd;
+	}
+
+	public void setShStatusCd(Integer shStatusCd) {
+		this.shStatusCd = shStatusCd;
+	}
+	
 }

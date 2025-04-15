@@ -21,6 +21,7 @@
             <when test="shOption == 1">AND pdorNum = #{shValue}</when>
             <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
         </choose>
+        
     </sql>
     
     <sql id="selectCommonForDeli">	    
@@ -53,6 +54,12 @@
         <choose>
             <when test="shOption == 1">AND pdorNum = #{shValue}</when>
             <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+        <choose>
+            <when test="shStatusCd == 1">AND pdorStatusCd = 3</when>
+            <when test="shStatusCd == 2">AND pdorStatusCd = 4</when>
+            <when test="shStatusCd == 3">AND pdorStatusCd = 5</when>
+            <when test="shStatusCd == 4">AND pdorStatusCd = 6</when>
         </choose>
     </sql>
     
