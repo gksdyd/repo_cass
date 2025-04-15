@@ -10,7 +10,7 @@
 			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
 			LEFT JOIN dealer AS d ON po.dealer_dealSeq = d.dealSeq
 		where 1=1
-<!-- 			AND mafaStausCd = 8 -->
+ 			AND mafaStausCd = 8
 		<choose>
 			<when test="shOptionDate == 3">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			<when test="shOptionDate == 4">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
