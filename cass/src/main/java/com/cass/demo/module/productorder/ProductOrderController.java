@@ -79,14 +79,14 @@ public class ProductOrderController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/ProductOrderXdmInst")
-	public String ProductOrderXdmInst(ProductOrderDto dto) {
+	public String ProductOrderXdmInst(ProductOrderDto dto) {		
 		productOrderService.insert(dto);
-		
 		for (int i = 0; i < dto.getScaleNameArray().size(); i++) {
 			dto.setPdolQty(dto.getScaleCountArray().get(i));
 			dto.setPrdtName(dto.getScaleNameArray().get(i));
 			productOrderService.insertOrderList(dto);
 		}
+		productOrderService.updateAmoutPrice(dto);
 		return "redirect:/productorder/ProductOrderXdmList";
 	}
 	

@@ -212,6 +212,13 @@
 			pdorSeq = #{pdorSeq}
 	</update>
 	
+	<update id="updateAmoutPrice">
+		update productorder set
+        	pdorTotalPrice = (SELECT SUM(pdolAmountPrice) FROM productorderlist WHERE productorder_pdorSeq = #{pdorSeq})
+		where
+			pdorSeq = #{pdorSeq}
+	</update>
+	
 	<select id="selectedOneList" resultMap="resultMapObj">
 
 	select

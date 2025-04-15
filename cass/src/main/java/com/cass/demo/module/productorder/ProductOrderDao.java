@@ -37,4 +37,6 @@ public interface ProductOrderDao {
 	public List<ProductOrderDto> selectOrderList(ProductOrderDto productOrderDto);
 	public int updateOrderList(ProductOrderDto productOrderDto);
 	public int deletOrderList(ProductOrderDto productOrderDto);
+	
+	public int updateAmoutPrice(ProductOrderDto productOrderDto);
 }

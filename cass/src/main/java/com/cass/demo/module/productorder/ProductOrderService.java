@@ -90,4 +90,8 @@ public class ProductOrderService {
 	public int deletOrderList(ProductOrderDto productOrderDto) {
 		return productOrderDao.deletOrderList(productOrderDto);
 	}
+	
+	public int updateAmoutPrice(ProductOrderDto productOrderDto) {
+		return productOrderDao.updateAmoutPrice(productOrderDto);
+	}
 }
