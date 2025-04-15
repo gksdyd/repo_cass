@@ -10,6 +10,7 @@ public interface DealerDao {
 	public DealerDto getIdPass(DealerDto dealerDto);
 	public int selectOneCount(DealerVo vo);
 	public List<DealerDto> selectList(DealerVo vo);
+	public List<DealerDto> selectListForIndex(DealerDto dealerDto);
 	public DealerDto selectOne(DealerDto dealerDto);
 	public DealerDto selectOne(DealerVo Vo);
 	public List<DealerDto> selectOneList(DealerDto dealerDto);

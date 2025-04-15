@@ -1,5 +1,7 @@
 package com.cass.demo.module.index;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,14 +11,18 @@ public class IndexService {
 	@Autowired
 	IndexDao dao;
 	
-	public int selectOneCountOnPdor(IndexDto dto) {
-		return dao.selectOneCountOnPdor(dto);
+	public int selectOneCountOnPdor() {
+		return dao.selectOneCountOnPdor();
 	}
-	public int selectOneCountOnMafa(IndexDto dto) {
-		return dao.selectOneCountOnMafa(dto);
+	public int selectOneCountOnMafa() {
+		return dao.selectOneCountOnMafa();
 	}
-	public int selectOneCountOnDeli(IndexDto dto) {
-		return dao.selectOneCountOnDeli(dto);
+	public int selectOneCountOnDeli() {
+		return dao.selectOneCountOnDeli();
+	}
+	
+	public List<IndexDto> selectListItemForIndex(IndexDto dto) {
+		return dao.selectListItemForIndex(dto);
 	}
 
 }
