@@ -9,6 +9,11 @@
 	        <i class="bi bi-house fs-4"></i><br>
 	      </a>
 	    </div>
+		<div>
+		  <a href="/mobileXdm/productorder/ProductOrderXdmList" class="text-decoration-none" th:classappend="${activePage} == 'productOrder' ? ' text-primary' : ' text-secondary'">
+		    <i class="bi bi-receipt fs-4"></i><br>
+		  </a>
+		</div>
 	    <div>
 	      <a href="/mobileXdm/manufacture/ManufactureXdmList" class="text-decoration-none" th:classappend="${activePage} == 'manufacture' ? ' text-primary' : ' text-secondary'">
 	        <i class="bi bi-gear fs-4"></i><br>
@@ -29,11 +34,6 @@
 	        <i class="bi bi-box fs-4"></i><br>
 	      </a>
 	    </div>
-		<div>
-		  <a href="/mobileXdm/stock/StockXdmHistory" class="text-decoration-none" th:classappend="${activePage} == 'sthistory' ? ' text-primary' : ' text-secondary'">
-		    <i class="bi bi-receipt fs-4"></i><br>
-		  </a>
-		</div>
 	  </div>
 	</footer>
 </th:block>
