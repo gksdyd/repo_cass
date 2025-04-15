@@ -25,9 +25,9 @@
               <h1 class="card-title" style="height: 100px;" >기본정보</h1>
 
               <!-- Custom Styled Validation -->
-              <form class="row g-3 needs-validation" action="/product/productXdmUpdt" method="post" id="form" name="form" novalidate>
+              <form class="row g-3 needs-validation" method="post" id="form" name="form" novalidate>
                 <div class="col-md-3" style="height: 100px;">
-                <input type="hidden" name="seq" th:value="${item?.prdtSeq}">
+                <input type="hidden" name="prdtSeq" th:value="${item?.prdtSeq}">
                   <label for="prdtName" class="form-label">상품 이름<sup>*</sup></label>
                   <input type="text" class="form-control" id="prdtName" name="prdtName" th:value="${item?.prdtName}" required>
                 </div>
@@ -136,23 +136,29 @@
   <script th:inline="javascript" src="/xdm/template/NiceAdmin/assets/js/product.js"></script>
   
     <script type="text/javascript">
-    let seq = document.querySelector("input[name=pdorSeq]");
+    let seq = document.querySelector("input[name=prdtSeq]");
     let form = document.querySelector("form[name=form]");
     
     document.getElementById("btnSubmit").onclick = function () {
 		alert("2");
 	if(seq.value == "0" || seq.value == "") {
-//			if(validationInst() == false) return false;
+			if(validationInst() == false) return false;
 		form.action = "/product/ProductXdmInst";
 		form.submit();
 		alert("3");
 	} else {
-//			if(validationUpdt() == false) return false;
+			if(validationUpdt() == false) return false;
 		form.action = "/product/ProductXdmUpdt";
 		form.submit();
 	}
  }
 
+    function alertModal() {
+		document.querySelector("#modalAlertTitle").textContent = "입력오류";
+		document.querySelector("#modalAlertBody").textContent = "형식에 맞는 값을 입력해주세요";
+		$("#modalAlert").modal("show");
+	}
+    
 	document.getElementById("btnUelete").onclick = function () {
 		document.querySelector("#modalConfirmTitle").textContent = "확 인";
 		document.querySelector("#modalConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";

@@ -107,8 +107,8 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫힘</button>
-						<button type="button" class="btn btn-danger" name="" id="btnModalDelete"></button>
-						<button type="button" class="btn btn-danger" name="" id="btnModalUelete">삭제</button>
+						<button type="button" class="btn btn-danger" name="btnModalDelete" id="btnModalDelete"></button>
+						<button type="button" class="btn btn-danger" name="btnModalUelete" id="btnModalUelete">삭제</button>
 					</div>
 				</div>
 			</div>
@@ -159,7 +159,7 @@
 		
 		
 	document.getElementById("btnUelete").onclick = function () {
-		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalConfirmTitle").textContent = "확 인";
 		document.querySelector("#modalConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";
 		document.querySelector("#btnModalUelete").style.display = '';
 		document.querySelector("#btnModalDelete").style.display = 'none';
