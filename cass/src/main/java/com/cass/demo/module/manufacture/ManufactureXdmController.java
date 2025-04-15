@@ -36,12 +36,6 @@ public class ManufactureXdmController extends BaseController {
 		return "mobileXdm/manufacture/ManufactureXdmList";
 	}
 	
-	@RequestMapping(value = "/ManufactureXdmForm")
-	public String manufactureXdmForm(ProductOrderVo pdorVo, Model model) {
-		model.addAttribute("list", orderService.selectOneList(pdorVo));
-		return "mobileXdm/manufacture/ManufactureXdmForm";
-	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/MafaRegisterProc")
 	public void mafaRegisterProc(ProductOrderVo vo) {

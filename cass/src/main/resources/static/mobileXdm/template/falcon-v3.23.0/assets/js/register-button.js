@@ -41,7 +41,7 @@ $("#detailBtn").on("click", function() {
 
 $("#listBtn").on("click", function() {
 	if ($(this).val() == MANUFACTURE) {
-		location = URL_MANUFACTURE_MOBILE_LIST;	
+		location = URL_PRODUCT_MOBILE_LIST;	
 	} else if ($(this).val() == DELIVERY) {
 		location = URL_OUTCOM_MOBILE_LIST;	
 	}
