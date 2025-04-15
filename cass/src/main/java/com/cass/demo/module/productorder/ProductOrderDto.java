@@ -1,6 +1,5 @@
 package com.cass.demo.module.productorder;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +7,8 @@ public class ProductOrderDto {
 	
 	private String pdorSeq;
 	private Integer pdorNum;
-	private LocalDateTime pdorRegDate;
-	private LocalDateTime pdorModDate;
+	private String pdorRegDate;
+	private String pdorModDate;
 	private Integer pdorTotalQty;
 	private Integer pdorTotalPrice;
 	private String pdorDesc;
@@ -55,16 +54,16 @@ public class ProductOrderDto {
 	public void setPdorNum(Integer pdorNum) {
 		this.pdorNum = pdorNum;
 	}
-	public LocalDateTime getPdorRegDate() {
+	public String getPdorRegDate() {
 		return pdorRegDate;
 	}
-	public void setPdorRegDate(LocalDateTime pdorRegDate) {
+	public void setPdorRegDate(String pdorRegDate) {
 		this.pdorRegDate = pdorRegDate;
 	}
-	public LocalDateTime getPdorModDate() {
+	public String getPdorModDate() {
 		return pdorModDate;
 	}
-	public void setPdorModDate(LocalDateTime pdorModDate) {
+	public void setPdorModDate(String pdorModDate) {
 		this.pdorModDate = pdorModDate;
 	}
 	public Integer getPdorTotalPrice() {

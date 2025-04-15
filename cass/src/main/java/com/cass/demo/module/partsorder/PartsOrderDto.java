@@ -1,15 +1,13 @@
 package com.cass.demo.module.partsorder;
 
-import java.time.LocalDateTime;
-
 public class PartsOrderDto {
 	
 	private String ptorSeq;
 	private Integer ptorNum;
 	private Integer ptorAmountPrice;
 	private Integer ptorDelNy;
-	private LocalDateTime ptorRegDate;
-	private LocalDateTime ptorModDate;
+	private String ptorRegDate;
+	private String ptorModDate;
 	private Integer ptorStatusCd;
 	private String ptorDesc;
 	private String partpartner_papaSeq;
@@ -46,16 +44,16 @@ public class PartsOrderDto {
 	public void setPtorDelNy(Integer ptorDelNy) {
 		this.ptorDelNy = ptorDelNy;
 	}
-	public LocalDateTime getPtorRegDate() {
+	public String getPtorRegDate() {
 		return ptorRegDate;
 	}
-	public void setPtorRegDate(LocalDateTime ptorRegDate) {
+	public void setPtorRegDate(String ptorRegDate) {
 		this.ptorRegDate = ptorRegDate;
 	}
-	public LocalDateTime getPtorModDate() {
+	public String getPtorModDate() {
 		return ptorModDate;
 	}
-	public void setPtorModDate(LocalDateTime ptorModDate) {
+	public void setPtorModDate(String ptorModDate) {
 		this.ptorModDate = ptorModDate;
 	}
 	public Integer getPtorStatusCd() {

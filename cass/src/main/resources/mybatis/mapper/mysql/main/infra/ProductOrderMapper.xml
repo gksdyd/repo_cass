@@ -170,12 +170,14 @@
 		pdorNum,
         pdorDesc,
         pdorStatusCd,
-        dealer_dealSeq
+        dealer_dealSeq,
+        pdorRegDate
 		) values (
 			#{pdorNum}
 			,#{pdorDesc}
 			,3
 			,#{dealer_dealSeq}
+			,date_format(NOW(), '%Y-%m-%d %H:%i:%S')
 		)
 		</insert>
 		<insert id="insertOL">
