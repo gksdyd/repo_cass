@@ -12,6 +12,7 @@ public interface DealerDao {
 	public List<DealerDto> selectList(DealerVo vo);
 	public DealerDto selectOne(DealerDto dealerDto);
 	public DealerDto selectOne(DealerVo Vo);
+	public List<DealerDto> selectOneList(DealerDto dealerDto);
 	
 	public int insert(DealerDto dealerDto);
 	public int update(DealerDto dealerDto);

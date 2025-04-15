@@ -75,6 +75,26 @@
 			AND dealSeq = #{dealSeq}
 	</select>
 	
+	<select id="selectOneList" resultMap="resultMapObj">
+	select
+        pdol.pdolSeq,        
+        pdol.pdolQty,
+        pdol.pdolAmountPrice,
+        pdol.pdolDelNy,
+        pdol.product_prdtSeq,
+        pdol.pdolStatusCd,
+        prdt.prdtName,
+        prdt.prdtPrice
+        
+	from
+		productorderlist pdol 
+    LEFT JOIN product prdt ON prdt.prdtSeq = pdol.product_prdtSeq
+	LEFT JOIN productorder pdor ON pdol.productorder_pdorSeq = pdor.pdorSeq
+	LEFT JOIN dealer d ON pdor.dealer_dealSeq = d.dealSeq
+  WHERE 1=1
+		and	d.dealSeq = #{dealSeq}
+	</select>
+	
 	<insert id="insert">
 		insert into dealer (
 			dealName

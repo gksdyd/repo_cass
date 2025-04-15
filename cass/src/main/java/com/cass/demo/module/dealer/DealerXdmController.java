@@ -38,8 +38,9 @@ public class DealerXdmController extends BaseController{
 	
 	@RequestMapping(value = "/dealer/dealerXdmMfom")
 	public String dealerXdmMfom(Model model, DealerDto dealerDto) {
-		System.out.println("전달할 데이터: " + dealerService.selectOne(dealerDto));
+//		System.out.println("전달할 데이터: " + dealerService.selectOne(dealerDto));
 		model.addAttribute("item", dealerService.selectOne(dealerDto));
+		model.addAttribute("list", dealerService.selectOneList(dealerDto));
 		return "xdm/dealer/DealerXdmMfom";
 	}
 	

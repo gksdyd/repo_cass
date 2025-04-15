@@ -17,6 +17,13 @@ public class DealerDto {
 	private String dealModDate;
 	private Integer dealUseNy;
 	private Integer dealDelNy;
+	
+	private String pdolSeq;
+    private Integer pdolQty;
+    private Integer pdolAmountPrice;
+    private Integer pdolStatusCd;
+    private String prdtName;
+    private Integer prdtPrice;
 //	----
 	public String getDealSeq() {
 		return dealSeq;
@@ -113,6 +120,43 @@ public class DealerDto {
 	}
 	public void setDealDelNy(Integer dealDelNy) {
 		this.dealDelNy = dealDelNy;
+	}
+	
+	public String getPdolSeq() {
+		return pdolSeq;
+	}
+	public void setPdolSeq(String pdolSeq) {
+		this.pdolSeq = pdolSeq;
+	}
+	public Integer getPdolQty() {
+		return pdolQty;
+	}
+	public void setPdolQty(Integer pdolQty) {
+		this.pdolQty = pdolQty;
+	}
+	public Integer getPdolAmountPrice() {
+		return pdolAmountPrice;
+	}
+	public void setPdolAmountPrice(Integer pdolAmountPrice) {
+		this.pdolAmountPrice = pdolAmountPrice;
+	}
+	public Integer getPdolStatusCd() {
+		return pdolStatusCd;
+	}
+	public void setPdolStatusCd(Integer pdolStatusCd) {
+		this.pdolStatusCd = pdolStatusCd;
+	}
+	public String getPrdtName() {
+		return prdtName;
+	}
+	public void setPrdtName(String prdtName) {
+		this.prdtName = prdtName;
+	}
+	public Integer getPrdtPrice() {
+		return prdtPrice;
+	}
+	public void setPrdtPrice(Integer prdtPrice) {
+		this.prdtPrice = prdtPrice;
 	}
 	
 }

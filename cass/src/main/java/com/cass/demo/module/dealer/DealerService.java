@@ -33,6 +33,10 @@ public class DealerService {
 		return dealerDao.selectOne(Vo);
 	}
 	
+	public List<DealerDto> selectOneList(DealerDto dealerDto) {
+		return dealerDao.selectOneList(dealerDto);
+	}
+	
 	public int insert(DealerDto dealerDto) {
 		return dealerDao.insert(dealerDto);
 	}
