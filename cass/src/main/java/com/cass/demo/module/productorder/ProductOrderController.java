@@ -137,6 +137,8 @@ public class ProductOrderController extends BaseController {
 				productOrderService.updateOrderList(dto);
 			}
 		}
+		productOrderService.updateAmoutPrice(dto);
+
 		return "redirect:/productorder/ProductOrderXdmList";
 	}
 }

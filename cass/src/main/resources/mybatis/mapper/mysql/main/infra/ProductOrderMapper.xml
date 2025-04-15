@@ -69,10 +69,6 @@
         pdor.pdorDelNy,
         pdor.pdorStatusCd,
         pdor.dealer_dealSeq,
-<!--         pdol.pdolSeq, -->
-<!--         pdol.pdolQty, -->
-<!--         pdol.pdolAmountPrice, -->
-<!--         pdol.product_prdtSeq, -->
         d.dealName,
         d.dealManager       
         <include refid = "selectCommon"></include>     
@@ -223,7 +219,8 @@
 	
 	<update id="updateAmoutPrice">
 		update productorder set
-        	pdorTotalPrice = (SELECT SUM(pdolAmountPrice) FROM productorderlist WHERE productorder_pdorSeq = #{pdorSeq})
+        	pdorTotalPrice = (SELECT SUM(pdolAmountPrice) FROM productorderlist WHERE productorder_pdorSeq = #{pdorSeq} and pdolDelNy = 0),
+        	pdorTotalQty = (SELECT SUM(pdolQty) FROM productorderlist WHERE productorder_pdorSeq = #{pdorSeq} and pdolDelNy = 0)
 		where
 			pdorSeq = #{pdorSeq}
 	</update>
