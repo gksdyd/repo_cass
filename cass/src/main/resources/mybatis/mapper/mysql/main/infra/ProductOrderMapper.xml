@@ -12,7 +12,7 @@
 			left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
 		WHERE 1=1 
 			AND pdor.pdorDelNy = 0
-			AND pdor.pdorStatusCd = 3
+<!-- 			AND pdor.pdorStatusCd = 3 -->
 		<choose>
 			<when test="shOptionDate == 1">AND pdorRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			<when test="shOptionDate == 2">AND pdorModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
@@ -78,7 +78,8 @@
 	
 	From
 	
-		productorder pdor left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
+		productorder pdor 
+		left join productorderlist pdol ON pdol.productorder_pdorSeq = pdor.pdorSeq
 		WHERE 1=1 
 	</select>
 

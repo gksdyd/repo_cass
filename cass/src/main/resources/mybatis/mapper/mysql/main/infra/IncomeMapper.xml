@@ -72,16 +72,9 @@
 			,p.pdorSeq
 			,p.pdorStatusCd
 			,d.dealName
-<!-- 			,pl.pdolSeq -->
-<!-- 			,pl.pdolQty -->
-<!-- 			,pl.pdolAmountPrice -->
-<!-- 			,pt.prdtName -->
-<!-- 			,pt.prdtPrice -->
 		FROM incoming as a 
 			left join manufacture as m on a.manufacture_mafaSeq = m.mafaSeq
 			left join productorder as p on m.productorder_pdorSeq = p.pdorSeq
-<!-- 			left join productorderlist as pl on p.pdorSeq = pl.productorder_pdorSeq -->
-<!-- 			left join product as pt on pl.product_prdtSeq = pt.prdtSeq -->
 			left join dealer as d on p.dealer_dealSeq = d.dealSeq
 		where 1=1
 		and	incoSeq = #{incoSeq}
