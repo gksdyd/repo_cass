@@ -40,9 +40,9 @@ public class ProductController extends BaseController {
 	
 	@RequestMapping(value = "/productXdmMfom")
 	public String productXdmMfom(Model model, ProductDto productDto) {
-		System.out.println("전달할 데이터: " + productService.selectOne(productDto));
+//		System.out.println("전달할 데이터: " + productService.selectOne(productDto));
 		model.addAttribute("item", productService.selectOne(productDto));
-		System.out.println("검색할 prdtSeq: " + productDto.getPrdtSeq());
+//		System.out.println("검색할 prdtSeq: " + productDto.getPrdtSeq());
 		return "xdm/product/ProductXdmMfom";
 	}
 	
