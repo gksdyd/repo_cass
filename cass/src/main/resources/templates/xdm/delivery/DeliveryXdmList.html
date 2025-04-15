@@ -17,26 +17,6 @@
 
     <section class="section">
         <form class="row g-3 needs-validation" id="formList" name="formList" method="post" novalidate>
-            <div class="col-md-2" style="height: 10px;">
-                <select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-					<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-					<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-					<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-				</select>
-                <div class="invalid-feedback">
-                  항목중 하나를 선택 해주세요.
-                </div>
-              </div>
-            <div class="col-md-2">
-                <select name="shUseNy" id="shUseNy" class="form-select form-select-sm">
-					<option value="" th:selected="${vo.shUseNy == null}">블랙여부</option>
-					<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-					<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
-				</select>
-                  <div class="invalid-feedback">
-                    항목중 하나를 선택 해주세요.
-                  </div>
-            </div>
             <div class="col-md-2">
                 <select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
@@ -59,12 +39,11 @@
                   코드를 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-2"></div>
             <div class="col-md-2">
                 <select id="shOption" name="shOption" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOption == null}">검색구분</option>
 					<option value="1" th:selected="${vo.shOption == 1}">주문번호</option>
-					<option value="2" th:selected="${vo.shOption == 2}">배송번호</option>
+					<option value="2" th:selected="${vo.shOption == 2}">출고번호</option>
 				</select>
                 <div class="invalid-feedback">
                   항목중 하나를 선택 해주세요.
@@ -76,7 +55,7 @@
                   코드를 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-2">
                 <button type="button" id="btnSearch" class="btn btn-outline-dark"><i class="bi bi-search"></i></button>
                 <button type="button" id="btnReset" class="btn btn-outline-dark"><i class="bi bi-arrow-clockwise"></i></button>
             </div>
