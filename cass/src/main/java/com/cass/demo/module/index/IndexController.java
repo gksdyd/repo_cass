@@ -1,13 +1,22 @@
 package com.cass.demo.module.index;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
+	
+	@Autowired
+	IndexService service;
 
 	@RequestMapping(value = "/xdm/indexXdm")
-	public String xdmIndex() {
+	public String xdmIndex(Model model, IndexDto dto) {
+		
+		model.addAttribute("pdor", service.selectOneCountOnPdor(dto));
+		model.addAttribute("mafa", service.selectOneCountOnMafa(dto));
+		model.addAttribute("deli", service.selectOneCountOnDeli(dto));
 		return "xdm/index/index";
 	}
 	@RequestMapping(value = "/index")

@@ -95,12 +95,12 @@
                   <tr>
                     <th data-sortable="false"  style="text-align: center; width: 100px;"><div class="checked"><input type="checkbox" class="form-check" name="allChk" onclick='selectAll(this)'></div></th>
                     <th data-sortable="false" style="width: 10px; text-align: center;" >#</th>
-                    <th class="list-sort" style="text-align: center;">주문번호</th>
 					<th class="list-sort" style="text-align: center;">출고번호</th>
+                    <th class="list-sort" style="text-align: center;">주문번호</th>
                     <th class="list-sort" style="text-align: center;">총 갯수</th>
-                    <th class="list-sort" style="text-align: center;">현황</th>
+                    <th class="list-sort" style="text-align: center;">출고현황</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">요청날짜</th>
-                    <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">최근현황</th>
+                    <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">변경일</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -112,8 +112,8 @@
 	                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
 	                   <th><div class="checked"><input type="checkbox" class="form-check" name="eachChk" onclick='checkSelectAll()'></div></th>
 	                   <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                       <td th:text = "${list.pdorNum}"></td>
 					   <td><a th:href="@{/delivery/DeliveryXdmView(deliSeq=${list.deliSeq})}" th:text="${list.deliNum}"></a></td>
+                       <td th:text = "${list.pdorNum}"></td>
                        <td th:text = "${list.productTotalCnt}"></td>
                       <td th:text = "${@codeService.selectOneCachedCode(list.deliStausCd)}"></td>
                        <td th:text = "${list.deliRegDate}"></td>
