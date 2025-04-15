@@ -56,23 +56,48 @@
 					<option value="0" th:selected="${item?.dealDelNy == 0}" th:text="N"></option>
                     <option value="1" th:selected="${item?.dealDelNy == 1}" th:text="Y"></option>
                   </select>
-                </div>
-                <section class="section mb-4">
-					<p class="fs-0" style="padding-top: 12px;">상품추가</p>
-					<div class="row">
-			            <div class="col-6" id="addProduct"></div>
-			        </div>
-			        <hr>
-    			</section>
-              
-				<section class="section mb-4">
-					<p class="fs-0" style="padding-top: 12px;">상품내역</p>
-					<div class="row">
-	            		<div class="col-6" id="prevProduct"></div>
-	            	</div>
-	            	<hr>
-            	</section>
+                 </div>
+                <div class="col-md-6"></div>
               </form><!-- End Custom Styled Validation -->
+              
+		<section class="section mb-4">
+			<p class="fs-0" style="padding-top: 12px;">상품내역</p>
+			<div class="row">
+           		<input type="hidden" name="dealSeq" th:value="${item?.dealSeq}">
+           		<!-- Table with stripped rows -->
+           		<table class="table datatable" style="text-align: center;">
+		            <thead>
+	                  <tr>
+	                    <th class="list-sort" style="text-align: center;">주문번호</th>
+	                    <th class="list-sort" style="text-align: center;">주문상품</th>
+						<th class="list-sort" style="text-align: center;">주문수량</th>
+	                    <th class="list-sort" style="text-align: center;">상품단가</th>
+	                    <th class="list-sort" style="text-align: center;">주문총액</th>
+	                    <th class="list-sort" style="text-align: center;">주문상태</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                    <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reveal-trigger position-static">
+		               		<td colspan="10">
+		               			<p class="fs-0" style="padding-top: 12px;">주문내역이 없습니다!</p>
+		               		</td>
+		               	</tr>
+		                   <tr th:if="${!#lists.isEmpty(list)}" th:each ="list : ${list}">
+						   <td th:text = "${list.pdolSeq}"></td>
+						   <td th:text = "${list.prdtName}"></td>
+						   <td th:text = "${list.pdolQty}"></td>
+						   <td th:text = "${list.prdtPrice}"></td>
+						   <td th:text = "${list.pdolAmountPrice}"></td>
+						   <td th:text = "${@codeService.selectOneCachedCode(list.pdolStatusCd)}"></td>
+		                   </tr>
+	                  </tbody>
+	                  <tfoot>
+	                   
+	                  </tfoot>
+            		</table>
+            	 </div>
+            	<hr>
+           	</section>
 				
 			   <div class="row">
             	<div class="col-md-6">

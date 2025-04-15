@@ -75,6 +75,24 @@
 			AND dealSeq = #{dealSeq}
 	</select>
 	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			d.dealSeq 
+		    ,po.pdorTotalQty
+		    ,po.pdorNum
+		    ,po.pdorSeq
+		    ,m.mafaRegDate
+		    ,m.mafaModDate
+		    ,m.mafaNum
+		    ,m.mafaName
+		    ,d.dealName
+	     FROM manufacture AS m
+			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
+			LEFT JOIN dealer AS d ON po.dealer_dealSeq = d.dealSeq
+		 where 1=1
+		 and mafaSeq = #{mafaSeq}
+	</select>
+	
 	<insert id="insert">
 		insert into dealer (
 			dealName
