@@ -24,12 +24,12 @@ public class StockMobileController extends BaseController {
 		return "mobileXdm/stock/StockXdmList";
 	}
 	
-	@RequestMapping(value = "/StockXdmHistory")
-	public String stockXdmHistory(@ModelAttribute("vo") StockVo vo, Model model) {
-		utildatetime(vo);
-		vo.setParamsPaging(stockService.selectOneCount(vo));
-		model.addAttribute("list", stockService.selectList(vo));
-		model.addAttribute("activePage", "sthistory");
-		return "mobileXdm/stock/StockXdmHistory";
-	}
+//	@RequestMapping(value = "/StockXdmHistory")
+//	public String stockXdmHistory(@ModelAttribute("vo") StockVo vo, Model model) {
+//		utildatetime(vo);
+//		vo.setParamsPaging(stockService.selectOneCount(vo));
+//		model.addAttribute("list", stockService.selectList(vo));
+//		model.addAttribute("activePage", "sthistory");
+//		return "mobileXdm/stock/StockXdmHistory";
+//	}
 }

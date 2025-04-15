@@ -17,8 +17,8 @@
                 <div class="col-4">
                   <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
                     <option value="" th:selected="${manuVo.shOptionDate == null}">날짜</option>
-                    <option value="1" th:selected="${manuVo.shOptionDate == 1}">주문일시</option>
-                    <option value="2" th:selected="${manuVo.shOptionDate == 2}">수정일시</option>
+                    <!--<option value="1" th:selected="${manuVo.shOptionDate == 1}">주문일시</option>-->
+                    <!--<option value="2" th:selected="${manuVo.shOptionDate == 2}">수정일시</option>-->
                     <option value="3" th:selected="${manuVo.shOptionDate == 3}">제작일</option>
                     <option value="4" th:selected="${manuVo.shOptionDate == 4}">완료일</option>
                   </select>
@@ -35,10 +35,10 @@
                   <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
                     <option value="" th:selected="${manuVo.shOption == null}">검색구분</option>
                     <option value="1" th:selected="${manuVo.shOption == 1}">주문번호</option>
-                    <option value="2" th:selected="${manuVo.shOption == 2}">주문처명</option>
+                    <!--<option value="2" th:selected="${manuVo.shOption == 2}">주문처명</option>-->
                     <option value="3" th:selected="${manuVo.shOption == 3}">제작번호</option>
-<!--                    <option value="4" th:selected="${manuVo.shOption == 4}">제작품명</option>
--->                  </select>
+                    <option value="4" th:selected="${manuVo.shOption == 4}">제작품명</option>                  
+					</select>
                 </div>
                 <div class="col-4">
                   <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${manuVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />

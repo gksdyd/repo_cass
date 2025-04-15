@@ -10,168 +10,105 @@
 		  <input type="hidden" id="rowNumToShowNew" name="rowNumToShowNew" th:value="${manuVo.rowNumToShowNew}"/>
           <input type="hidden" id="incoSeq" name="incoSeq" value=0/>
           <div class="card mb-3" id="customersTable"	>
-            <div class="card-header" id="search">
-              <div class="mb-2 row g-3">
-                <h1>입고 관리</h1>
-              </div>
-			<div class="mb-2 row g-3">
-                <div class="col-4">
-                  <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
-                    <option value="" th:selected="${incomeVo.shOptionDate == null}">날짜</option>
-                    <option value="1" th:selected="${incomeVo.shOptionDate == 1}">입고일</option>
-					<option value="2" th:selected="${manuVo.shOptionDate == 2}">제작일</option>
-					<option value="3" th:selected="${manuVo.shOptionDate == 3}">완료일</option>
-                  </select>
-                </div>
-                <div class="col-4">
-                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(incomeVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
-                </div>
-                <div class="col-4">
-                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(incomeVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
-                </div>
-			</div>
-              <div class="mb-4 row g-3">
-                <div class="col-4">
-                  <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
-                    <option value="" th:selected="${incomeVo.shOption == null}">검색구분</option>
-                    <option value="2" th:selected="${incomeVo.shOption == 2}">입고번호</option>
-                    <option value="3" th:selected="${incomeVo.shOption == 3}">제작번호</option>
-					<option value="5" th:selected="${manuVo.shOption == 4}">제작품명</option>
-                  </select>
-                </div>
-                <div class="col-4">
-                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${incomeVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
-                </div>
-                <div class="col-4">
-                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
-                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
-                </div>
-              </div>
-            </div>
-          </div>
-		 <div class="card mb-3">
-		    <div class="card-header">
-		      	<h5>제작 리스트</h5>
-		      <div class="row">
-		  		<div class="col">
-		  			<label class="form-label-JHY" for="description">Total: </label>
-		  			<label class="form-label-JHY" for="description" th:text="${manuVo.totalRowsNew}"></label>
-		  		</div>
-		  		<div class="col-4 col-lg-2" style="text-align: right;">
-		  			<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
-		  				<option value="5" th:selected="${manuVo.rowNumToShowNew eq 5}">5</option>
-		  				<option value="10" th:selected="${manuVo.rowNumToShowNew eq 10}">10</option>
-		  				<option value="30" th:selected="${manuVo.rowNumToShowNew eq 30}">30</option>
-		  				<option value="50" th:selected="${manuVo.rowNumToShowNew eq 50}">50</option>
-		  				<option value="80" th:selected="${manuVo.rowNumToShowNew eq 80}">80</option>
-		  				<option value="100" th:selected="${manuVo.rowNumToShowNew eq 100}">100</option>   
-		  			</select>
-		  		</div>
-		  	</div>
-		  </div>
-	    <div class="card-body p-0">
-	    	<div class="table-responsive scrollbar">
-				<a class="item" href="javascript:void(0);" th:each="list : ${orderList}">
-	     		  <div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
-		  			<div class="col-1 py-3 px-x1">
-		  				<div class="#" th:text="${manuVo.totalRowsNew - ((manuVo.thisPageNew - 1) * manuVo.rowNumToShowNew + listStat.index)}"></div>
-		  		 	</div>
-		     		 	<div class="col-5 py-3">
-		     		 		<input type="hidden" class="mafaTotalQty" th:value="${list.mafaTotalQty}">
-			  				<span class="d-flex fs-11">제작번호:&emsp;<div class="mafaNum" th:text="${list.mafaNum}"></div></span>
-			  				<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
-			  				<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
-		     		 	</div>
-		     			<div class="col-5 py-3 fs-11">
-			                <span class="d-flex">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
-			                <span class="d-flex">제작품명:&emsp;<div class="prdtName" th:text="${list.mafaName}"></div></span>
-			  				<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
-		     			</div>
-			  	   	</div>
-				</a>
-	   		</div>
-	   	</div>
-		<div class="card-footer d-flex align-items-center justify-content-center">
-		    <div class="col">
-				<ul class="pagination mb-0">
-					<li th:if="${manuVo.startPageNew gt manuVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goListNew(${manuVo.startPageNew - 1})" th:attr="onclick=|goListNew('${manuVo.startPageNew - 1}')|">
-						<i class="fas fa-chevron-left"></i>
+	            <div class="card-header" id="search">
+	              <div class="mb-2 row g-3">
+	                <h1>입고 관리</h1>
+	              </div>
+				<div class="mb-2 row g-3">
+	                <div class="col-4">
+	                  <select class="form-select-JHY" id="shOptionDate" name="shOptionDate" aria-label="Default select example">
+	                    <option value="" th:selected="${incomeVo.shOptionDate == null}">날짜</option>
+	                    <!--<option value="1" th:selected="${incomeVo.shOptionDate == 1}">입고일</option>-->
+						<option value="2" th:selected="${manuVo.shOptionDate == 2}">제작일</option>
+						<option value="3" th:selected="${manuVo.shOptionDate == 3}">완료일</option>
+	                  </select>
+	                </div>
+	                <div class="col-4">
+	                  <input class="form-control-JHY datetimepicker" id="shDateStart" name="shDateStart" th:value="${#strings.substring(incomeVo.shDateStart, 0, 10)}" type="text" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+	                </div>
+	                <div class="col-4">
+	                  <input class="form-control-JHY datetimepicker" id="shDateEnd" name="shDateEnd" type="text" th:value="${#strings.substring(incomeVo.shDateEnd, 0, 10)}" placeholder="yy-mm-dd" autocomplete="off" data-options='{"disableMobile":true}' />
+	                </div>
+				</div>
+	              <div class="mb-4 row g-3">
+	                <div class="col-4">
+	                  <select class="form-select-JHY" id="shOption" name="shOption" aria-label="Default select example">
+	                    <option value="" th:selected="${incomeVo.shOption == null}">검색구분</option>
+	                    <!--<option value="2" th:selected="${incomeVo.shOption == 2}">입고번호</option>-->
+	                    <option value="3" th:selected="${incomeVo.shOption == 3}">제작번호</option>
+						<option value="5" th:selected="${manuVo.shOption == 4}">제작품명</option>
+	                  </select>
+	                </div>
+	                <div class="col-4">
+	                  <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${incomeVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
+	                </div>
+	                <div class="col-4">
+	                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnSearch" onclick="search()"><span class="fas fa-search"></span></button>
+	                  <button class="btn btn-outline-dark btn-sm" type="button" id="btnReset" onclick="shReset()"><span class="fas fa-redo-alt"></span></button>
+	                </div>
+	              </div>
+			      <div class="row">
+			  		<div class="col">
+			  			<label class="form-label-JHY" for="description">Total: </label>
+			  			<label class="form-label-JHY" for="description" th:text="${manuVo.totalRowsNew}"></label>
+			  		</div>
+			  		<div class="col-4 col-lg-2" style="text-align: right;">
+			  			<select class="form-select-JHY" aria-label="Default select example" id="changeRowNumNew" name="changeRowNumNew" onchange="changeRowNew()">
+			  				<option value="5" th:selected="${manuVo.rowNumToShowNew eq 5}">5</option>
+			  				<option value="10" th:selected="${manuVo.rowNumToShowNew eq 10}">10</option>
+			  				<option value="30" th:selected="${manuVo.rowNumToShowNew eq 30}">30</option>
+			  				<option value="50" th:selected="${manuVo.rowNumToShowNew eq 50}">50</option>
+			  				<option value="80" th:selected="${manuVo.rowNumToShowNew eq 80}">80</option>
+			  				<option value="100" th:selected="${manuVo.rowNumToShowNew eq 100}">100</option>   
+			  			</select>
+			  		</div>
+			  	</div>
+			  </div>
+		    <div class="card-body p-0">
+		    	<div class="table-responsive scrollbar">
+					<a class="item" href="javascript:void(0);" th:each="list : ${orderList}">
+		     		  <div class="row gx-x1 mx-0 align-items-center border-bottom border-200 listItem">
+			  			<div class="col-1 py-3 px-x1">
+			  				<div class="#" th:text="${manuVo.totalRowsNew - ((manuVo.thisPageNew - 1) * manuVo.rowNumToShowNew + listStat.index)}"></div>
+			  		 	</div>
+			     		 	<div class="col-5 py-3">
+			     		 		<input type="hidden" class="mafaTotalQty" th:value="${list.mafaTotalQty}">
+				  				<span class="d-flex fs-11">제작번호:&emsp;<div class="mafaNum" th:text="${list.mafaNum}"></div></span>
+				  				<span class="d-flex fs-11">제작일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaRegDate, 0, 10)}"></div></span>
+				  				<span class="d-flex fs-11">완료일:&emsp;&emsp;<div th:text="${#strings.substring(list.mafaModDate, 0, 10)}"></div></span>
+			     		 	</div>
+			     			<div class="col-5 py-3 fs-11">
+				                <span class="d-flex">주문번호:&emsp;<div class="pdorNum" th:text="${list.pdorNum}"></div></span>
+				                <span class="d-flex">제작품명:&emsp;<div class="prdtName" th:text="${list.mafaName}"></div></span>
+				  				<span class="d-flex">제작상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.mafaStausCd)}"></div></span>
+			     			</div>
+				  	   	</div>
 					</a>
-					</li>
-					<li th:each="num: ${#numbers.sequence(manuVo.startPageNew, manuVo.endPageNew)}" th:classappend="${num eq manuVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
-					</li>
-					<li th:if="${manuVo.endPageNew ne manuVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goListNew('${manuVo.endPageNew + 1}')|">
-						<i class="fas fa-chevron-right"></i>
-					</a>
-					</li>
-				</ul>
-			</div>
-			<div class="col" style="text-align: right;">
-				<button class="btn btn-primary fs-10" type="button" id="incomeBtn">입고</button>
-			</div>
-		</div>
-	</div>	
-			<div class="card mb-3">
-	            <div class="card-header">
-	              	<h5>입고 리스트</h5>
-	            	<div class="row">
-						<div class="col">
-							<label class="form-label-JHY" for="description">Total: </label>
-							<label class="form-label-JHY" for="description" th:text="${incomeVo.totalRows}"></label>
-						</div>
-						<div class="col-4 col-lg-2" style="text-align: right;">
-							<select class="form-select-JHY" aria-label="Default select example" id="changeRowNum" name="changeRowNum" onchange="changeRow()">
-								<option value="5" th:selected="${incomeVo.rowNumToShow eq 5}">5</option>
-								<option value="10" th:selected="${incomeVo.rowNumToShow eq 10}">10</option>
-								<option value="30" th:selected="${incomeVo.rowNumToShow eq 30}">30</option>
-								<option value="50" th:selected="${incomeVo.rowNumToShow eq 50}">50</option>
-								<option value="80" th:selected="${incomeVo.rowNumToShow eq 80}">80</option>
-								<option value="100" th:selected="${incomeVo.rowNumToShow eq 100}">100</option>   
-							</select>
-						</div>
-					</div>
-	            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive scrollbar">
-                <div class="row gx-x1 mx-0 align-items-center border-bottom border-200" th:each="list : ${list}">
-            	<div class="col-2 py-3 px-x1">
-            		<div class="#" th:text="${incomeVo.totalRows - ((incomeVo.thisPage - 1) * incomeVo.rowNumToShow + listStat.index)}"></div>
-            	</div>
-                <div class="col-5 py-3">
-	                <!-- <div th:text="${list.incoSeq}"></div> -->
-					<span class="d-flex fs-11">입고번호:&emsp;<div th:text="${list.incoNum}"></div></span>
-					<span class="d-flex fs-11">입고상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.incoStatusCd)}"></div></span>
-					<span class="d-flex fs-11">입고일:&emsp;&emsp;<div th:text="${#strings.substring(list.incoRegDate, 0, 10)}"></div></span>
-                </div>
-                <div class="col-5 py-3 fs-11">
-                	<span class="d-flex">주문번호:&emsp;<div th:text="${list.pdorNum}"></div></span>
-                	<span class="d-flex">제작번호:&emsp;<div th:text="${list.mafaNum}"></div></span>
-					<span class="d-flex">총수량:&emsp;&emsp;<div th:text="${list.incoTotalQty} + '개'"></div></span>
-                </div>
-            </div>
-              </div>
-            </div>
+		   		</div>
+		   	</div>
 			<div class="card-footer d-flex align-items-center justify-content-center">
-				<ul class="pagination mb-0">
-					<li th:if="${incomeVo.startPage gt incomeVo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" href="javascript:goList(${incomeVo.startPage - 1})" th:attr="onclick=|goList('${incomeVo.startPage - 1}')|">
-						<i class="fas fa-chevron-left"></i>
-					</a>
-					</li>
-					<li th:each="num: ${#numbers.sequence(incomeVo.startPage, incomeVo.endPage)}" th:classappend="${num eq incomeVo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goList('${num}')|" th:text="${num}"></a>
-					</li>
-					<li th:if="${incomeVo.endPage ne incomeVo.totalPages}" class="page-item" style="cursor: pointer;">
-					<a class="page-link fs-11" th:attr="onclick=|goList('${incomeVo.endPage + 1}')|">
-						<i class="fas fa-chevron-right"></i>
-					</a>
-					</li>
-				</ul>
+			    <div class="col">
+					<ul class="pagination mb-0">
+						<li th:if="${manuVo.startPageNew gt manuVo.pageNumToShowNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" href="javascript:goListNew(${manuVo.startPageNew - 1})" th:attr="onclick=|goListNew('${manuVo.startPageNew - 1}')|">
+							<i class="fas fa-chevron-left"></i>
+						</a>
+						</li>
+						<li th:each="num: ${#numbers.sequence(manuVo.startPageNew, manuVo.endPageNew)}" th:classappend="${num eq manuVo.thisPageNew} ? active : ''" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${num}')|" th:text="${num}"></a>
+						</li>
+						<li th:if="${manuVo.endPageNew ne manuVo.totalPagesNew}" class="page-item" style="cursor: pointer;">
+						<a class="page-link fs-11" th:attr="onclick=|goListNew('${manuVo.endPageNew + 1}')|">
+							<i class="fas fa-chevron-right"></i>
+						</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col" style="text-align: right;">
+					<button class="btn btn-primary fs-10" type="button" id="incomeBtn">입고</button>
+				</div>
 			</div>
-          </div>
+		</div>	
         </form>
         <div th:replace="~{mobileXdm/include/foot :: foot}"></div>
       </div>
