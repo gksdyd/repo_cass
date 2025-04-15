@@ -45,21 +45,20 @@
                       <option th:each="list : ${@codeService.selectListCachedCode(6)}" th:value="${list.codeSeq}" th:text="${list.codeName}" th:selected="${list.codeSeq} == ${item?.prdtCateCd}"></option>
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="height: 100px;">
                   <label for="prdtUseNy" class="form-label">사용여부</label>
                   <select class="form-select" id="prdtUseNy" name="prdtUseNy" th:value="${item?.prdtUseNy}">
 	                <option value="0" th:selected="${item?.prdtUseNy == 0}" th:text="N"></option>
                     <option value="1" th:selected="${item?.prdtUseNy == 1}" th:text="Y"></option>
                   </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="height: 100px;">
                 	<label for="prdtDelNy" class="form-label">삭제</label>
 	                <select class="form-select" id="prdtDelNy" name="prdtDelNy" th:value="${item?.prdtDelNy}" aria-label="Default select example">
 					<option value="0" th:selected="${item?.prdtDelNy == 0}" th:text="N"></option>
                     <option value="1" th:selected="${item?.prdtDelNy == 1}" th:text="Y"></option>
                   </select>
                 </div>
-                <div class="col-md-6"></div>
               </form><!-- End Custom Styled Validation -->
 
                <div class="row">
