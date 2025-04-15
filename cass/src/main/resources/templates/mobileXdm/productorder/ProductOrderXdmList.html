@@ -34,7 +34,7 @@
                     <option value="" th:selected="${orderVo.shOption == null}">검색구분</option>
                     <option value="1" th:selected="${orderVo.shOption == 1}">주문번호</option>
                     <option value="2" th:selected="${orderVo.shOption == 2}">주문처명</option>
--->                  </select>
+                </select>
                 </div>
                 <div class="col-4">
                   <input class="form-control-JHY" type="text" id="shValue" name="shValue" th:value="${orderVo.shValue}" onkeyup="enterkey()" placeholder="검색어" />
@@ -75,7 +75,7 @@
 	             		 	</div>
 	             			<div class="col-5 py-3 fs-11">
 				                <span class="d-flex fs-11">주문처명:&emsp;<div th:text="${list.dealName}"></div></span>
-								<span class="d-flex fs-11">주문총액:&emsp;<div th:text="${list.pdolAmountPrice}"></div></span>
+								<span class="d-flex fs-11">주문총액:&emsp;<div th:if="${list.pdorTotalPrice} != null" th:text="'￦ ' + ${#numbers.formatInteger(list.pdorTotalPrice,3,'COMMA')}"></div></span>
 								<span class="d-flex fs-11">주문상태:&emsp;<div th:text="${@codeService.selectOneCachedCode(list.pdorStatusCd)}"></div></span>
 	             			</div>
 	         		   	</div>
