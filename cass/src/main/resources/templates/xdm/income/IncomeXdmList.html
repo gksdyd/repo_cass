@@ -20,8 +20,7 @@
             <div class="col-md-2">
                 <select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
-					<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-					<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+					<option value="1" th:selected="${vo.shOptionDate == 1}">입고일</option>
 				</select>
                   <div class="invalid-feedback">
                     항목중 하나를 선택 해주세요.
@@ -39,19 +38,6 @@
                   종료일을 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-2" style="height: 10px;">
-                <select id="incoStatusCd" name="incoStatusCd" class="form-select form-select-sm">
-					<option value="" th:selected="${vo.shStatus == null}">삭제여부</option>
-					<option value="1" th:selected="${vo.shStatus == 1}">Y</option>
-					<option value="0" th:selected="${vo.shStatus == 0}">N</option>            
-				</select>
-                <div class="invalid-feedback">
-                  항목중 하나를 선택 해주세요.
-                </div>
-              </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-2"></div>
             <div class="col-md-2">
                 <select id="shOption" name="shOption" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOption == null}">검색구분</option>
@@ -69,7 +55,7 @@
                   코드를 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-2">
                 <button type="button" id="btnSearch" class="btn btn-outline-dark"><i class="bi bi-search"></i></button>
                 <button type="button" id="btnReset" class="btn btn-outline-dark"><i class="bi bi-arrow-clockwise"></i></button>
             </div>

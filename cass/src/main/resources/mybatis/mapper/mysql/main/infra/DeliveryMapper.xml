@@ -12,11 +12,11 @@
 		WHERE 1=1 
 			<choose>
 	            <when test="shOption == 1">AND pdor.pdorNum = #{shValue}</when>
-	            <when test="shOption == 3">AND deli.deliNum = #{shValue}</when>
-	            <when test="shOption == 4">AND (SELECT a.mafaNum FROM manufacture a WHERE a.productorder_pdorSeq = pdor.pdorSeq limit 1) = #{shValue}</when>
+	            <when test="shOption == 2">AND deli.deliNum = #{shValue}</when>
 	        </choose>
 			<choose>
-				<when test="shOptionDate == 3">AND deli.deliRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 1">AND deli.deliRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND deli.deliRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 			</choose>
     </sql>
 
