@@ -16,6 +16,9 @@ public class ManufactureService {
 	public List<ManufactureDto> selectList(ManufactureVo vo) {
 		return dao.selectList(vo);
 	}
+	public List<ManufactureDto> selectXdmList(ManufactureVo vo) {
+		return dao.selectXdmList(vo);
+	}
 	public ManufactureDto selectOne(ManufactureDto dto) {
 		return dao.selectOne(dto);
 	}
@@ -25,6 +28,10 @@ public class ManufactureService {
 
 	public int selectOneCount(ManufactureVo vo) {
 		return dao.selectOneCount(vo);
+	}
+	
+	public int selectOneXdmCount(ManufactureVo vo) {
+		return dao.selectOneXdmCount(vo);
 	}
 	
 	public List<ManufactureDto> selectListForInco(ManufactureVo vo) {

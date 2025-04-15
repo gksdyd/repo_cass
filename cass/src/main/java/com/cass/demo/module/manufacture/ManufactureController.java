@@ -25,17 +25,12 @@ public class ManufactureController extends BaseController  {
 	ProductOrderService orderService;
 	
 	@RequestMapping(value = "/ManufactureXdmList")
-	public String manufactureXdmForm(@ModelAttribute("vo") ManufactureVo manufactureVo, 
-			@ModelAttribute("orderVo") ProductOrderVo orderVo, Model model) {
+	public String manufactureXdmList(@ModelAttribute("vo") ManufactureVo manufactureVo, Model model) {
 		utildatetime(manufactureVo);
-		utildatetime(orderVo);
 		
-		manufactureVo.setParamsPaging(service.selectOneCount(manufactureVo));
-		model.addAttribute("manuList", service.selectList(manufactureVo));
-		
-		orderVo.setParamsPagingNew(orderService.selectOneCountForMafa(orderVo));
-		model.addAttribute("orderList", orderService.selectListForMafa(orderVo));
-		
+		manufactureVo.setParamsPaging(service.selectOneXdmCount(manufactureVo));
+		model.addAttribute("manuList", service.selectXdmList(manufactureVo));
+			
 		model.addAttribute("activePage", "manufacture");
 		
 		return "xdm/manufacture/ManufactureXdmList";

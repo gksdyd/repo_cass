@@ -22,6 +22,22 @@
         </choose>
     </sql>
     
+    	<sql id="selectXdmCommon">	    
+	    FROM manufacture AS m
+			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
+			LEFT JOIN dealer AS d ON po.dealer_dealSeq = d.dealSeq
+		where 1=1
+		<choose>
+			<when test="shOptionDate == 1">AND mafaRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND mafaModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+        <choose>
+        	<when test="shOption == 1">AND mafaNum = #{shValue}</when>
+            <when test="shOption == 2">AND pdorNum = #{shValue}</when>
+            <when test="shOption == 3">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+    
     	<sql id="selectCommonForInco">	    
 	    FROM manufacture AS m
 			LEFT JOIN productorder AS po ON m.productorder_pdorSeq = po.pdorSeq
@@ -38,6 +54,22 @@
         </choose>
     </sql>
 	
+		<select id="selectXdmList" resultMap="resultMapObj">
+		SELECT
+			m.mafaSeq 
+		    ,m.mafaStausCd
+		    ,m.mafaTotalQty
+		    ,po.pdorTotalQty
+		    ,po.pdorNum
+		    ,m.mafaRegDate
+		    ,m.mafaModDate
+		    ,m.mafaNum
+		    ,m.mafaName
+		    ,d.dealName
+		    <include refid = "selectXdmCommon"></include>
+		    ORDER BY m.mafaSeq DESC
+		    limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
@@ -114,6 +146,11 @@
     	select count(*)
 <!--     	FROM manufacture -->
     	 <include refid = "selectCommon"></include>
+    </select>
+    
+    	<select id="selectOneXdmCount" resultType="Integer">
+    	select count(*)
+    	 <include refid = "selectXdmCommon"></include>
     </select>
     
        <select id="selectListForInco" resultMap="resultMapObj">

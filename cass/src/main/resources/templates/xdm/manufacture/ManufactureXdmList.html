@@ -20,8 +20,9 @@
             <div class="col-md-2">
                 <select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
-					<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-					<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+					<option value="1" th:selected="${vo.shOptionDate == 1}">제작일</option>
+					<option value="2" th:selected="${vo.shOptionDate == 2}">완료일</option>
+
 				</select>
                   <div class="invalid-feedback">
                     항목중 하나를 선택 해주세요.
@@ -39,25 +40,12 @@
                   종료일을 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-2" style="height: 10px;">
-                <select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-					<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-					<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-					<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-				</select>
-                <div class="invalid-feedback">
-                  항목중 하나를 선택 해주세요.
-                </div>
-              </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-2"></div>
             <div class="col-md-2">
                 <select id="shOption" name="shOption" class="form-select form-select-sm">
 					<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-					<option value="1" th:selected="${vo.shOption == 1}">회원 코드</option>
-					<option value="2" th:selected="${vo.shOption == 2}">회원 ID</option>
-					<option value="3" th:selected="${vo.shOption == 3}">회원 이름</option>
+					<option value="1" th:selected="${vo.shOption == 1}">제작번호</option>
+					<option value="2" th:selected="${vo.shOption == 2}">주문번호</option>
+					<option value="3" th:selected="${vo.shOption == 3}">주문처명</option>
 				</select>
                 <div class="invalid-feedback">
                   항목중 하나를 선택 해주세요.
@@ -69,7 +57,7 @@
                   코드를 입력해주세요.
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-2">
                 <button type="button" id="btnSearch" class="btn btn-outline-dark"><i class="bi bi-search"></i></button>
                 <button type="button" id="btnReset" class="btn btn-outline-dark"><i class="bi bi-arrow-clockwise"></i></button>
             </div>
@@ -94,7 +82,7 @@
                     <th class="list-sort" style="text-align: center;">제작수량</th>
                     <th class="list-sort" style="text-align: center;">제작상태</th>
                     <th data-type="date" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">제작일</th>
-<!--                     <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">수정일</th> -->
+                    <th data-type="data" data-format="YYYY/DD/MM" class="list-sort" style="text-align: center;">완료일</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,7 +99,8 @@
                        <td th:text = "${list.dealName}"></td>
                        <td th:text = "${list.mafaTotalQty}"></td>
                        <td th:text = "${@codeService.selectOneCachedCode(list.mafaStausCd)}"></td>
-                       <td th:text = "${list.mafaModDate}"></td>
+                       <td th:text = "${list.mafaRegDate}"></td>
+					   <td th:text = "${list.mafaModDate}"></td>
 	                   </tr>
                   </tbody>
                   <tfoot>
