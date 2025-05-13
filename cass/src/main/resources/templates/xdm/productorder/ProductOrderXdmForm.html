@@ -47,7 +47,7 @@
 	                
 	                <div class="col-md-3">
 	                  <label for="pdorName" class="form-label">거래처명<sup>*</sup></label>
-	                  <select class="form-select" id="dealer_dealSeq" name="dealer_dealSeq" aria-label="Default select example">
+	                  <select class="form-select" id="dealer_dealSeq" name="dealer_dealSeq" aria-label="dealerName">
 	                    <option value="">주문처 선택</option>
 						<option th:each="list : ${dealerList}" th:text="${list.dealName}" th:value="${list.dealSeq}" th:selected="${item.dealer_dealSeq} == ${list.dealSeq}"></option>
 	                  </select>
@@ -68,7 +68,7 @@
             	<div class="row mt-4">
 	                <div class="col-md-3">
 	                  <label for="product_prdtSeq" class="form-label">상품이름<sup>*</sup></label>
-	                  <select class="form-select" id="product_prdtSeq" aria-label="Default select example">
+	                  <select class="form-select" id="product_prdtSeq" aria-label="productName">
 	                    <option value="">주문저울 선택</option>
 						<option th:each="list : ${productList}" th:text="${list.prdtName}" th:value="${list.prdtSeq}"></option>
 	                  </select>
