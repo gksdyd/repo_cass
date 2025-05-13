@@ -5,18 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cass.demo.module.dealer.DealerDto;
+import com.cass.demo.module.dealer.DealerService;
+
 @Controller
 public class IndexController {
 	
 	@Autowired
 	IndexService service;
+	
+	@Autowired
+	DealerService dealerService;
 
 	@RequestMapping(value = "/xdm/indexXdm")
-	public String xdmIndex(Model model, IndexDto dto) {
+	public String xdmIndex(Model model, IndexDto dto, DealerDto dealerDto) {
 		
-		model.addAttribute("pdor", service.selectOneCountOnPdor(dto));
-		model.addAttribute("mafa", service.selectOneCountOnMafa(dto));
-		model.addAttribute("deli", service.selectOneCountOnDeli(dto));
+		model.addAttribute("pdor", service.selectOneCountOnPdor());
+		model.addAttribute("mafa", service.selectOneCountOnMafa());
+		model.addAttribute("deli", service.selectOneCountOnDeli());
+		model.addAttribute("list", dealerService.selectListForIndex(dealerDto));
+		model.addAttribute("items", service.selectListItemForIndex(dto));
+		
 		return "xdm/index/index";
 	}
 	@RequestMapping(value = "/index")

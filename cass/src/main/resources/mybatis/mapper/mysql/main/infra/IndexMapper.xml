@@ -4,53 +4,8 @@
 <mapper namespace="com.cass.demo.module.index.IndexDao">
 
 <resultMap id="resultMapObj" type="com.cass.demo.module.index.IndexDto"></resultMap>
-
-	<sql id="selectCommon">	    
-	    from
-			productorder pdor 
-			left join (select productorder_pdorSeq from productorderlist group by productorder_pdorSeq) AS pdol on pdol.productorder_pdorSeq = pdor.pdorSeq
-			left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
-		WHERE 1=1 
-			AND pdor.pdorDelNy = 0
-			AND pdor.pdorStatusCd = 3
-		<choose>
-			<when test="shOptionDate == 1">AND pdorRegDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			<when test="shOptionDate == 2">AND pdorModDate BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-		</choose>
-        <choose>
-            <when test="shOption == 1">AND pdorNum = #{shValue}</when>
-            <when test="shOption == 2">AND dealName LIKE CONCAT('%',#{shValue},'%')</when>
-        </choose>
-    </sql>
-    
-<select id="selectList" resultMap="resultMapObj">
-
-	select
-		pdor.pdorSeq,
-		pdor.pdorNum,
-        pdor.pdorRegDate,
-        pdor.pdorModDate,
-        pdor.pdorTotalQty,
-        pdor.pdorTotalPrice,
-        pdor.pdorDesc,
-        pdor.pdorDelNy,
-        pdor.pdorStatusCd,
-        pdor.dealer_dealSeq,
-        d.dealName,
-        d.dealManager
-        
-	from
-	  productorder pdor 
-	  left join dealer d ON  pdor.dealer_dealSeq = d.dealSeq
-		WHERE 1=1 
-		ORDER BY pdor.pdorSeq DESC
-		limit #{rowNumToShow} offset #{startRnumForMysql}
-
-
-</select>
-
-	<select id="selectOneCountOnPdor" resultType="Integer">
 	
+	<select id="selectOneCountOnPdor" resultType="Integer">
 	Select count(*)
 	From
 		productorder pdor 
@@ -59,7 +14,6 @@
 	</select>
 
 	<select id="selectOneCountOnMafa" resultType="Integer">
-	
 	Select count(*)
 	From
 		manufacture mafa 
@@ -68,12 +22,39 @@
 	</select>
 	
 	<select id="selectOneCountOnDeli" resultType="Integer">
-	
 	Select count(*)
 	From
 		delivery deli 
 		WHERE 1=1
 		and deli.deliStausCd != 16
 	</select>
+	
+<!-- 	<select id="selectListForIndex" resultMap="resultMapObj"> -->
+<!-- 		SELECT -->
+<!-- 			dealSeq -->
+<!-- 		    ,dealName -->
+<!-- 		    ,dealAddress -->
+<!-- 		    ,dealZipCode -->
+<!-- 		    ,dealAddressDetail -->
+<!-- 		    ,dealManager -->
+<!-- 		    ,dealTel -->
+<!-- 		    ,dealManagerTel -->
+<!-- 		    ,(SELECT SUM(pdorTotalPrice) as tp FROM productorder WHERE dealer_dealSeq = dealSeq) as tp -->
+<!-- 	    from dealer -->
+<!-- 		order by dealSeq desc -->
+<!-- 	</select> -->
+	
+	<select id="selectListItemForIndex" resultMap="resultMapObj">
+		SELECT
+			prdtSeq
+		    ,prdtName
+		    ,prdtCateCd
+		    ,prdtPrice
+		    ,(SELECT SUM(pdolAmountPrice) FROM productorderlist WHERE product_prdtSeq = prdtSeq) as amountPrice
+		    ,(SELECT SUM(pdolQty) FROM productorderlist WHERE product_prdtSeq = prdtSeq) as amountQty
+	    from product
+	</select>
+	
+	
 
 </mapper>

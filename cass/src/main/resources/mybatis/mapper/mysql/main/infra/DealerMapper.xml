@@ -149,4 +149,20 @@
 		from
 			dealer
 	</select>
+	
+	<select id="selectListForIndex" resultMap="resultMapObj">
+		SELECT
+			dealSeq
+		    ,dealName
+		    ,dealAddress
+		    ,dealZipCode
+		    ,dealAddressDetail
+		    ,dealManager
+		    ,dealTel
+		    ,dealManagerTel
+		    ,(SELECT SUM(pdorTotalPrice) FROM productorder WHERE dealer_dealSeq = dealSeq) as totalPrice
+		    ,(SELECT SUM(pdorTotalQty) FROM productorder WHERE dealer_dealSeq = dealSeq) as totalQty
+	    from dealer
+		order by dealSeq desc
+	</select>
 </mapper>

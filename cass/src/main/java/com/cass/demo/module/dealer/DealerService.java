@@ -25,6 +25,9 @@ public class DealerService {
 	public List<DealerDto> selectList(DealerVo vo) {
 		return dealerDao.selectList(vo);
 	}
+	public List<DealerDto> selectListForIndex(DealerDto dealerDto) {
+		return dealerDao.selectListForIndex(dealerDto);
+	}
 	public DealerDto selectOne(DealerDto dealerDto) {
 		return dealerDao.selectOne(dealerDto);
 	}

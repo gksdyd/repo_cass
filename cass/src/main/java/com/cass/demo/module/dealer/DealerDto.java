@@ -17,6 +17,9 @@ public class DealerDto {
 	private String dealModDate;
 	private Integer dealUseNy;
 	private Integer dealDelNy;
+
+	private Integer totalPrice;
+	private Integer totalQty;
 	
 	private String pdolSeq;
     private Integer pdolQty;
@@ -157,6 +160,18 @@ public class DealerDto {
 	}
 	public void setPrdtPrice(Integer prdtPrice) {
 		this.prdtPrice = prdtPrice;
+	}
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public Integer getTotalQty() {
+		return totalQty;
+	}
+	public void setTotalQty(Integer totalQty) {
+		this.totalQty = totalQty;
 	}
 	
 }
